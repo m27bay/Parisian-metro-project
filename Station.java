@@ -14,18 +14,11 @@ public class Station {
     this.number = number;
   }
 
-  public String get_name() {
-    return this.name;
-  }
+  public String get_name() { return this.name; }
 
-  public int get_number() {
-    return this.number;
-  }
+  public int get_number() { return this.number; }
 
   public String toString(){
     return "Station n°: "+this.number+": '"+this.name+"'";
-  }
-  public void station_print(Station s) {
-    System.out.println("Station n°: "+s.get_number()+": '"+s.get_name()+"'");
   }
 }

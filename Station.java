@@ -22,7 +22,10 @@ public class Station {
     return this.number;
   }
 
+  public String toString(){
+    return "Station n°: "+this.number+": '"+this.name+"'";
+  }
   public void station_print(Station s) {
-    System.out.println("Sation n°: "+s.get_number()+": '"+s.get_name()+"'");
+    System.out.println("Station n°: "+s.get_number()+": '"+s.get_name()+"'");
   }
 }

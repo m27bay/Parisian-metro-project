@@ -145,7 +145,8 @@ public class Metro_line {
 
   public void terminus_print() {
     for( Station s: this.terminus )
-      s.station_print();
+     // s.station_print();
+      System.out.println(s.toString()+"\n");
   }
 
   public void metro_print() {
@@ -161,7 +162,7 @@ public class Metro_line {
           System.out.print("terminus ");
           j++;
         }
-        s.station_print(s);
+        System.out.println(s.toString()+"\n");
       }
     }
   }

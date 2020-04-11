@@ -1,8 +1,8 @@
 import java.util.Arrays;
 import org.apache.commons.lang3.ArrayUtils;
 /**
- * contient un tableau avec les pères de chaque sommet et leur distance pour un certain plus court chemin
- */
+  * contient un tableau avec les pères de chaque sommet et leur distance pour un certain plus court chemin
+  */
 public class Tbl_dikjstra
 {
     // variables d'instance - remplacez l'exemple qui suit par le vôtre
@@ -14,9 +14,9 @@ public class Tbl_dikjstra
     private static int NTREATED = -1;//non traité ou non accessible
 
     /**
-     * Constructeur d'objets de classe Tbl_dikjstra,
-     *les valeurs sont nulles
-     */
+      * Constructeur d'objets de classe Tbl_dikjstra,
+      *l es valeurs sont nulles
+      */
     public Tbl_dikjstra()
     {
         this.column = 0;
@@ -26,10 +26,10 @@ public class Tbl_dikjstra
     }
 
     /**
-     * initialisation avec un certain nombre de colonne,
-     * les valeurs sont à -1
-     * @param column, le nombre de colonne
-     */
+      * Initialisation avec un certain nombre de colonne,
+      * les valeurs sont à -1
+      * @param column, le nombre de colonne
+      */
     public Tbl_dikjstra(int column)
     {
         this.column = column;
@@ -39,8 +39,8 @@ public class Tbl_dikjstra
     }
 
     /**
-    *initialise un tableau non-traité
-    */
+      * Initialise un tableau non-traité
+      */
     private int[] init(int column){
         int[] T = new int[column];
         int i;
@@ -50,9 +50,9 @@ public class Tbl_dikjstra
         return T;
     }
 
-    /*
-    Cherche les plus courts chemins depuis vertex et tous les autres sommets
-    */
+    /**
+      * Cherche les plus courts chemins depuis vertex et tous les autres sommets
+      */
     public int[][] calcul(Matrice A, int vertex){
         //si pas bon format, on remplace
         if(A.getColumn() != this.column){
@@ -76,6 +76,7 @@ public class Tbl_dikjstra
         while( !finished() ){
         	index_min = min();
 
+            System.out.println("before 'min()': "+index_min);
         	this.verif[index_min] = TREATED;
         	treatment(A, index_min);//actualise tbl de distance et des pères
         }
@@ -85,20 +86,21 @@ public class Tbl_dikjstra
     }
 
     /**
-    *retourne l'indice du minimum du tableau dist
-    */
+      * Retourne l'indice du minimum du tableau dist
+      */
     private int min(){
     	int min = 999;
     	int tmp;
-    	int i;
     	int index = -1;
-    	for(i=0; i<this.column; i++){
+        System.out.println( "column: "+this.column );
+    	for( int i =0 ; i < this.column ; i++ ){
     		tmp = this.dist[i];
 
+            System.out.println("tmp = "+tmp);
     		if(tmp == NTREATED || tmp == 0)//si pas d'arc trouvé
     			continue;
     		//si il y a un arc vers un sommet i non traité avec une distance de l'origine inférieur à tmp
-    		else if(this.verif[i] == NTREATED && tmp<min){
+    		else if(this.verif[i] == NTREATED && tmp < min){
     			min = tmp;
     			index = i;
     		}
@@ -106,9 +108,9 @@ public class Tbl_dikjstra
 
     	return index;
     }
-    /*
-    actualise les pères et les pcc des sommets voisins de vertex
-    */
+    /**
+      * Actualise les pères et les pcc des sommets voisins de vertex
+      */
     private void treatment(Matrice A, int vertex){
     	int i;
     	for(i=0; i<column; i++){
@@ -126,8 +128,8 @@ public class Tbl_dikjstra
     	}
     }
     /**
-    *retourne vrai si tous les sommets ont étaient traités
-    */
+      * Retourne vrai si tous les sommets ont étaient traités
+      */
     public boolean finished(){
         for(int i: this.verif){
             if(i!=1){
@@ -138,8 +140,8 @@ public class Tbl_dikjstra
     }
 
     /**
-    renvoie le plus court chemin de at à to
-    */
+      * Renvoie le plus court chemin de at à to
+      */
 
     public int[] way(Matrice A, int at, int to){
     	calcul(A, at);
@@ -160,8 +162,8 @@ public class Tbl_dikjstra
     }
 
     /**
-     * affiche le tableau de dikjsra tous les 20 colonnes
-     */
+      * Affiche le tableau de dikjsra tous les 20 colonnes
+      */
     public void printTbl_Dikjstra(){
         int i,j,k,l;
         i = j = k = l = 0;

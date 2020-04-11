@@ -30,7 +30,8 @@ public class Metro_line {
     }
 
     catch(FileNotFoundException exception) {
-      System.out.println("Error in class 'Station', method 'station_init': file not found");
+      System.out.println("Error in class 'Metro_line', method 'station_count':"+
+                         " file not found");
     }
 
     while( ( line = read.readLine() )  !=  null ) {
@@ -57,7 +58,8 @@ public class Metro_line {
     }
 
     catch(FileNotFoundException exception) {
-      System.out.println("Error in class 'Station', method 'station_init': file not found");
+      System.out.println("Error in class 'Metro_line', method 'terminus_count':"+
+                         " file not found");
     }
 
     while( ( line = read.readLine() )  !=  null ) {
@@ -85,10 +87,11 @@ public class Metro_line {
     }
 
     catch(FileNotFoundException exception) {
-      System.out.println("Error in class 'Station', method 'station_init': file not found");
+      System.out.println("Error in class 'Metro_line', method 'metro_init':"+
+                         " file not found");
     }
 
-    int i = 0, j = 0;
+    int i = 0;
     while( ( line = read.readLine() )  !=  null ) {
       if( line.charAt(0)  ==  'V'  ||  line.charAt(0)  ==  'T' ) {
         String str_number = line.substring(2, 6);
@@ -121,7 +124,8 @@ public class Metro_line {
     }
 
     catch(FileNotFoundException exception) {
-      System.out.println("Error in class 'Station', method 'station_init': file not found");
+      System.out.println("Error in class 'Metro_line', method 'terminus_init':"+
+                         " file not found");
     }
 
     int j = 0;

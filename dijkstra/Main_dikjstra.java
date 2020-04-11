@@ -11,6 +11,8 @@ public class Main_dikjstra
 {
       // throws IOException for tbl_stations.fill(), file reader
       public static void main (String[] args) throws IOException{
+
+            /*
             int T[][] = {
                          {0,4,8,-1,11,-1  },
              		 {-1,0,3,2,-1,-1  },
@@ -56,12 +58,30 @@ public class Main_dikjstra
             for( int i=0 ; i < way.length ; i++)
              	System.out.print(way[i]+" ");
             System.out.println();
+            */
 
             //
             Tbl_stations tbl_stations = new Tbl_stations("metro.txt");
-            tbl_stations.fill_station();
-            // tbl_stations.print();
-            // tbl_stations.write_file();
             tbl_stations.fill_travel_time();
+            // tbl_stations.print();
+            tbl_stations.write_file();
+
+            // Test //
+
+            //
+            Matrice M = new Matrice( tbl_stations.get_tbl() );
+            // M.printMatrice();
+
+            //
+            int station_start = 0;
+            int station_stop = 7;
+            Tbl_dikjstra F = new Tbl_dikjstra();
+            int []way = F.way(M, station_start, station_stop);
+
+            //
+            System.out.print("Chemin : ");
+            for( int i=0 ; i < way.length ; i++)
+                  System.out.print(way[i]+" ");
+            System.out.println();
     }
 }

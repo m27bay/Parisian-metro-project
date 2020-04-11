@@ -18,8 +18,8 @@ public class Main {
       all_metro[i] = new Metro_line(args[0], name_metro[i]);
 
     for( Metro_line m: all_metro ) {
-      // m.metro_print();
-      m.terminus_print();
+      m.metro_print();
+      // m.terminus_print();
       System.out.println("\n\n");
     }
   }

@@ -109,7 +109,7 @@ public class Tbl_stations {
     * Fill the matrix with the travel time between stations
     *
     */
-  public void fill_travel_time() {
+  public void fill_travel_time() throws IOException {
 
     // Variable(s)
     BufferedReader read = null;
@@ -131,18 +131,16 @@ public class Tbl_stations {
     while( ( line = read.readLine() )  !=  null ) {
 
       // Line with travel time begenning with a 'E'
-      if( line.charAt(0)  ==  'V'  ||  line.charAt(0)  ==  'T' ) {
+      if( line.charAt(0)  ==  'E' ) {
 
         // Fill the case [ start ][ stop ] with the travel time
-        this.tbl[0][i] = Integer.parseInt( line.substring(2, 6) );
-        i++;
+        System.out.println( Integer.parseInt( line.substring(2, line.length() ) ) );
       }
     }
 
     // Stop reading
     read.close();
     }
-  }
 
 
   /**

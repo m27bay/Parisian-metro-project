@@ -21,9 +21,23 @@ public class Tbl_stations {
     this.path_file = path_file;
 
     //
-    this.tbl_size  = station_count( this.path_file );
-    this.tbl       = new int[ this.tbl_size + 1 ][ this.tbl_size + 1 ];
+    this.tbl_size  = station_count( this.path_file ) + 1;
+    this.tbl       = new int[ this.tbl_size ][ this.tbl_size ];
   }
+
+  // Getter
+
+  /**
+    *
+    *
+    */
+  public int[][] get_tbl() { return this.tbl; }
+
+  /**
+    *
+    *
+    */
+  public int get_size() { return this.tbl_size; }
 
   // Method(s)
 
@@ -57,55 +71,6 @@ public class Tbl_stations {
 
 
   /**
-    * Fill the matrix with the station number
-    *
-    */
-  public void fill_station() throws IOException {
-
-    // Variable(s)
-    BufferedReader read = null;
-    String line;
-
-    // Init 'read'
-    try {
-      read = new BufferedReader ( new FileReader ( this.path_file ) );
-    }
-
-    // Exception
-    catch(FileNotFoundException exception) {
-      System.out.println("Error in class 'Tbl_station', method 'fillTbl':"+
-                         " file not found");
-    }
-
-    // Read file
-    int i = 0;
-    while( ( line = read.readLine() )  !=  null ) {
-
-      // Line with num station begenning with a 'V' or 'T'
-      if( line.charAt(0)  ==  'V'  ||  line.charAt(0)  ==  'T' ) {
-
-        // Fill the first line
-        this.tbl[0][i] = Integer.parseInt( line.substring(2, 6) );
-        i++;
-      }
-    }
-
-    // Stop reading
-    read.close();
-
-    // fill the first column
-    for( int column = 0 ; column < this.tbl_size ; column++ )
-      this.tbl[ column ][0] = this.tbl[0][ column ];
-
-    // fill the rest of the matrix with '-1'
-    for( int column = 0 ; column < this.tbl_size ; column++ ) {
-      for( int i_line = 1 ; i_line < this.tbl_size ; i_line++ )
-        this.tbl[ column ][ i_line ] = -1;
-    }
-  }
-
-
-  /**
     * Fill the matrix with the travel time between stations
     *
     */
@@ -126,6 +91,17 @@ public class Tbl_stations {
                          " file not found");
     }
 
+    // init the matrix with '-1' everywhere
+    for( int column = 0 ; column < this.tbl_size ; column++ ) {
+      for( int i_line = 0 ; i_line < this.tbl_size ; i_line++ )
+
+        // Distance between a station and herself
+        if( column == i_line )
+          this.tbl[ column ][ i_line ] = 0;
+        else
+          this.tbl[ column ][ i_line ] = -1;
+    }
+
     // Read file
     int start = 0, stop = 0;
     while( ( line = read.readLine() )  !=  null ) {
@@ -134,7 +110,29 @@ public class Tbl_stations {
       if( line.charAt(0)  ==  'E' ) {
 
         // Fill the case [ start ][ stop ] with the travel time
-        System.out.println( Integer.parseInt( line.substring(2, line.length() ) ) );
+        int station_start = 0, station_stop = 0, travel_time = 0;
+
+        int pos = 0, pos2 = 0;
+
+        // Skip space and 'E'
+        while( !Character.isDigit( line.charAt(pos2) ) ) pos2++;
+        pos = pos2;
+
+        // Read the first number
+        while( Character.isDigit( line.charAt(pos2) ) ) pos2++;
+        station_start = Integer.parseInt( line.substring( pos, pos2 ) );
+        pos = pos2+=1;
+
+        // Read the second number
+        while( Character.isDigit( line.charAt(pos2) ) ) pos2++;
+        station_stop = Integer.parseInt( line.substring( pos, pos2 ) );
+        pos = pos2+=1;
+
+        // Read the last number
+        travel_time = Integer.parseInt( line.substring( pos2, line.length() ) );
+
+        // Fill the matrix with the travel time
+        this.tbl[ station_start ][ station_stop ] = travel_time;
       }
     }
 

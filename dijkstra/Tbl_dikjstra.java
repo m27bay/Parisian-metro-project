@@ -89,10 +89,11 @@ public class Tbl_dikjstra
       * Retourne l'indice du minimum du tableau dist
       */
     private int min(){
-    	int min = 999;
+    	int min = Integer.MAX_VALUE;
     	int tmp;
     	int index = -1;
-        System.out.println( "column: "+this.column );
+
+      System.out.println( "column: "+this.column );
     	for( int i =0 ; i < this.column ; i++ ){
     		tmp = this.dist[i];
 

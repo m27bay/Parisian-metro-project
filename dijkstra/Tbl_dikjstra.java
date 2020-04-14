@@ -75,8 +75,9 @@ public class Tbl_dikjstra
         int index_min;
         while( !finished() ){
         	index_min = min();
-
-            System.out.println("before 'min()': "+index_min);
+            if(index_min == -1)
+                break;
+           // System.out.println("before 'min()': "+index_min);
         	this.verif[index_min] = TREATED;
         	treatment(A, index_min);//actualise tbl de distance et des pères
         }
@@ -93,11 +94,12 @@ public class Tbl_dikjstra
     	int tmp;
     	int index = -1;
 
-      System.out.println( "column: "+this.column );
-    	for( int i =0 ; i < this.column ; i++ ){
+      //System.out.println( "column: "+this.column );
+      int i;
+    	for( i =0 ; i < this.column ; i++ ){
     		tmp = this.dist[i];
 
-            System.out.println("tmp = "+tmp);
+            //System.out.println("tmp = "+tmp);
     		if(tmp == NTREATED || tmp == 0)//si pas d'arc trouvé
     			continue;
     		//si il y a un arc vers un sommet i non traité avec une distance de l'origine inférieur à tmp
@@ -106,7 +108,7 @@ public class Tbl_dikjstra
     			index = i;
     		}
     	}
-
+        System.out.println( "index: "+index+ "min :"+min );
     	return index;
     }
     /**
@@ -125,6 +127,7 @@ public class Tbl_dikjstra
 				|| this.dist[i] == NTREATED){
 				this.dist[i] = this.dist[vertex] + A.getVal(vertex, i);
 				this.father[i] = vertex;
+                System.out.println("vertex"+vertex);
 			}
     	}
     }
@@ -183,9 +186,11 @@ public class Tbl_dikjstra
             System.out.println();
             System.out.print("Pere :  ");
             while(j<father.length){
-                System.out.print(" "+father[j]);
-                if(j%20 == 0 && j!=0)
-                    break;
+                if(this.verif[j] == TREATED){
+                    System.out.print(" "+father[j]);
+                    if(j%20 == 0 && j!=0)
+                        break;
+                }
                 j++;
             }
 

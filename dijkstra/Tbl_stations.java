@@ -133,6 +133,8 @@ public class Tbl_stations {
 
         // Fill the matrix with the travel time
         this.tbl[ station_start ][ station_stop ] = travel_time;
+        this.tbl[ station_stop ][ station_start ] = travel_time;
+
       }
     }
 

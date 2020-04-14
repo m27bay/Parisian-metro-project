@@ -1,4 +1,4 @@
-package1 = "commons-lang3-3.9/commons-lang3-3.9.jar"
+package1 = commons-lang3-3.9/commons-lang3-3.9.jar
 
 run : compile
 	java -cp  $(package1):. Main_dikjstra

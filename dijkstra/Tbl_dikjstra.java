@@ -65,20 +65,21 @@ public class Tbl_dikjstra
         //init, vertex est traité et on récupère ses distances avec les autres sommets
         int i;
         for(i=0; i<this.column; i++){
-        	this.dist[i] = A.getVal(vertex, i);
-        	if(this.dist[i] != NTREATED && vertex != i)//si il y a un arc on ajoute son père
-        		this.father[i] = vertex;
+            this.dist[i] = A.getVal(vertex, i);
+            if(this.dist[i] != NTREATED && vertex != i)//si il y a un arc on ajoute son père
+                this.father[i] = vertex;
         }
         this.verif[vertex] = TREATED;
 
 
         int index_min;
         while( !finished() ){
-        	index_min = min();
-
-            System.out.println("before 'min()': "+index_min);
-        	this.verif[index_min] = TREATED;
-        	treatment(A, index_min);//actualise tbl de distance et des pères
+            index_min = min();
+            if(index_min == -1)
+                break;
+           // System.out.println("before 'min()': "+index_min);
+            this.verif[index_min] = TREATED;
+            treatment(A, index_min);//actualise tbl de distance et des pères
         }
 
         int[][] T = {this.dist, this.father};
@@ -89,44 +90,46 @@ public class Tbl_dikjstra
       * Retourne l'indice du minimum du tableau dist
       */
     private int min(){
-    	int min = Integer.MAX_VALUE;
-    	int tmp;
-    	int index = -1;
+        int min = Integer.MAX_VALUE;
+        int tmp;
+        int index = -1;
 
-      System.out.println( "column: "+this.column );
-    	for( int i =0 ; i < this.column ; i++ ){
-    		tmp = this.dist[i];
+      //System.out.println( "column: "+this.column );
+      int i;
+        for( i =0 ; i < this.column ; i++ ){
+            tmp = this.dist[i];
 
-            System.out.println("tmp = "+tmp);
-    		if(tmp == NTREATED || tmp == 0)//si pas d'arc trouvé
-    			continue;
-    		//si il y a un arc vers un sommet i non traité avec une distance de l'origine inférieur à tmp
-    		else if(this.verif[i] == NTREATED && tmp < min){
-    			min = tmp;
-    			index = i;
-    		}
-    	}
-
-    	return index;
+            //System.out.println("tmp = "+tmp);
+            if(tmp == NTREATED || tmp == 0)//si pas d'arc trouvé
+                continue;
+            //si il y a un arc vers un sommet i non traité avec une distance de l'origine inférieur à tmp
+            else if(this.verif[i] == NTREATED && tmp < min){
+                min = tmp;
+                index = i;
+            }
+        }
+        System.out.println( "index: "+index+ "min :"+min );
+        return index;
     }
     /**
       * Actualise les pères et les pcc des sommets voisins de vertex
       */
     private void treatment(Matrice A, int vertex){
-    	int i;
-    	for(i=0; i<column; i++){
-    		//si i  traité ou n'existe pas un arc de vertex à i
-    		if(this.verif[i]==TREATED || A.getVal(vertex,i) == NTREATED)
-    			continue;
-    			//si la plus courte distance actuel de i à l'origine est plus grande
-    			//que celle de origine à vertex + vertex à i, ou que le sommet
-    			//n'a pas encore était rencontré alors on remplace
-			else if( this.dist[i] > (this.dist[vertex] + A.getVal(vertex, i))
-				|| this.dist[i] == NTREATED){
-				this.dist[i] = this.dist[vertex] + A.getVal(vertex, i);
-				this.father[i] = vertex;
-			}
-    	}
+        int i;
+        for(i=0; i<column; i++){
+            //si i  traité ou n'existe pas un arc de vertex à i
+            if(this.verif[i]==TREATED || A.getVal(vertex,i) == NTREATED)
+                continue;
+                //si la plus courte distance actuel de i à l'origine est plus grande
+                //que celle de origine à vertex + vertex à i, ou que le sommet
+                //n'a pas encore était rencontré alors on remplace
+            else if( this.dist[i] > (this.dist[vertex] + A.getVal(vertex, i))
+                || this.dist[i] == NTREATED){
+                this.dist[i] = this.dist[vertex] + A.getVal(vertex, i);
+                this.father[i] = vertex;
+                System.out.println("vertex"+vertex);
+            }
+        }
     }
     /**
       * Retourne vrai si tous les sommets ont étaient traités
@@ -145,21 +148,21 @@ public class Tbl_dikjstra
       */
 
     public int[] way(Matrice A, int at, int to){
-    	calcul(A, at);
-    	int father;
-    	int []theway = new int[column];//tableau du chemin
-    	theway[0] = to;
-    	theway[1] = father = this.father[to];
-    	int i = 2;
+        calcul(A, at);
+        int father;
+        int []theway = new int[column];//tableau du chemin
+        theway[0] = to;
+        theway[1] = father = this.father[to];
+        int i = 2;
 
-    	while(father != -1){
-    		father = this.father[father];
-    		theway[i] = father;
-    		i++;
-    	}
-    	theway = ArrayUtils.subarray(theway,0,i-1);//i-1 pour pas prendre le pere -1
-    	ArrayUtils.reverse(theway);
-    	return theway;
+        while(father != -1){
+            father = this.father[father];
+            theway[i] = father;
+            i++;
+        }
+        theway = ArrayUtils.subarray(theway,0,i-1);//i-1 pour pas prendre le pere -1
+        ArrayUtils.reverse(theway);
+        return theway;
     }
 
     /**
@@ -183,9 +186,11 @@ public class Tbl_dikjstra
             System.out.println();
             System.out.print("Pere :  ");
             while(j<father.length){
-                System.out.print(" "+father[j]);
-                if(j%20 == 0 && j!=0)
-                    break;
+                if(this.verif[j] == TREATED){
+                    System.out.print(" "+father[j]);
+                    if(j%20 == 0 && j!=0)
+                        break;
+                }
                 j++;
             }
 

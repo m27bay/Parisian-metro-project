@@ -17,7 +17,8 @@ public class Tbl_stations {
   private int tbl[][];
 
   // Builder(s)
-  public Tbl_stations(String path_file) throws IOException{
+  public Tbl_stations(String path_file) throws IOException
+  {
     this.path_file = path_file;
 
     //
@@ -42,31 +43,37 @@ public class Tbl_stations {
   // Method(s)
 
   /**
-    *
-    *
+    * Count the nuumber ouf stations
+    * @param file_name the name of the file
+    * @return the number of stations
     */
   private int station_count(String file_name) throws IOException
   {
+    // Variables
     BufferedReader read = null;
     String line;
     int num_stations = 0;
 
+    // Init 'read'
     try {
       read = new BufferedReader ( new FileReader ( file_name ) );
     }
 
+    // exception
     catch(FileNotFoundException exception) {
       System.out.println("Error in class 'Tbl_station', method 'station_count':"+
                          " file not found");
     }
 
+    // read
     while( ( line = read.readLine() )  !=  null ) {
       if( line.charAt(0)  ==  'V'  ||  line.charAt(0)  ==  'T' )
         num_stations++;
     }
 
+    // Close & exit
     read.close();
-   return num_stations;
+    return num_stations;
   }
 
 
@@ -74,40 +81,47 @@ public class Tbl_stations {
     * Fill the matrix with the travel time between stations
     *
     */
-  public void fill_travel_time() throws IOException {
+  public void fill_travel_time() throws IOException
+  {
 
     // Variable(s)
     BufferedReader read = null;
     String line;
 
     // Init 'read'
-    try {
+    try
+    {
       read = new BufferedReader ( new FileReader ( this.path_file ) );
     }
 
     // Exception
-    catch(FileNotFoundException exception) {
+    catch(FileNotFoundException exception)
+    {
       System.out.println("Error in class 'Tbl_station', method 'fillTbl':"+
                          " file not found");
     }
 
     // init the matrix with '-1' everywhere
-    for( int column = 0 ; column < this.tbl_size ; column++ ) {
+    for( int column = 0 ; column < this.tbl_size ; column++ )
+    {
       for( int i_line = 0 ; i_line < this.tbl_size ; i_line++ )
-
+      {
         // Distance between a station and herself
         if( column == i_line )
           this.tbl[ column ][ i_line ] = 0;
         else
           this.tbl[ column ][ i_line ] = -1;
+      }
     }
 
     // Read file
     int start = 0, stop = 0;
-    while( ( line = read.readLine() )  !=  null ) {
+    while( ( line = read.readLine() )  !=  null )
+    {
 
       // Line with travel time begenning with a 'E'
-      if( line.charAt(0)  ==  'E' ) {
+      if( line.charAt(0)  ==  'E' )
+      {
 
         // Fill the case [ start ][ stop ] with the travel time
         int station_start = 0, station_stop = 0, travel_time = 0;
@@ -147,8 +161,10 @@ public class Tbl_stations {
     * Print the matrix
     *
     */
-  public void print() {
-    for( int column = 0 ; column < this.tbl_size ; column++ ) {
+  public void print()
+  {
+    for( int column = 0 ; column < this.tbl_size ; column++ )
+    {
       for( int line = 0 ; line < this.tbl_size ; line++ )
         System.out.print(" "+this.tbl[ column ][ line ]+" ");
       System.out.println();
@@ -160,24 +176,28 @@ public class Tbl_stations {
     * Write the matrix in the file 'out/output'
     *
     */
-  public void write_file() throws IOException{
+  public void write_file() throws IOException
+  {
 
     // Variable(s)
     PrintWriter writer = null;
 
     // Init and creat the file
-    try {
+    try
+    {
       writer = new PrintWriter("out/output.txt", "UTF-8");
     }
 
     // Exception
-    catch(FileNotFoundException exception) {
+    catch(FileNotFoundException exception)
+    {
       System.out.println("Error in class 'Tbl_station', method 'write_file':"+
                          " file not found");
     }
 
     // Write matrix
-    for( int column = 0 ; column < this.tbl_size ; column++ ) {
+    for( int column = 0 ; column < this.tbl_size ; column++ )
+    {
       for( int line = 0 ; line < this.tbl_size ; line++ )
         writer.print(" "+this.tbl[ column ][ line ]+" ");
       writer.println();

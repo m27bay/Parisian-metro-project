@@ -90,5 +90,13 @@ public class Main_dikjstra
     for( int i=0 ; i < way.length ; i++)
           System.out.print(way[i]+" ");
     System.out.println();
+
+    System.out.println("Trajet parcouru en "+F.get_tmp_total()+
+                       " seconde; soit "+F.get_tmp_total()/60.0+" minutes.");
+
+    int[] tps = F.get_tbl_dist();
+    for( int i = 0 ; i < F.get_column() ; i++ )
+      System.out.print(tps[i]+" ");
+    System.out.println();
   }
 }

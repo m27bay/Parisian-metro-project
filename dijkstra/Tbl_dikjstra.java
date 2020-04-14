@@ -11,6 +11,9 @@ public class Tbl_dikjstra
   // variables d'instance - remplacez l'exemple qui suit par le vôtre
   private int[] verif;//vérifi si le sommet a était traité
   private int[] father;
+
+  // on stockera les distances sous forme de temps de parcours
+  // et non de longueur
   private int[] dist;
   private int column;
   private static int TREATED = 1;
@@ -54,6 +57,24 @@ public class Tbl_dikjstra
     //
     return T;
   }
+
+  /**
+    * Getter: Obtenir le tableau de distance
+    * @return le tableau de distance
+    */
+  public int[] get_tbl_dist() { return this.dist; }
+
+  /**
+    * Getter: Obtenir le temps pour parcourir la distance global
+    * @return le temps de parcours total
+    */
+  public int get_tmp_total() { return this.dist[ this.column - 1 ]; }
+
+  /**
+    * Getter: Obtenir le nombre de colonne
+    * @return le nombre de colonne
+    */
+  public int get_column() { return this.column; }
 
   /**
     * Cherche les plus courts chemins depuis vertex et tous les autres sommets

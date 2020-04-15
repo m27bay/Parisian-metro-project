@@ -1,4 +1,7 @@
-import java.awt.Color; 
+// awt
+import java.awt.Color;
+
+// swing
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -19,10 +22,10 @@ public class Main{
         // //Termine le processus lorsqu'on clique sur la croix rouge
         // fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // //Et enfin, la rendre visible    
+        // //Et enfin, la rendre visible
         // fenetre.setVisible(true);
 
         Fenetre fen = new Fenetre();
 
-    }       
+    }
 }

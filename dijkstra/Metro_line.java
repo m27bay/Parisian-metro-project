@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
-//
 import java.util.ArrayList;
 
 /**
@@ -15,12 +14,10 @@ import java.util.ArrayList;
 public class Metro_line {
 
   // Attributs
-
-  // Num metro line
+  private int num_stations, num_terminus;
   private String num;
 
   //
-  private int num_stations, num_terminus;
   private Station[] tbl_terminus;
   private Station[] tbl_stations;
 
@@ -33,23 +30,25 @@ public class Metro_line {
     this.num = num;
 
     //
-    this.num_stations  = 0;
-    this.num_terminus  = 0;
+    this.num_stations  = station_count(file_name);
+    this.num_terminus  = terminus_count(file_name);
 
     //
-    this.tbl_stations = new Station[this.num_stations];;
-    this.tbl_terminus = new Station[this.num_terminus];
+    this.tbl_stations  = metro_init(file_name);
+    this.tbl_terminus  = terminus_init(file_name);
   }
 
   /**
-    * Count stations and terminus by metro line with duplicates
+    * Count stations by metro line with duplicates
     * @param the name file
+    * @return the number station
     */
-  private void count(String file_name) throws IOException
+  private int station_count(String file_name) throws IOException
   {
     // Variables
     BufferedReader read = null;
     String line;
+    int num_stations = 0;
 
     // Init read
     try
@@ -74,16 +73,56 @@ public class Metro_line {
         // Check the metro line
         String str_num = line.substring(line.length() - 2, line.length());
         if( str_num.equals(this.num) )
-          this.num_stations++;
-
-        // Count terminus
-        if( line.charAt(0)  ==  'T'  &&  str_num.equals(this.num) )
-          this.num_terminus++;
+          num_stations += 1;
       }
     }
 
     // Close and exit
     read.close();
+    return num_stations;
+  }
+
+  /**
+    * Count terminus by metro line
+    * @param the name file
+    * @return the number station
+    */
+  private int terminus_count(String file_name) throws IOException
+  {
+    // Variables
+    BufferedReader read = null;
+    String line;
+    int num_terminus = 0;
+
+    // Init read
+    try
+    {
+      read = new BufferedReader ( new FileReader ( file_name ) );
+    }
+
+    // Exception
+    catch(FileNotFoundException exception)
+    {
+      System.out.println("Error in class 'Metro_line', method 'terminus_count':"+
+                         " file not found");
+    }
+
+    // Count
+    while( ( line = read.readLine() )  !=  null )
+    {
+      //
+      if( line.charAt(0)  ==  'T' ) {
+
+        // Check metro line
+        String str_num = line.substring(line.length() - 2, line.length());
+        if( str_num.equals(this.num) )
+          num_terminus += 1;
+      }
+    }
+
+    // close an dexit
+    read.close();
+    return num_terminus;
   }
 
   /**
@@ -91,11 +130,14 @@ public class Metro_line {
     * @param the name file
     * @return the table fill
     */
-  private void metro_init(String file_name) throws IOException
+  private Station[] metro_init(String file_name) throws IOException
   {
     // Variables
     BufferedReader read = null;
     String line;
+
+    // Init the table
+    Station list_stations[] = new Station[this.num_stations];
 
     // Init read
     try
@@ -111,7 +153,7 @@ public class Metro_line {
     }
 
     // Read
-    int i = 0, j = 0;
+    int i = 0;
     while( ( line = read.readLine() )  !=  null )
     {
       //
@@ -126,24 +168,75 @@ public class Metro_line {
           int number = Integer.parseInt(str_number);
 
           // Init name station
-          String name = line.substring(7, line.length() - 3);
+          String name   = line.substring(7, line.length() - 3);
 
-          // Fill stations
-          this.tbl_stations[i] = new Station(name, number);
+          // Fill
+          list_stations[i] = new Station(name, number);
           i++;
-
-          // Fill terminus
-          if( line.charAt(0)  ==  'V' )
-          {
-            this.tbl_terminus[j] = new Station(name, number);
-            j++;
-          }
         }
       }
     }
 
     // Close and exit
     read.close();
+    return list_stations;
+  }
+
+  /**
+    * Fill the terminus table by metro line
+    * @param the name file
+    * @return the table filled
+    */
+  private Station[] terminus_init(String file_name) throws IOException
+  {
+    // Variables
+    BufferedReader read = null;
+    String line;
+
+    // Init the table
+    Station terminus[] = new Station[this.num_terminus];
+
+    // Init read
+    try
+    {
+      read = new BufferedReader ( new FileReader ( file_name ) );
+    }
+
+    // Exception
+    catch(FileNotFoundException exception)
+    {
+      System.out.println("Error in class 'Metro_line', method 'terminus_init':"+
+                         " file not found");
+    }
+
+    // Read
+    int j = 0;
+    while( ( line = read.readLine() )  !=  null )
+    {
+      //
+      if( line.charAt(0)  ==  'T' )
+      {
+        // Check metro line
+        String str_num = line.substring(line.length() - 2, line.length());
+        if( str_num.equals( this.num ) ) {
+
+          // Init the terminus number
+          String str_number = line.substring(2, 6);
+          int number        = Integer.parseInt(str_number);
+
+          // Init the terminus name
+          String name       = line.substring(7, line.length() - 3);
+
+          // Fill
+          terminus[j]       = new Station(name, number);
+          j++;
+        }
+      }
+    }
+
+    // Close and exit
+    read.close();
+    return terminus;
   }
 
   /**

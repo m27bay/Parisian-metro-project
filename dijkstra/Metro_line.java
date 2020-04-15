@@ -239,6 +239,68 @@ public class Metro_line {
     return terminus;
   }
 
+  /*
+  private ArrayList <Station> (String file_name)
+  {
+    // Variables
+    BufferedReader read = null;
+    String line;
+
+    // Init the table
+    Station terminus[] = new Station[this.num_terminus];
+
+    // Init read
+    try
+    {
+      read = new BufferedReader ( new FileReader ( file_name ) );
+    }
+
+    // Exception
+    catch(FileNotFoundException exception)
+    {
+      System.out.println("Error in class 'Metro_line', method 'terminus_init':"+
+                         " file not found");
+    }
+
+    // Read
+    while( ( line = read.readLine() )  !=  null )
+    {
+      //
+      if( line.charAt(0)  ==  'E' )
+      {
+        // Fill the case [ start ][ stop ] with the travel time
+        int station_start = 0, station_stop = 0, travel_time = 0;
+
+        int pos = 0, pos2 = 0;
+
+        // Skip space and 'E'
+        while( !Character.isDigit( line.charAt(pos2) ) ) pos2++;
+        pos = pos2;
+
+        // Read the first number
+        while( Character.isDigit( line.charAt(pos2) ) ) pos2++;
+        station_start = Integer.parseInt( line.substring( pos, pos2 ) );
+        pos = pos2+=1;
+
+        // Read the second number
+        while( Character.isDigit( line.charAt(pos2) ) ) pos2++;
+        station_stop = Integer.parseInt( line.substring( pos, pos2 ) );
+        pos = pos2+=1;
+
+        // Read the last number
+        travel_time = Integer.parseInt( line.substring( pos2, line.length() ) );
+
+        //
+
+      }
+    }
+
+    // Close and exit
+    read.close();
+    return terminus;
+  }
+  */
+
   /**
     * Print terminus table
     */

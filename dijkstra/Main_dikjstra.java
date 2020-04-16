@@ -119,6 +119,6 @@ public class Main_dikjstra
     //     " is on the line: "+metro.what_line2( way[i] ) );
     // }
 
-    matro.travel( way, way.length() );
+    metro.travel( way, way.length );
   }
 }

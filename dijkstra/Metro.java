@@ -101,7 +101,7 @@ public class Metro {
     String line_now = "Unknown";
 
     //
-    for( int i = 1 ; i < way_length ; i++ )
+    for( int i = 1 ; i < way_length - 1 ; i++ )
     {
       //
       line_now = what_line2( way[i] );
@@ -116,9 +116,9 @@ public class Metro {
 
   public void travel( int way[], int way_length )
   {
-    System.out.println("Start at: "+metro.what_station( way[0] ).toString() );
-    switch_metro_line( way, way_length )
-    System.out.println("Stop at: " +metro.what_station( way[ way_length - 1 ] ).toString() );
+    System.out.println("Start at: "+this.what_station( way[0] ).toString() );
+    switch_metro_line( way, way_length );
+    System.out.println("Stop at: " +this.what_station( way[ way_length - 1 ] ).toString() );
   }
 
 

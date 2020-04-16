@@ -39,6 +39,19 @@ public class Metro_line {
   }
 
   /**
+    * getter: get the line number
+    * @return line number
+    */
+  public String get_num() { return this.num; }
+
+
+  /**
+    * getter: get tbl_stations
+    * @return tbl_stations
+    */
+  public Station[] get_tbl_stations() { return this.tbl_stations; }
+
+  /**
     * Count stations by metro line with duplicates
     * @param the name file
     * @return the number station
@@ -239,68 +252,6 @@ public class Metro_line {
     return terminus;
   }
 
-  /*
-  private ArrayList <Station> (String file_name)
-  {
-    // Variables
-    BufferedReader read = null;
-    String line;
-
-    // Init the table
-    Station terminus[] = new Station[this.num_terminus];
-
-    // Init read
-    try
-    {
-      read = new BufferedReader ( new FileReader ( file_name ) );
-    }
-
-    // Exception
-    catch(FileNotFoundException exception)
-    {
-      System.out.println("Error in class 'Metro_line', method 'terminus_init':"+
-                         " file not found");
-    }
-
-    // Read
-    while( ( line = read.readLine() )  !=  null )
-    {
-      //
-      if( line.charAt(0)  ==  'E' )
-      {
-        // Fill the case [ start ][ stop ] with the travel time
-        int station_start = 0, station_stop = 0, travel_time = 0;
-
-        int pos = 0, pos2 = 0;
-
-        // Skip space and 'E'
-        while( !Character.isDigit( line.charAt(pos2) ) ) pos2++;
-        pos = pos2;
-
-        // Read the first number
-        while( Character.isDigit( line.charAt(pos2) ) ) pos2++;
-        station_start = Integer.parseInt( line.substring( pos, pos2 ) );
-        pos = pos2+=1;
-
-        // Read the second number
-        while( Character.isDigit( line.charAt(pos2) ) ) pos2++;
-        station_stop = Integer.parseInt( line.substring( pos, pos2 ) );
-        pos = pos2+=1;
-
-        // Read the last number
-        travel_time = Integer.parseInt( line.substring( pos2, line.length() ) );
-
-        //
-
-      }
-    }
-
-    // Close and exit
-    read.close();
-    return terminus;
-  }
-  */
-
   /**
     * Print terminus table
     */
@@ -313,7 +264,7 @@ public class Metro_line {
     * Print all attributs
     */
   public void metro_print() {
-    System.out.println("Station n°: "+this.num);
+    System.out.println("Line n°: "+this.num);
     System.out.println("Numbers of stations inside: "+this.num_stations+"\n");
     System.out.println("All stations:");
 

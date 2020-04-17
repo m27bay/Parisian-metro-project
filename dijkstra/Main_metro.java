@@ -7,7 +7,7 @@ public class Main_metro
   public static void main (String[] args) throws IOException {
 
     // Init matrix with number station and travel time
-    Tbl_stations A = new Tbl_stations("metro.txt");
+    Tbl_stations A = new Tbl_stations("metroL.txt");
     A.fill_travel_time();
     Matrice M = new Matrice( A.get_tbl() );
 
@@ -16,15 +16,20 @@ public class Main_metro
     // int station_start = 0;
     // int station_stop = 7;
 
-    // int station_start = 34;
-    // int station_stop = 187;
+    // global time2 = -1
+    // int station_start = 231;
+    // int station_stop = 235;
 
-    int station_start = 262;
-    int station_stop = 128;
+    // global time2 = -1
+    // int station_start = 262;
+    // int station_stop = 298;
+
+    int station_start = 351;
+    int station_stop = 286;
 
     // Dikjstra
     Tbl_dikjstra F = new Tbl_dikjstra(376);
-    int []way = F.way(M,station_start,station_stop);
+    int []way = F.way( M, station_start, station_stop );
 
     // Init name metro
     String name_metro[] = { "01", "02", "03", "3b", "04", "05", "06", "07",
@@ -40,12 +45,12 @@ public class Main_metro
     metro.travel_detail( way, way.length );
 
     System.out.println("\n");
-    metro.travel( way, way.length );
+    metro.travel( way, way.length, "metroL.txt" );
 
     System.out.println();
     int global_time = metro.global_time( way, way.length, "metroL.txt" );
     System.out.println( "Global time: "+global_time+" sec."+
-                        "Soit "+global_time/60+" min" );
+                        "Soit "+global_time/60.0+" min" );
     System.out.println("Global time2: (wrong)"+F.get_tmp_total() );
   }
 }

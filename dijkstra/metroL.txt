@@ -352,7 +352,7 @@ V 0347 Sèvres Babylone 12
 V 0348 Sèvres Lecourbe 06
 V 0349 Ségur 10
 V 0350 Temple 03
-V 0351 Ternes 2
+V 0351 Ternes 02
 V 0352 Tolbiac 07
 V 0353 Trinité d'Estienne d'Orves 12
 V 0354 Trocadéro 06

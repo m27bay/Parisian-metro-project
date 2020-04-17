@@ -61,6 +61,19 @@ public class Metro_line {
     */
   public Station[] get_tbl_stations() { return this.tbl_stations; }
 
+
+  /**
+    * Getter: get the count of the terminus
+    * @return num_terminus
+    */
+  public int get_num_terminus() { return this.num_terminus; }
+
+  /**
+    * Getter: get tbl_terminus
+    * @return tbl_terminus
+    */
+  public Station[] get_tbl_terminus() { return this.tbl_terminus; }
+
   /**
     * Count stations by metro line with duplicates
     * @param file_name the file for read name station, travel time

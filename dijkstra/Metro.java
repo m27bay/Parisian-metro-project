@@ -108,7 +108,7 @@ public class Metro {
       for( Station s1: line )
       {
         // Found
-        if( s1.get_number()  == num_station )
+        if( s1.get_number()  ==  num_station )
           station = s1.copy();
       }
     }
@@ -118,11 +118,35 @@ public class Metro {
   }
 
   /**
+    * Know direction with two station
+    * @param  s_start start station
+    * @param  s_stop stop station
+    * @param  num_line
+    * @param  file_name the file for read name station, travel time
+    * @return Station terminus
+    */
+  public Station know_direction( int s_start, int s_stop,
+                                int num_line, String file_name ) throws IOException
+  {
+    // Variables
+    BufferedReader read = null;
+    String line;
+    boolean is_terminus = false;
+    Station s_terminus = new Station();
+
+
+
+    // Exit
+    return s_terminus;
+  }
+
+  /**
     * Print where need to switch
     * @param way[] the way with the station number
     * @param way_length the length of the way
+    * @param  file_name the file for read name station, travel time
     */
-  public void switch_metro_line( int way[], int way_length )
+  public void switch_metro_line( int way[], int way_length, String file_name ) throws IOException
   {
     //
     String line_start = this.what_line2( way[0] );
@@ -136,22 +160,79 @@ public class Metro {
       line_now = this.what_line2( way[i] );
       if( !line_start.equals( line_now ) )
       {
-        System.out.println("At the station: "+this.what_station( way[i] )+
-          ".\nYou switch to the line: "+this.what_line2( way[i] ) );
+        int line = str_line_to_int( this.what_line2( way[i] ) );
+        // Station terminus = this.know_direction( way[i], way[ i + 1 ], line, file_name );
+
+        System.out.print("At the station: "+this.what_station( way[i] )+
+          ".\nYou switch to the line: "+line );
+        // System.out.println("direction: "+terminus.toString() );
         line_start = line_now;
       }
     }
   }
 
   /**
+    * Convert the String metro line name to a int
+    * @param line the line number
+    * @return a integer
+    */
+  public int str_line_to_int( String line )
+  {
+    switch( line )
+    {
+      case "01":
+        return 0;
+      case "02":
+        return 1;
+      case "03":
+        return 2;
+      case "3b":
+        return 3;
+      case "04":
+        return 4;
+      case "05":
+        return 5;
+      case "06":
+        return 6;
+      case "07":
+        return 7;
+      case "7b":
+        return 8;
+      case "08":
+        return 9;
+      case "09":
+        return 10;
+      case "10":
+        return 11;
+      case "11":
+        return 12;
+      case "12":
+        return 13;
+      case "13":
+        return 14;
+      case "14":
+        return 15;
+    }
+
+    return -1;
+  }
+
+  /**
     * Print the travel we have to do
     * @param way[] the way with the station number
     * @param way_length the length of the way
+    * @param  file_name the file for read name station, travel time
     */
-  public void travel( int way[], int way_length )
+  public void travel( int way[], int way_length, String file_name ) throws IOException
   {
-    System.out.println("Start at: "+this.what_station( way[0] ).toString() );
-    switch_metro_line( way, way_length );
+    //
+    int line = str_line_to_int( this.what_line2( way[0] ) );
+    // Station terminus = this.know_direction( way[0], way[1], line, file_name );
+
+    //
+    System.out.print("Start at: "+this.what_station( way[0] ).toString() );
+    // System.out.println("direction: "+ terminus.toString() );
+    switch_metro_line( way, way_length, file_name );
     System.out.println("Stop at: " +this.what_station( way[ way_length - 1 ] ).toString() );
   }
 

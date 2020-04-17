@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
+//
 import java.util.ArrayList;
 
 /**
@@ -14,46 +15,55 @@ import java.util.ArrayList;
 public class Metro_line {
 
   // Attributs
+
+  // Count
   private int num_stations, num_terminus;
+
+  // Metro line num
   private String num;
 
-  //
+  // Save
   private Station[] tbl_terminus;
   private Station[] tbl_stations;
 
   //
-  private ArrayList <Station> line;
+  // private ArrayList <Station> line;
 
-  // builders
+  /**
+    * Builder: Init Metro_line
+    * @param file_name  the file for read name station, travel time
+    * @param num        the num line
+    */
   public Metro_line(String file_name, String num) throws IOException
   {
+    // Init the num line
     this.num = num;
 
-    //
-    this.num_stations  = station_count(file_name);
-    this.num_terminus  = terminus_count(file_name);
+    // Init count stations/ terminus
+    this.num_stations = station_count(file_name);
+    this.num_terminus = terminus_count(file_name);
 
-    //
-    this.tbl_stations  = metro_init(file_name);
-    this.tbl_terminus  = terminus_init(file_name);
+    // Save table
+    this.tbl_stations = metro_init(file_name);
+    this.tbl_terminus = terminus_init(file_name);
   }
 
   /**
-    * getter: get the line number
+    * Getter: get the line number
     * @return line number
     */
   public String get_num() { return this.num; }
 
 
   /**
-    * getter: get tbl_stations
+    * Getter: get tbl_stations
     * @return tbl_stations
     */
   public Station[] get_tbl_stations() { return this.tbl_stations; }
 
   /**
     * Count stations by metro line with duplicates
-    * @param the name file
+    * @param file_name the file for read name station, travel time
     * @return the number station
     */
   private int station_count(String file_name) throws IOException
@@ -97,7 +107,7 @@ public class Metro_line {
 
   /**
     * Count terminus by metro line
-    * @param the name file
+    * @param file_name the file for read name station, travel time
     * @return the number station
     */
   private int terminus_count(String file_name) throws IOException
@@ -140,7 +150,7 @@ public class Metro_line {
 
   /**
     * Fill the table with the station by metro line
-    * @param the name file
+    * @param file_name the file for read name station, travel time
     * @return the table fill
     */
   private Station[] metro_init(String file_name) throws IOException
@@ -197,7 +207,7 @@ public class Metro_line {
 
   /**
     * Fill the terminus table by metro line
-    * @param the name file
+    * @param file_name the file for read name station, travel time
     * @return the table filled
     */
   private Station[] terminus_init(String file_name) throws IOException

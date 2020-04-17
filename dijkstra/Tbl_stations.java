@@ -16,7 +16,6 @@ public class Tbl_stations {
   private String path_file;
   private int tbl[][];
 
-  // Builder(s)
   public Tbl_stations(String path_file) throws IOException
   {
     //
@@ -27,7 +26,6 @@ public class Tbl_stations {
     this.tbl       = new int[ this.tbl_size ][ this.tbl_size ];
   }
 
-  // Getter
   /**
     * Getter: Get the matrix
     * @return the matrix
@@ -158,7 +156,6 @@ public class Tbl_stations {
 
   /**
     * Print the matrix
-    *
     */
   public void print()
   {
@@ -173,7 +170,6 @@ public class Tbl_stations {
 
   /**
     * Write the matrix in the file 'out/output'
-    *
     */
   public void write_file() throws IOException
   {

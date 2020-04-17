@@ -7,36 +7,45 @@ public class Metro {
   private Metro_line[] metro;
   private int count_line;
 
-  // builder
+  /**
+    * Builder: Init Metro
+    * @param count_line the number of line
+    */
   public Metro( int count_line )
   {
     this.count_line = count_line;
     this.metro = new Metro_line[this.count_line];
   }
 
+  /**
+    * Init all metro line
+    * @param name_metro[] the name metro line
+    */
   public void init(String name_metro[]) throws IOException
   {
     for( int i=0; i < this.count_line; i++ )
       metro[i] = new Metro_line("metroL.txt", name_metro[i]);
   }
 
-
-
+  /**
+    * Found the metro line where is the station
+    * @param s the station
+    * @return name metro line
+    */
   public String what_line( Station s )
   {
-    //
+    // Init
     String num_line = "Unknown";
 
     //
     for( int i = 0; i < this.count_line ; i++ )
     {
-      //
       Station[] line = metro[i].get_tbl_stations();
 
-      //
+      // Compare other statio in the line
       for( Station s1: line )
       {
-        //
+        // Found
         if( s1.equals(s) )
           num_line = metro[i].get_num();
       }
@@ -46,21 +55,25 @@ public class Metro {
     return num_line;
   }
 
+  /**
+    * Found the metro line where is the station, with her num
+    * @param num_station the station number
+    * @return name metro line
+    */
   public String what_line2( int num_station )
   {
-    //
+    // Init
     String num_line = "Unknown";
 
     //
     for( int i = 0; i < this.count_line ; i++ )
     {
-      //
       Station[] line = metro[i].get_tbl_stations();
 
-      //
+      // Compare other statio in the line
       for( Station s1: line )
       {
-        //
+        // Found
         if( s1.get_number()  == num_station )
           num_line = metro[i].get_num();
       }
@@ -70,21 +83,25 @@ public class Metro {
     return num_line;
   }
 
+  /**
+    * Found the station with her num
+    * @param num_station the station number
+    * @return Station
+    */
   public Station what_station( int num_station )
   {
-    //
+    // Init
     Station station = new Station();
 
     //
     for( int i = 0; i < this.count_line ; i++ )
     {
-      //
       Station[] line = metro[i].get_tbl_stations();
 
-      //
+      // Compare to other station
       for( Station s1: line )
       {
-        //
+        // Found
         if( s1.get_number()  == num_station )
           station = s1.copy();
       }
@@ -94,6 +111,11 @@ public class Metro {
     return station;
   }
 
+  /**
+    * Print where need to switch
+    * @param way[] the way with the station number
+    * @param way_length the length of the way
+    */
   public void switch_metro_line( int way[], int way_length )
   {
     //
@@ -114,6 +136,11 @@ public class Metro {
     }
   }
 
+  /**
+    * Print the travel we have to do
+    * @param way[] the way with the station number
+    * @param way_length the length of the way
+    */
   public void travel( int way[], int way_length )
   {
     System.out.println("Start at: "+this.what_station( way[0] ).toString() );
@@ -122,6 +149,9 @@ public class Metro {
   }
 
 
+  /**
+    * Print data
+    */
   public void print()
   {
     for( Metro_line m: metro )

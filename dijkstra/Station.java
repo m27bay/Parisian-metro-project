@@ -9,7 +9,9 @@ public class Station {
   private int number;
   private int time_next;
 
-  // Builder
+  /**
+    * Builder: default
+    */
   public Station()
   {
     this.name      = "Unknown";
@@ -17,6 +19,11 @@ public class Station {
     // this.time_next = -1;
   }
 
+  /**
+    * Builder: with param
+    * @param name name station
+    * @param number number station
+    */
   public Station(String name, int number)
   {
     this.name      = name;
@@ -24,7 +31,6 @@ public class Station {
     // this.time_next = -1;
   }
 
-  // Methods
   /**
     * Getter: get the name station
     * @return the name station
@@ -48,6 +54,7 @@ public class Station {
 
   /**
     * Compare this Stattion to an other
+    * @param other station for compare
     * @return true/false
     */
   public boolean equals( Station other )

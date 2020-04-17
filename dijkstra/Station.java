@@ -7,7 +7,7 @@ public class Station {
   // Attributs
   private String name;
   private int number;
-  private int time_next;
+  // private int time_next;
 
   /**
     * Builder: default

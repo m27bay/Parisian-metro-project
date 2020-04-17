@@ -112,13 +112,6 @@ public class Main_dikjstra
     metro.init(name_metro);
     // metro.print();
 
-    // System.out.println();
-    // for( int i = 0 ; i < way.length ; i++ )
-    // {
-    //   System.out.println( "Station n° "+way[i]+
-    //     " is on the line: "+metro.what_line2( way[i] ) );
-    // }
-
     metro.travel( way, way.length );
   }
 }

@@ -8,13 +8,14 @@ import org.apache.commons.lang3.ArrayUtils;
 public class Tbl_dikjstra
 {
 
-  // variables d'instance - remplacez l'exemple qui suit par le vôtre
+  private Matrice M;
   private int[] verif;//vérifi si le sommet a était traité
-  private int[] father;
-
-  // on stockera les distances sous forme de temps de parcours
-  // et non de longueur
-  private int[] dist;
+  private int[] dist;//tableau des distances depuis departure
+  private int[] father;//tableau des pères, l'indice de départ aura -1 comme père
+  private int[] way;//chemin
+  private int departure;//indice de départ pour le chemin
+  private int arrived;//indice d'aarivé pour le chemin
+  
   private int column;
   private static int TREATED = 1;
   private static int NTREATED = -1;//non traité ou non accessible
@@ -42,6 +43,20 @@ public class Tbl_dikjstra
     this.verif  = this.init(column);
     this.father = this.init(column);
     this.dist   = this.init(column);
+  }
+
+  public Tbl_dikjstra(Matrice A)
+  {
+    this.M = A; //récupère la matrice
+    this.column = A.getColumn();
+    this.departure = -1;
+    this.arrived = -1;
+
+    //créer des tableaux remplit de -1 pour NTREATED
+    this.verif  = this.init(column);
+    this.father = this.init(column);
+    this.dist   = this.init(column);
+    this.way = new int[column];//sauf celui-ci
   }
 
   /**
@@ -77,45 +92,64 @@ public class Tbl_dikjstra
   public int get_column() { return this.column; }
 
   /**
+    * Getter: Obtenir le chemin
+    * @return le tableau du chemin
+    */
+  public int[] getWay(){ return this.way; }
+
+  /**
     * Cherche les plus courts chemins depuis vertex et tous les autres sommets
     */
-  public int[][] calcul(Matrice A, int vertex)
+  public void calcul( int at, int to)
   {
-    //si pas bon format, on remplace
-    if(A.getColumn() != this.column)
-    {
-      this.column = A.getColumn();
-      this.verif = this.init(column);
-      this.father = this.init(column);
-      this.dist = this.init(column);
+    //vérifie si le chemin est valide
+    if((at<0 || at>this.column) || (to<0 || to>this.column)){
+      System.out.println("Invalide destination");
+      return;
     }
 
-    //init, vertex est traité et on récupère ses distances avec les autres sommets
+    //si on avait déjà calculé un chemin, on remet les variables d'instances initialisées
+    if(this.departure != -1)
+      reinitialized();
+
+    this.departure = at;
+    this.arrived = to;
+
+    //initialisation depuis departure, vertex est traité et on récupère ses distances avec les autres sommets
     int i;
     for(i=0; i<this.column; i++)
     {
-      this.dist[i] = A.getVal(vertex, i);
-      //si il y a un arc on ajoute son père
-      if(this.dist[i] != NTREATED && vertex != i)
-          this.father[i] = vertex;
+      this.dist[i] = this.M.getVal(at, i);
+      //si il y a un arc entre i et le départ, on ajoute à i le départ comme père
+      if(this.dist[i] != NTREATED && at != i)
+          this.father[i] = at;
     }
-    this.verif[vertex] = TREATED;
+    this.verif[at] = TREATED;//le départ est traité
 
-    //
+    //Calcul des distances et des pères
     int index_min;
-    while( !finished() )
-    {
-      index_min = min();
-      if(index_min == -1)
+    while( !finished() ){//tant que tous les indices ne sont pas traités
+      index_min = min();//Retourne l'indice du minimum du tableau dist
+      if(index_min == -1)//si graphe non connexe, on arrête
           break;
 
-      // System.out.println("before 'min()': "+index_min);
       this.verif[index_min] = TREATED;
-      treatment(A, index_min);//actualise tbl de distance et des pères
+      treatment(index_min);//actualise tbl de distance et des pères
     }
 
-    int[][] T = {this.dist, this.father};
-    return T;
+    this.way = CalculWay();//calcul le chemin et le stocke dans way
+  }
+
+  /**
+    *remet les tableaux à -1 excepté celui du chemin qui est recréé
+    */
+  private void reinitialized()
+  {
+    int i;
+    for(i=0; i<this.column; i++){
+    this.verif[i]  = this.father[i] = this.dist[i] = NTREATED;
+    }
+     this.way = new int[column];
   }
 
   /**
@@ -127,13 +161,11 @@ public class Tbl_dikjstra
       int tmp;
       int index = -1;
 
-    //System.out.println( "column: "+this.column );
     int i;
       for( i =0 ; i < this.column ; i++ )
       {
         tmp = this.dist[i];
 
-        //System.out.println("tmp = "+tmp);
         if(tmp == NTREATED || tmp == 0)//si pas d'arc trouvé
             continue;
         //si il y a un arc vers un sommet i non traité avec une distance de l'origine inférieur à tmp
@@ -144,79 +176,73 @@ public class Tbl_dikjstra
         }
       }
 
-    //
-    // System.out.println( "index: "+index+ "min :"+min );
     return index;
   }
 
   /**
-    * Actualise les pères et les pcc des sommets voisins de vertex
+    * Actualise les pères et les plus court chemins des sommets voisins de vertex
     */
-  private void treatment(Matrice A, int vertex)
+  private void treatment(int vertex)
   {
     int i;
     for(i=0; i<column; i++)
     {
       //si i  traité ou n'existe pas un arc de vertex à i
-      if(this.verif[i]==TREATED || A.getVal(vertex,i) == NTREATED)
+      if(this.verif[i]==TREATED || this.M.getVal(vertex,i) == NTREATED)
           continue;
 
       //si la plus courte distance actuel de i à l'origine est plus grande
       //que celle de origine à vertex + vertex à i, ou que le sommet
       //n'a pas encore était rencontré alors on remplace
-      else if( this.dist[i] > (this.dist[vertex] + A.getVal(vertex, i))
+      else if( this.dist[i] > (this.dist[vertex] + this.M.getVal(vertex, i))
             || this.dist[i] == NTREATED)
         {
-          this.dist[i] = this.dist[vertex] + A.getVal(vertex, i);
-          this.father[i] = vertex;
-          // System.out.println("vertex"+vertex);
+          this.dist[i] = this.dist[vertex] + this.M.getVal(vertex, i);
+          this.father[i] = vertex;;
         }
     }
   }
 
   /**
-    * Retourne vrai si tous les sommets ont étaient traités
+    * @return true, si tous les indices ont étaient traités
     */
-  public boolean finished()
+  private boolean finished()
   {
     for(int i: this.verif)
     {
-      if(i!=1)
+      if(i != TREATED)
         return false;
     }
     return true;
   }
 
-  /**
+    /**
     * Renvoie le plus court chemin de at à to
-    */
-  public int[] way(Matrice A, int at, int to){
+    **/
+  private int[] CalculWay(){
 
-    //
-    calcul(A, at);
+      //pars de l'arrivée jusqu'au départ, stocke le chemin à l'envers
+      int position;//indice du père
+      this.way[0] = this.arrived;
+      this.way[1] = position = this.father[this.arrived];//sommet père de l'arrivé
 
-    //
-    int father;
-    int []theway = new int[column];//tableau du chemin
-    theway[0] = to;
-    theway[1] = father = this.father[to];
+      //
+      int i = 2;
 
-    //
-    int i = 2;
+      //tant que l'on est pas au départ, on stocke les pères
+      while(position != -1){
+        position = this.father[position];//récupère son père
+        this.way[i] = position;//le stock
+        i++;
+      }
+      this.way[i] = this.departure;//met l'indice de départ
 
-    //
-    while(father != -1)
-    {
-      father = this.father[father];
-      theway[i] = father;
-      i++;
+      
+      this.way = ArrayUtils.subarray(this.way,0,i-1);
+      ArrayUtils.reverse(this.way);
+      return this.way;
     }
 
-    //i-1 pour pas prendre le pere -1
-    theway = ArrayUtils.subarray(theway,0,i-1);
-    ArrayUtils.reverse(theway);
-    return theway;
-  }
 
   /**
     * Affiche le tableau de dikjsra tous les 20 colonnes
@@ -267,6 +293,17 @@ public class Tbl_dikjstra
     }
 
     //
+    System.out.println();
+  }
+
+  public void printWay(){
+    int i;
+    System.out.println("Chemin :");
+    for(i=0; i<this.way.length; i++){
+        if(i != 0 && (i%20) == 0)
+          System.out.println();
+        System.out.print(this.way[i]+" ");
+    }
     System.out.println();
   }
 }

@@ -21,7 +21,7 @@ public class Main_dikjstra
                  {-1,-1,-1,-1,0,3 },
                  {-1,-1,-1,-1,-1,0}
                 };
-
+  */
     int T2[][] = {
                   {0,30,60,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1  },
                   {-1,0,45,70,100,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 },
@@ -40,26 +40,16 @@ public class Main_dikjstra
                   {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0  }
                 };
 
-    //
     Matrice A = new Matrice(T2);
-    A.printMatrice();
-
-    //
-    Tbl_dikjstra D = new Tbl_dikjstra(6);
-    D.calcul(A,0);
+    Tbl_dikjstra D = new Tbl_dikjstra(A);
+    D.calcul(0, 14);
     D.printTbl_Dikjstra();
+    D.printWay();
 
-    //
-    Tbl_dikjstra E = new Tbl_dikjstra();
-    int []way = E.way(A,0,14);
-
-    //
-    System.out.print("Chemin : ");
-    for( int i=0 ; i < way.length ; i++)
-          System.out.print(way[i]+" ");
-    System.out.println();
-    /*
-
+    D.calcul(2, 14);
+    D.printTbl_Dikjstra();
+    D.printWay();
+/*
     //
     Tbl_stations tbl_stations = new Tbl_stations("metro.txt");
     tbl_stations.fill_travel_time();

@@ -26,25 +26,19 @@ public class Tbl_dikjstra
     */
   public Tbl_dikjstra()
   {
+    this.M = null;
     this.column = 0;
+    this.departure = -1;
+    this.arrived = -1;
     this.verif  = null;
     this.father = null;
     this.dist   = null;
   }
 
   /**
-    * Initialisation avec un certain nombre de colonne,
-    * les valeurs sont à -1
-    * @param column, le nombre de colonne
+    * Constructeur d'objets de classe Tbl_dikjstra,
+    * les valeurs sont nulles, une matrice A est stocké
     */
-  public Tbl_dikjstra(int column)
-  {
-    this.column = column;
-    this.verif  = this.init(column);
-    this.father = this.init(column);
-    this.dist   = this.init(column);
-  }
-
   public Tbl_dikjstra(Matrice A)
   {
     this.M = A; //récupère la matrice
@@ -83,7 +77,7 @@ public class Tbl_dikjstra
     * Getter: Obtenir le temps pour parcourir la distance global
     * @return le temps de parcours total
     */
-  public int get_tmp_total() { return this.dist[ this.column - 1 ]; }
+  public int get_tmp_total() { return this.dist[ this.arrived ]; }
 
   /**
     * Getter: Obtenir le nombre de colonne
@@ -218,10 +212,16 @@ public class Tbl_dikjstra
 
     /**
     * Renvoie le plus court chemin de at à to
+    * @return tableau de chemin ou null si chemin non calculé avant
     **/
   private int[] CalculWay(){
+    //Cas où le chemin n'a pas était calculé avant
+      if(this.dist == null){
+        System.out.println("Please use Calcul method before.");
+        return null;
+      }
 
-      //pars de l'arrivée jusqu'au départ, stocke le chemin à l'envers
+      //pars de l'arrivée jusqu'au départ, stocke le chemin à l'envers dans way
       int position;//indice du père
       this.way[0] = this.arrived;
       this.way[1] = position = this.father[this.arrived];//sommet père de l'arrivé
@@ -237,7 +237,7 @@ public class Tbl_dikjstra
       }
       this.way[i] = this.departure;//met l'indice de départ
 
-      
+      //remet le chemin à l'endroit
       this.way = ArrayUtils.subarray(this.way,0,i-1);
       ArrayUtils.reverse(this.way);
       return this.way;
@@ -297,6 +297,12 @@ public class Tbl_dikjstra
   }
 
   public void printWay(){
+    //Cas où le chemin n'a pas était calculé avant
+    if(this.dist == null){
+        System.out.println("Please use Calcul method before.");
+        return;
+      }
+
     int i;
     System.out.println("Chemin :");
     for(i=0; i<this.way.length; i++){

@@ -31,10 +31,10 @@ public class Main_metro
     int station_stop = 268;
 
     // Dikjstra
-    Tbl_dikjstra F = new Tbl_dikjstra(376);
-    int []way = F.way( M, station_start, station_stop );
+    Tbl_dikjstra F = new Tbl_dikjstra(M);
+    F.calcul(station_start, station_stop);
+    int []way = F.getWay();//récupère le chemin
 
-    // Init name metro
     String name_metro[] = { "01", "02", "03", "3b", "04", "05", "06", "07",
                             "7b", "08", "09", "10", "11", "12", "13", "14" };
 

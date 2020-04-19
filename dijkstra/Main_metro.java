@@ -24,8 +24,11 @@ public class Main_metro
     // int station_start = 262;
     // int station_stop = 298;
 
-    int station_start = 351;
-    int station_stop = 286;
+    // int station_start = 351;
+    // int station_stop = 286;
+
+    int station_start = 121;
+    int station_stop = 268;
 
     // Dikjstra
     Tbl_dikjstra F = new Tbl_dikjstra(376);

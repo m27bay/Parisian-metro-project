@@ -320,7 +320,7 @@ V 0315 République 11
 V 0316 Saint-Ambroise 09
 V 0317 Saint-Augustin 09
 V 0318 Saint-Denis-Porte de Paris 13
-F 0319 Saint-Denis-Université 13
+T 0319 Saint-Denis-Université 13
 V 0320 Saint-Fargeau 3b
 V 0321 Saint-Francois Xavier 13
 V 0322 Saint-Georges 12
@@ -352,7 +352,7 @@ V 0347 Sèvres Babylone 12
 V 0348 Sèvres Lecourbe 06
 V 0349 Ségur 10
 V 0350 Temple 03
-V 0351 Ternes 2
+V 0351 Ternes 02
 V 0352 Tolbiac 07
 V 0353 Trinité d'Estienne d'Orves 12
 V 0354 Trocadéro 06

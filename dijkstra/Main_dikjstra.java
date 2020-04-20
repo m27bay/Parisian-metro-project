@@ -49,12 +49,5 @@ public class Main_dikjstra
     D.calcul(2, 14);
     D.printTbl_Dikjstra();
     D.printWay();
-/*
-    //
-    Tbl_stations tbl_stations = new Tbl_stations("metro.txt");
-    tbl_stations.fill_travel_time();
-    // tbl_stations.print();
-    tbl_stations.write_file();
-    */
   }
 }

@@ -5,9 +5,11 @@ public class Main_metro
 {
   // throws IOException for tbl_stations.fill(), file reader
   public static void main (String[] args) throws IOException {
+    //
+    String file = "../metroL.txt"
 
     // Init matrix with number station and travel time
-    Tbl_stations A = new Tbl_stations("metroL.txt");
+    Tbl_stations A = new Tbl_stations(file);
     A.fill_travel_time();
     Matrice M = new Matrice( A.get_tbl() );
 
@@ -41,17 +43,17 @@ public class Main_metro
 
 
     Metro metro = new Metro(16);
-    metro.init( name_metro,"metroL.txt" );
+    metro.init( name_metro, file );
     // metro.print();
 
     System.out.println();
     metro.travel_detail( way, way.length );
 
     System.out.println("\n");
-    metro.travel( way, way.length, "metroL.txt" );
+    metro.travel( way, way.length, file );
 
     System.out.println();
-    int global_time = metro.global_time( way, way.length, "metroL.txt" );
+    int global_time = metro.global_time( way, way.length, file );
     System.out.println( "Global time: "+global_time+" sec."+
                         "Soit "+global_time/60.0+" min" );
     System.out.println("Global time2: (wrong)"+F.get_tmp_total() );

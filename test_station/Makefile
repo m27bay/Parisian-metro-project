@@ -1,5 +1,5 @@
 run: compile
-	java Main metro.txt
+	java Main ../metroL.txt
 
 compile:
 	javac *.java

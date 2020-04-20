@@ -69,15 +69,15 @@ V 0064 Château Rouge 04
 V 0065 Château d'Eau 04
 T 0066 Château de Vincennes 01
 V 0067 Châtelet 01
-V 0068 Châtelet 11
+T 0068 Châtelet 11
 V 0069 Châtelet 14
-T 0070 Châtelet 04
+V 0070 Châtelet 04
 V 0071 Châtelet 07
 T 0072 Châtillon-Montrouge 13
 V 0073 Cité 04
 V 0074 Cluny, La Sorbonne 10
 V 0075 Colonel Fabien 02
-V 0076 Commerce 07
+V 0076 Commerce 08
 V 0077 Concorde 01
 V 0078 Concorde 12
 V 0079 Concorde 08
@@ -118,8 +118,8 @@ V 0113 Gaité 13
 T 0114 Galliéni 03
 V 0115 Gambetta 03
 T 0116 Gambetta 3b
-V 0117 Gare d'Austerlitz 10
-T 0118 Gare d'Austerlitz 05
+T 0117 Gare d'Austerlitz 10
+V 0118 Gare d'Austerlitz 05
 V 0119 Gare de Lyon 01
 V 0120 Gare de Lyon 14
 V 0121 Gare de l'Est 04
@@ -155,9 +155,9 @@ V 0150 Kléber 06
 V 0151 La Chapelle 02
 T 0152 La Courneuve, 8 Mai 1945 07
 V 0153 La Fourche 13
-V 0154 La Motte Picquet, Grenelle 08
+V 0154 La Motte Picquet, Grenelle 10
 V 0155 La Motte Picquet, Grenelle 06
-V 0156 La Motte Picquet, Grenelle 10
+V 0156 La Motte Picquet, Grenelle 08
 V 0157 La Muette 09
 V 0158 La Tour-Maubourg 08
 V 0159 Lamarck Caulaincourt 12
@@ -177,8 +177,8 @@ V 0172 Lourmel 08
 V 0173 Louvre, Rivoli 01
 V 0174 Mabillon 10
 V 0175 Madeleine 12
-V 0176 Madeleine 14
-T 0177 Madeleine 08
+T 0176 Madeleine 14
+V 0177 Madeleine 08
 T 0178 Mairie d'Issy 12
 T 0179 Mairie d'Ivry 07
 V 0180 Mairie de Clichy 13
@@ -279,8 +279,8 @@ V 0274 Porte de Versailles 12
 V 0275 Porte de Vincennes 01
 T 0276 Porte de la Chapelle 12
 V 0277 Porte de la Villette 07
-T 0278 Porte des Lilas 11
-V 0279 Porte des Lilas 3b
+V 0278 Porte des Lilas 11
+T 0279 Porte des Lilas 3b
 T 0280 Pré-Saint-Gervais 7b
 V 0281 Pyramides 14
 V 0282 Pyramides 07

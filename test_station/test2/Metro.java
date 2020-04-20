@@ -14,7 +14,7 @@ public class Metro {
   /**
     * Station class
     */
-  class Station {
+  public class Station {
 
     // Attributs
     private String name;
@@ -24,7 +24,7 @@ public class Metro {
     /**
       * Builder: default
       */
-    Station()
+    public Station()
     {
       this.name   = "Unknown";
       this.number = -1;
@@ -36,7 +36,7 @@ public class Metro {
       * @param name name station
       * @param number number station
       */
-    Station(String name, int number, boolean isTerminus)
+    public Station(String name, int number, boolean isTerminus)
     {
       this.name   = name;
       this.number = number;
@@ -47,18 +47,18 @@ public class Metro {
       * Getter: get the name station
       * @return the name station
       */
-    String getName() { return this.name; }
+    public String getName() { return this.name; }
 
     /**
       * Getter: get the number station
       * @return the number station
       */
-    int getNumber() { return this.number; }
+    public int getNumber() { return this.number; }
 
     /**
       *
       */
-    boolean getIsTerminus() { return this.isTerminus; }
+    public boolean getIsTerminus() { return this.isTerminus; }
 
     /**
       * Return a string with attributs
@@ -76,31 +76,24 @@ public class Metro {
       * @param other station for compare
       * @return true/false
       */
-    boolean equals( Station other )
+    public boolean equals( Station other )
     {
-      if( !this.name.equals( other.getName() ) )
-        return false;
-
-      if( this.number  !=  other.getNumber() )
-        return false;
-
-      if( this.isTerminus  !=  other.getIsTerminus() )
-        return false;
-
-      return true;
+      return this.name.equals( other.getName() )
+           & this.number  ==  other.getNumber()
+           & this.isTerminus  ==  other.getIsTerminus();
     }
 
     /**
       * Copy this Station
       * @return the copy Sation
       */
-    Station copy()
+    public Station copy()
       { return new Station( this.name, this.number, this.isTerminus ); }
   }
 
 ////////////////////////////////////////////////////////////////////////////
 
-  class Travel{
+  public class Travel{
 
     //
     private Station stationStart, stationStop;
@@ -109,7 +102,7 @@ public class Metro {
     /**
       *
       */
-    Travel()
+    public Travel()
     {
       this.stationStart = new Station();
       this.stationStop =  new Station();
@@ -120,7 +113,7 @@ public class Metro {
     /**
       *
       */
-    Travel(Station stationStart, Station stationStop, int time)
+    public Travel(Station stationStart, Station stationStop, int time)
     {
       this.stationStart = stationStart;
       this.stationStop  = stationStop;
@@ -131,29 +124,44 @@ public class Metro {
     /**
       *
       */
-    void setStationStart( Station stationStart )
+    public void setStationStart( Station stationStart )
       { this.stationStart = stationStart; }
 
     /**
       *
       */
-    void setStationStop(  Station stationStop  )
+    public int getNumStationStart() { return this.stationStart.getNumber(); }
+
+    /**
+      *
+      */
+    public Station getStationStart() { return this.stationStart; }
+
+    /**
+      *
+      */
+    public void setStationStop(  Station stationStop  )
       { this.stationStop  = stationStop ; }
 
     /**
       *
       */
-    void setTime( int time  ) { this.time  = time; }
+    public int getNumStationStop() { return this.stationStop.getNumber(); }
 
     /**
       *
       */
-    int getNumStationStart() { return this.stationStart.getNumber(); }
+    public Station getStationStop() { return this.stationStop; }
 
     /**
       *
       */
-    int getNumStationStop() { return this.stationStop.getNumber(); }
+    public void setTime( int time  ) { this.time  = time; }
+
+    /**
+      *
+      */
+    public int getTime() { return this.time; }
 
     /**
       *
@@ -164,11 +172,17 @@ public class Metro {
     /**
       *
       */
-    public void SwitchStation()
+    public Travel switchStation()
+    { return new Travel( this.stationStop, this.stationStart, this.time ); }
+
+    /**
+      *
+      */
+    public boolean equals( Travel other )
     {
-      Station tmp = this.stationStart.copy();
-      this.stationStart = this.stationStart.copy();
-      this.stationStop = tmp.copy();
+      return other.getStationStart().equals( this.stationStart )
+           & other.getStationStop().equals( this.stationStop )
+           & other.getTime()  ==  this.getTime();
     }
 
     /**
@@ -205,6 +219,12 @@ public class Metro {
       *
       */
     public void setName( String newName ) { this.name = newName; }
+
+    /**
+      *
+      */
+    public void setListTravel( ArrayList<Travel> _new )
+    { this.listTravel = _new; }
 
     /**
       *
@@ -362,6 +382,13 @@ public class Metro {
   {
     initLineStation( file_name );
     initLineTravel(  file_name );
+
+    String lineTest = "10";
+    printIndexTravel( lineTest );
+    sortIndexTravel( strLineToInt( lineTest ) );
+    printIndexTravel( lineTest );
+
+    // sortTravel();
   }
 
   /**
@@ -477,7 +504,7 @@ public class Metro {
       {
         Travel t = new Travel();
 
-        int station_start = 0, station_stop = 0, travel_time = 0;
+        int stationStart = 0, stationStop = 0, travelTime = 0;
         int pos = 0, pos2 = 0;
 
         // Skip space and 'E'
@@ -486,24 +513,27 @@ public class Metro {
 
         // Read the first number
         while( Character.isDigit( line.charAt( pos2 ) ) ) pos2++;
-        station_start = Integer.parseInt( line.substring( pos, pos2 ) );
+        stationStart = Integer.parseInt( line.substring( pos, pos2 ) );
         pos = pos2+=1;
 
         // Read the second number
         while( Character.isDigit( line.charAt( pos2 ) ) ) pos2++;
-        station_stop = Integer.parseInt( line.substring( pos, pos2 ) );
+        stationStop = Integer.parseInt( line.substring( pos, pos2 ) );
         pos = pos2+=1;
 
         // Read the last number
-        travel_time = Integer.parseInt( line.substring( pos2, line.length() ) );
+        travelTime = Integer.parseInt( line.substring( pos2, line.length() ) );
 
-        t.setStationStart( whatStation( station_start ) );
-        t.setStationStop( whatStation( station_stop ) );
-        t.setTime( travel_time );
+        t.setStationStart( whatStation( stationStart ) );
+        t.setStationStop( whatStation( stationStop ) );
+        t.setTime( travelTime );
 
         //
-        String line_found = whatMetroLine( station_start );
-        this.metro[ strLineToInt( line_found ) ].addTravel( t );
+        String lineStart = whatMetroLine( stationStart );
+        String lineStop  = whatMetroLine( stationStop  );
+
+        if( lineStart.equals( lineStop ) )
+          this.metro[ strLineToInt( lineStart ) ].addTravel( t );
       }
     }
 
@@ -514,40 +544,124 @@ public class Metro {
   /**
     *
     */
-  public ArrayList<Travel> sortTravel()
+  public void sortTravel()
   {
-    // for( int i = 0 ; i < 16 ; i++ )
-    // {
-    //   for( ArrayList<Travel> list: this.metro[i].getListTravel() )
-    //   {
+    for( int i = 0 ; i < 16 ; i++ )
+      sortIndexTravel(i);
+  }
 
-    //   }
-    // }
-
-    LinkedList<Travel> _new = new LinkedList<Travel>();
-    for( ArrayList<Travel> list: this.metro[ strLineToInt("7b") ].getListTravel() )
+  /**
+    *
+    */
+  public void sortIndexTravel( int index )
+  {
+    if( index  !=  7  &&  index  !=  11  &&  index  !=  14 )
     {
-      for( Travel t : list )
+      LinkedList<Travel> _new;
+      ArrayList<Travel> list;
+      int count = 0;
+
+      _new = new LinkedList<Travel>();
+      list = this.metro[index].getListTravel();
+
+      //
+      while( count < list.size() )
       {
-        //
-        if( _new.size  ==  0 )
-          _new.add( t );
-
-        //
-        else if( _new.size  ==  1 )
+        for( Travel t : list )
         {
-          if( t.getNumStationStart().getNumber()  ==  _new.peek().getNumber() )
-            _new.addFirst( t.SwitchStation() );
+          //
+          if( _new.size()  ==  0 )
+          {
+            _new.add( t );
+            count++;
+          }
+
+          //
+          else if( _new.size()  ==  1 )
+          {
+            if( t.equals( _new.peek() )
+             || t.switchStation().equals( _new.peek() ) )
+              continue;
+
+            if( t.getNumStationStart()  ==  _new.peek().getNumStationStart() )
+            {
+              _new.addFirst( t.switchStation() );
+              count++;
+            }
+
+            //
+            else if( t.getNumStationStop()  ==  _new.peek().getNumStationStart() )
+            {
+              _new.addFirst( t );
+              count++;
+            }
+
+            //
+            else if( t.getNumStationStop()  ==  _new.peek().getNumStationStop() )
+            {
+              _new.add( t.switchStation() );
+              count++;
+            }
+
+            //
+            else if( t.getNumStationStart()  ==  _new.peek().getNumStationStop() )
+            {
+              _new.add( t );
+              count++;
+            }
+          }
+
+          //
           else
-            _new.add( t.SwitchStation() );
-        }
+          {
+            //
+            if( t.equals( _new.peek() )  ||  t.equals( _new.peekLast() )
+             || t.switchStation().equals( _new.peek() )
+             || t.switchStation().equals( _new.peekLast() ) )
+              continue;
 
-        //
-        else if( _new.size  >  1 )
-        {
-          if( t. )
+            //
+            if( t.getNumStationStart()  ==  _new.peek().getNumStationStart() )
+            {
+              _new.addFirst( t.switchStation() );
+              count++;
+            }
+
+            //
+            else if( t.getNumStationStop()  ==  _new.peek().getNumStationStart() )
+            {
+              _new.addFirst( t );
+              count++;
+            }
+
+            //
+            else if( t.getNumStationStop()  ==  _new.peekLast().getNumStationStop() )
+            {
+              _new.add( t.switchStation() );
+              count++;
+            }
+
+            //
+            else if( t.getNumStationStart()  ==  _new.peekLast().getNumStationStop() )
+            {
+              _new.add( t );
+              count++;
+            }
+          }
         }
       }
+
+      this.metro[index].setListTravel( new ArrayList<Travel>( _new ) );
+
+      //
+      _new.clear();
+      list.clear();
+    }
+
+    //
+    else
+    {
+
     }
   }
 
@@ -568,6 +682,19 @@ public class Metro {
   /**
     *
     */
+  public void printIndexStation( String index )
+  {
+    MetroLine m = this.metro[ strLineToInt( index ) ];
+    System.out.println("//////////////////////////////\n"+
+                       "////////// name: "+m.getName() +" //////////\n"+
+                       "//////////////////////////////\n");
+    m.printStation();
+    System.out.println();
+  }
+
+  /**
+    *
+    */
   public void printTravel()
   {
     for( MetroLine m: metro )
@@ -577,5 +704,17 @@ public class Metro {
                          "//////////////////////////////\n");
       m.printTravel();
     }
+  }
+
+  /**
+    *
+    */
+  public void printIndexTravel( String index )
+  {
+    MetroLine m = this.metro[ strLineToInt( index ) ];
+    System.out.println("//////////////////////////////\n"+
+                         "////////// name: "+m.getName() +" //////////\n"+
+                         "//////////////////////////////\n");
+    m.printTravel();
   }
 }

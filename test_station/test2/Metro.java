@@ -657,12 +657,6 @@ public class Metro {
       _new.clear();
       list.clear();
     }
-
-    //
-    else
-    {
-
-    }
   }
 
   /**

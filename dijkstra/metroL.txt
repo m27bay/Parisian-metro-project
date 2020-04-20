@@ -8,8 +8,8 @@ V 0003 Alésia 04
 V 0004 Anatole France 03
 V 0005 Anvers 02
 V 0006 Argentine 01
-V 0007 Arts et Métiers 03
-V 0008 Arts et Métiers 11
+V 0007 Arts et Métiers 11
+V 0008 Arts et Métiers 03
 V 0009 Assemblée Nationale 12
 V 0010 Aubervilliers-Pantin, Quatre Chemins 07
 V 0011 Avenue Émile Zola 10
@@ -21,10 +21,10 @@ V 0016 Bastille 01
 V 0017 Bastille 05
 V 0018 Bastille 08
 V 0019 Bel Air 06
-V 0020 Belleville 02
-V 0021 Belleville 11
-V 0022 Bercy 06
-V 0023 Bercy 14
+V 0020 Belleville 11
+V 0021 Belleville 02
+V 0022 Bercy 14
+V 0023 Bercy 06
 T 0024 Bibliothèque François Mitterand 14
 V 0025 Billancourt 09
 V 0026 Bir-Hakeim 06
@@ -69,18 +69,18 @@ V 0064 Château Rouge 04
 V 0065 Château d'Eau 04
 T 0066 Château de Vincennes 01
 V 0067 Châtelet 01
-V 0068 Châtelet 04
-V 0069 Châtelet 07
-T 0070 Châtelet 11
-V 0071 Châtelet 14
+V 0068 Châtelet 11
+V 0069 Châtelet 14
+T 0070 Châtelet 04
+V 0071 Châtelet 07
 T 0072 Châtillon-Montrouge 13
 V 0073 Cité 04
 V 0074 Cluny, La Sorbonne 10
 V 0075 Colonel Fabien 02
 V 0076 Commerce 07
 V 0077 Concorde 01
-V 0078 Concorde 08
-V 0079 Concorde 12
+V 0078 Concorde 12
+V 0079 Concorde 08
 V 0080 Convention 12
 V 0081 Corentin Celton 12
 V 0082 Corentin-Cariou 07
@@ -118,8 +118,8 @@ V 0113 Gaité 13
 T 0114 Galliéni 03
 V 0115 Gambetta 03
 T 0116 Gambetta 3b
-V 0117 Gare d'Austerlitz 05
-T 0118 Gare d'Austerlitz 10
+V 0117 Gare d'Austerlitz 10
+T 0118 Gare d'Austerlitz 05
 V 0119 Gare de Lyon 01
 V 0120 Gare de Lyon 14
 V 0121 Gare de l'Est 04
@@ -138,8 +138,8 @@ V 0133 Havre Caumartin 09
 V 0134 Hoche 05
 V 0135 Hôtel de Ville 01
 V 0136 Hôtel de Ville 11
-V 0137 Invalides 08
-V 0138 Invalides 13
+V 0137 Invalides 13
+V 0138 Invalides 08
 V 0139 Iéna 09
 V 0140 Jacques Bonsergent 05
 V 0141 Jasmin 09
@@ -149,14 +149,14 @@ V 0144 Jaurès 7b
 V 0145 Javel 10
 V 0146 Jourdain 11
 V 0147 Jules Joffrin 12
-V 0148 Jussieu 07
-V 0149 Jussieu 10
+V 0148 Jussieu 10
+V 0149 Jussieu 07
 V 0150 Kléber 06
 V 0151 La Chapelle 02
 T 0152 La Courneuve, 8 Mai 1945 07
 V 0153 La Fourche 13
-V 0154 La Motte Picquet, Grenelle 06
-V 0155 La Motte Picquet, Grenelle 08
+V 0154 La Motte Picquet, Grenelle 08
+V 0155 La Motte Picquet, Grenelle 06
 V 0156 La Motte Picquet, Grenelle 10
 V 0157 La Muette 09
 V 0158 La Tour-Maubourg 08
@@ -176,9 +176,9 @@ V 0171 Louise Michel 03
 V 0172 Lourmel 08
 V 0173 Louvre, Rivoli 01
 V 0174 Mabillon 10
-V 0175 Madeleine 08
-V 0176 Madeleine 12
-T 0177 Madeleine 14
+V 0175 Madeleine 12
+V 0176 Madeleine 14
+T 0177 Madeleine 08
 T 0178 Mairie d'Issy 12
 T 0179 Mairie d'Ivry 07
 V 0180 Mairie de Clichy 13
@@ -192,25 +192,25 @@ V 0187 Malakoff-Plateau de Vanves 13
 V 0188 Malakoff-Rue Étienne Dolet 13
 V 0189 Malesherbes 03
 V 0190 Maraîchers 09
-V 0191 Marcadet Poissonniers 04
-V 0192 Marcadet Poissonniers 12
+V 0191 Marcadet Poissonniers 12
+V 0192 Marcadet Poissonniers 04
 V 0193 Marcel Sembat 09
 V 0194 Marx Dormoy 12
 V 0195 Maubert Mutualité 10
-V 0196 Michel Ange Auteuil 09
-V 0197 Michel Ange Auteuil 10
-V 0198 Michel Ange Molitor 09
-V 0199 Michel Ange Molitor 10
+V 0196 Michel Ange Auteuil 10
+V 0197 Michel Ange Auteuil 09
+V 0198 Michel Ange Molitor 10
+V 0199 Michel Ange Molitor 09
 V 0200 Michel Bizot 08
 V 0201 Mirabeau 10
-V 0202 Miromesnil 09
-V 0203 Miromesnil 13
+V 0202 Miromesnil 13
+V 0203 Miromesnil 09
 V 0204 Monceau 02
 V 0205 Montgallet 08
-V 0206 Montparnasse Bienvenue 04
-V 0207 Montparnasse Bienvenue 06
-V 0208 Montparnasse Bienvenue 12
-V 0209 Montparnasse Bienvenue 13
+V 0206 Montparnasse Bienvenue 12
+V 0207 Montparnasse Bienvenue 13
+V 0208 Montparnasse Bienvenue 04
+V 0209 Montparnasse Bienvenue 06
 V 0210 Mouton-Duvernet 04
 V 0211 Ménilmontant 02
 V 0212 Nation 01
@@ -222,8 +222,8 @@ V 0217 Notre Dame de Lorette 12
 V 0218 Notre-Dame-des-Champs 12
 V 0219 Oberkampf 05
 V 0220 Oberkampf 09
-V 0221 Odéon 04
-V 0222 Odéon 10
+V 0221 Odéon 10
+V 0222 Odéon 04
 V 0223 Opéra 03
 V 0224 Opéra 07
 V 0225 Opéra 08
@@ -232,24 +232,24 @@ V 0227 Palais Royal, Musée du Louvre 01
 V 0228 Palais Royal, Musée du Louvre 07
 V 0229 Parmentier 03
 V 0230 Passy 06
-V 0231 Pasteur 06
-V 0232 Pasteur 12
+V 0231 Pasteur 12
+V 0232 Pasteur 06
 V 0233 Pelleport 3b
 V 0234 Pernety 13
 V 0235 Philippe-Auguste 02
 V 0236 Picpus 06
 V 0237 Pierre Curie 07
-V 0238 Pigalle 02
-V 0239 Pigalle 12
+V 0238 Pigalle 12
+V 0239 Pigalle 02
 T 0240 Place Balard 08
 V 0241 Place Monge 07
 T 0242 Place d'Italie 05
 V 0243 Place d'Italie 06
 V 0244 Place d'Italie 07
-V 0245 Place de Clichy 02
-V 0246 Place de Clichy 13
-V 0247 Place des Fêtes 7b
-V 0248 Place des Fêtes 11
+V 0245 Place de Clichy 13
+V 0246 Place de Clichy 02
+V 0247 Place des Fêtes 11
+V 0248 Place des Fêtes 7b
 V 0249 Plaisance 13
 V 0250 Poissonnière 07
 T 0251 Pont de Levallois, Bécon 03
@@ -279,11 +279,11 @@ V 0274 Porte de Versailles 12
 V 0275 Porte de Vincennes 01
 T 0276 Porte de la Chapelle 12
 V 0277 Porte de la Villette 07
-T 0278 Porte des Lilas 3b
-V 0279 Porte des Lilas 11
+T 0278 Porte des Lilas 11
+V 0279 Porte des Lilas 3b
 T 0280 Pré-Saint-Gervais 7b
-V 0281 Pyramides 07
-V 0282 Pyramides 14
+V 0281 Pyramides 14
+V 0282 Pyramides 07
 V 0283 Pyrénées 11
 V 0284 Père Lachaise 02
 V 0285 Père Lachaise 03
@@ -312,23 +312,23 @@ V 0307 Rue des Boulets 09
 V 0308 Rue du Bac 12
 V 0309 Réaumur Sébastopol 03
 V 0310 Réaumur Sébastopol 04
-V 0311 République 03
-V 0312 République 05
-V 0313 République 08
-V 0314 République 09
-V 0315 République 11
+V 0311 République 11
+V 0312 République 03
+V 0313 République 05
+V 0314 République 08
+V 0315 République 09
 V 0316 Saint-Ambroise 09
 V 0317 Saint-Augustin 09
 V 0318 Saint-Denis-Porte de Paris 13
-F 0319 Saint-Denis-Université 13
+T 0319 Saint-Denis-Université 13
 V 0320 Saint-Fargeau 3b
 V 0321 Saint-Francois Xavier 13
 V 0322 Saint-Georges 12
 V 0323 Saint-Germain-des-Prés 04
 V 0324 Saint-Jacques 06
-V 0325 Saint-Lazare 03
-V 0326 Saint-Lazare 12
-V 0327 Saint-Lazare 13
+V 0325 Saint-Lazare 12
+V 0326 Saint-Lazare 13
+V 0327 Saint-Lazare 03
 V 0328 Saint-Mandé, Tourelle 01
 V 0329 Saint-Marcel 05
 V 0330 Saint-Michel 04
@@ -352,7 +352,7 @@ V 0347 Sèvres Babylone 12
 V 0348 Sèvres Lecourbe 06
 V 0349 Ségur 10
 V 0350 Temple 03
-V 0351 Ternes 2
+V 0351 Ternes 02
 V 0352 Tolbiac 07
 V 0353 Trinité d'Estienne d'Orves 12
 V 0354 Trocadéro 06

@@ -1,11 +1,4 @@
 
-/**
- * Décrivez votre classe Matrice ici.
- *
- * @author (votre nom)
- * @version (un numéro de version ou une date)
- */
-
 public class Matrice
 {
   //line*column
@@ -21,31 +14,37 @@ public class Matrice
   public Matrice(int[][] M)
   {
     this.directions = M;
-    this.column = directions[0].length;
-    this.line = directions.length;
+    this.column     = directions[0].length;
+    this.line       = directions.length;
   }
 
   /**
-    *
+    * Builder: defaulf
     */
   public Matrice()
   {
     this.directions = null;
-    this.line = this.column = 0;
+    this.line       = 0;
+    this.column     = 0;
   }
 
   /**
-    *
+    * Getter: get count column
+    * @return count column
     */
   public int getColumn() { return this.column; }
 
   /**
-    *
+    * Getter: get count line
+    * @return count line
     */
   public int getLine() { return this.line; }
 
   /**
-    *
+    * Getter: get count value at [i][j]
+    * @param i column
+    * @param j line
+    * @return the value at directions[i][j]
     */
   public int getVal(int i, int j) { return this.directions[i][j]; }
 

@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Main_dikjstra
 {
   // throws IOException for tbl_stations.fill(), file reader
-  public static void main (String[] args) throws IOException{
+  public static void main (String[] args) throws IOException {
 
     /*
     int T[][] = {
@@ -21,7 +21,7 @@ public class Main_dikjstra
                  {-1,-1,-1,-1,0,3 },
                  {-1,-1,-1,-1,-1,0}
                 };
-
+  */
     int T2[][] = {
                   {0,30,60,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1  },
                   {-1,0,45,70,100,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1 },
@@ -40,63 +40,21 @@ public class Main_dikjstra
                   {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0  }
                 };
 
-    //
     Matrice A = new Matrice(T2);
-    A.printMatrice();
-
-    //
-    Tbl_dikjstra D = new Tbl_dikjstra(6);
-    D.calcul(A,0);
+    Tbl_dikjstra D = new Tbl_dikjstra(A);
+    D.calcul(0, 14);
     D.printTbl_Dikjstra();
+    D.printWay();
 
-    //
-    Tbl_dikjstra E = new Tbl_dikjstra();
-    int []way = E.way(A,0,14);
-
-    //
-    System.out.print("Chemin : ");
-    for( int i=0 ; i < way.length ; i++)
-          System.out.print(way[i]+" ");
-    System.out.println();
-    /*
-
+    D.calcul(2, 14);
+    D.printTbl_Dikjstra();
+    D.printWay();
+/*
     //
     Tbl_stations tbl_stations = new Tbl_stations("metro.txt");
     tbl_stations.fill_travel_time();
     // tbl_stations.print();
     tbl_stations.write_file();
     */
-
-    // Test //
-
-    //
-    Tbl_stations A = new Tbl_stations("metro.txt");
-    A.fill_travel_time();
-
-    //
-    Matrice M = new Matrice( A.get_tbl() );
-    // M.printMatrice();
-
-    //
-    int station_start = 0;
-    int station_stop = 7;
-    Tbl_dikjstra F = new Tbl_dikjstra(376);
-
-    //F.calcul(M,0);
-    int []way = F.way(M,station_start,station_stop);
-
-    //
-    System.out.print("Chemin : ");
-    for( int i=0 ; i < way.length ; i++)
-          System.out.print(way[i]+" ");
-    System.out.println();
-
-    System.out.println("Trajet parcouru en "+F.get_tmp_total()+
-                       " seconde; soit "+F.get_tmp_total()/60.0+" minutes.");
-
-    int[] tps = F.get_tbl_dist();
-    for( int i = 0 ; i < F.get_column() ; i++ )
-      System.out.print(tps[i]+" ");
-    System.out.println();
   }
 }

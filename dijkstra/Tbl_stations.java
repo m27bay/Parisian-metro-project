@@ -16,9 +16,9 @@ public class Tbl_stations {
   private String path_file;
   private int tbl[][];
 
-  // Builder(s)
   public Tbl_stations(String path_file) throws IOException
   {
+    //
     this.path_file = path_file;
 
     //
@@ -26,22 +26,19 @@ public class Tbl_stations {
     this.tbl       = new int[ this.tbl_size ][ this.tbl_size ];
   }
 
-  // Getter
-
   /**
-    *
-    *
+    * Getter: Get the matrix
+    * @return the matrix
     */
   public int[][] get_tbl() { return this.tbl; }
 
   /**
-    *
-    *
+    * Getter: Get the matrix size
+    * @return the matrix size
     */
   public int get_size() { return this.tbl_size; }
 
   // Method(s)
-
   /**
     * Count the nuumber ouf stations
     * @param file_name the name of the file
@@ -159,7 +156,6 @@ public class Tbl_stations {
 
   /**
     * Print the matrix
-    *
     */
   public void print()
   {
@@ -174,7 +170,6 @@ public class Tbl_stations {
 
   /**
     * Write the matrix in the file 'out/output'
-    *
     */
   public void write_file() throws IOException
   {

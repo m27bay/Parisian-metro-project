@@ -27,7 +27,7 @@ public class Panneau extends JPanel {
     	Image img = ImageIO.read(new File("picture/plan.jpg"));
     	// g.drawImage(img, 0, 0, this);
     	//Pour une image de fond
-    	g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+    	g.drawImage(img, 0, 0, 1014, 709, this);
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -37,7 +37,10 @@ public class Panneau extends JPanel {
     // g.drawLine(0, 0, this.getWidth(), this.getHeight());
     // g.drawLine(0, this.getHeight(), this.getWidth(), 0);
 
-    // g.drawString("DIOOOOOOOOOOOOOOOOOOOO", this.getWidth()/4, this.getHeight()/2);
+    g.drawString("Start station :", 1050, 50);
+    g.drawString("End station :", 1051, 100);
+    g.drawString("Travel :", 1050, 150);
+    g.drawString("Time:", 1050, 200);
 
 
   }

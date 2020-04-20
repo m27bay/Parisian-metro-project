@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 
 public class Fenetre extends JFrame {
   public Fenetre(){
-    this.setTitle("Ma première fenêtre Java");
-    this.setSize(900, 900);
+    this.setTitle("Metro lines");
+    this.setSize(1500,750);
     this.setLocationRelativeTo(null);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -19,10 +19,10 @@ public class Fenetre extends JFrame {
     // retirer contours et boutons de controle : setUndecorated(boolean b)
 
      //Instanciation d'un objet JPanel
-    JPanel pan = new JPanel();
-     //Définition de sa couleur de fond
+    // JPanel pan = new JPanel();
+    //  //Définition de sa couleur de fond
     // pan.setBackground(Color.ORANGE);
-    //On prévient notre JFrame que notre JPanel sera son content pane
+    // // On prévient notre JFrame que notre JPanel sera son content pane
     // this.setContentPane(pan);
     this.setContentPane(new Panneau());
 

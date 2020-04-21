@@ -82,7 +82,6 @@ public class TblStations {
     */
   public void fillTravelTime() throws IOException
   {
-
     // Variable(s)
     BufferedReader read = null;
     String line;

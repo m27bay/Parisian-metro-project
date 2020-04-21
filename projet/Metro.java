@@ -671,8 +671,12 @@ public class Metro {
   /**
     *
     */
-  public void knowDirection( int numStationStart, int numStationStop, int numLine )
+  public void knowDirection( int way[], int pos, int numLine, int wayLength ) throws IOException
   {
+    //
+    int numStationStart = way[pos];
+    int numStationStop  = way[ pos+1 ];
+
     //
     int line07 = strLineToInt( "07" );
     int line7b = strLineToInt( "7b" );
@@ -694,7 +698,7 @@ public class Metro {
     else if( numLine  ==  line07
          ||  numLine  ==  line10
          ||  numLine  ==  line13 )
-      knowDirectionFork( numStationStart, numStationStop, numLine );
+      knowDirectionFork(  way, pos, wayLength );
   }
 
   /**
@@ -729,7 +733,7 @@ public class Metro {
     */
   public void knowDirectionLoop( int numStationStart, int numStationStop, int numLine )
   {
-        //
+    //
     ArrayList<Travel> tmp = this.metro[numLine].getListTravel();
     int direction = 0;
 
@@ -754,15 +758,91 @@ public class Metro {
   /**
     *
     */
-  public void knowDirectionFork( int numStationStart, int numStationStop, int numLine )
+  public void knowDirectionFork( int way[], int pos, int wayLength ) throws IOException
   {
-    System.out.println( "Direction: Unknown\n" );
+    int tmp = pos;
+    while( whatMetroLine( way[tmp] ).equals( whatMetroLine( way[pos] ) )  )
+    {
+      if( tmp  ==  wayLength - 1 )
+        break;
+      tmp++;
+    }
+
+    // Variables
+    BufferedReader read = null;
+    String line;
+
+    // Init read
+    try
+    {
+      read = new BufferedReader ( new FileReader ( this.dataFile ) );
+    }
+
+    // Exception
+    catch(FileNotFoundException exception)
+    {
+      System.out.println("Error in class 'Metro', method 'knowDirection':"+
+              " file not found");
+    }
+
+    int start = way[tmp - 1], stop = way[tmp];
+    // Read
+    while( ( line = read.readLine() )  !=  null )
+    {
+      //
+      if( line.charAt(0)  ==  '#'
+              ||  line.charAt(0)  ==  'V'
+              ||  line.charAt(0)  ==  'T')
+        continue;
+
+      //
+      else
+      {
+        int stationStart = 0, stationStop = 0, travelTime = 0;
+
+        int pos1 = 0, pos2 = 0;
+
+        // Skip space and 'E'
+        while( !Character.isDigit( line.charAt(pos2) ) ) pos2++;
+        pos1 = pos2;
+
+        // Read the first number
+        while( Character.isDigit( line.charAt(pos2) ) ) pos2++;
+        stationStart = Integer.parseInt( line.substring( pos1, pos2 ) );
+        pos1 = pos2+=1;
+
+        if( whatStation( start ).getIsTerminus()  )
+          System.out.println("Direction: "+whatStation( start )+"\n" );
+        else if( whatStation( stop ).getIsTerminus() )
+          System.out.println("Direction: "+whatStation( stop )+"\n" );
+        else
+        {
+          if( stationStart  ==  start  ||  stationStart  ==  stop
+          ||  stationStop   ==  start  ||  stationStop  ==  stop
+          ||  stationStart  ==  36   &&  stationStop  == 198
+          ||  stationStart  ==  198  &&  stationStop  == 52
+          ||  stationStart  ==  52   &&  stationStop  == 201
+          ||  stationStart  ==  201  &&  stationStop  == 145
+          ||  stationStart  ==  145  &&  stationStop  == 372
+          ||  stationStart  ==  373  &&  stationStop  == 196
+          ||  stationStart  ==  196  &&  stationStop  == 259
+          ||  stationStart  ==  259  &&  stationStop  == 36 )
+          {
+            start = stationStart;
+            stop = stationStop;
+          }
+        }
+      }
+    }
+
+    // Close and exit
+    read.close();
   }
 
   /**
     *
     */
-  public void printTravelDetail( int way[], int wayLength )
+  public void printTravelDetail( int way[], int wayLength ) throws IOException
   {
     //
     int i = 0;
@@ -775,7 +855,7 @@ public class Metro {
     String lineStart = whatMetroLine( way[i] );
     System.out.println( "You start at\n" + whatStation( way[i] ).toString()
                       + " line "+lineStart );
-    knowDirection( way[0], way[1], strLineToInt( lineStart ) );
+    knowDirection( way, i, strLineToInt( lineStart ), wayLength );
     i++;
 
     //
@@ -795,8 +875,7 @@ public class Metro {
       {
         System.out.println("\nAt the station\n"+stationNow.toString()+
           ".\nYou switch to the line: "+lineNow );
-        System.out.println(i+" "+(i+1)+" "+wayLength);
-        knowDirection( way[i], way[i + 1], strLineToInt( lineNow ) );
+        knowDirection( way, i, strLineToInt( lineNow ), wayLength );
         lineStart = lineNow;
       }
 

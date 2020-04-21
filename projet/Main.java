@@ -5,23 +5,17 @@ public class Main {
   public static void main(String[] args) throws IOException
   {
     //
-    if( args[0].isEmpty()  ==  true ) {
-      System.out.println("Error in class 'Main', method 'main':"+
-                         "need argument to compile");
-      System.exit(0);
-    }
+    String dataFile = "../metroL.txt";
 
     //
-    Metro metro = new Metro( args[0] );
+    Metro metro = new Metro( dataFile );
     metro.initLine();
 
     // metro.printStation();
     // metro.printTravel();
 
-    metro.printIndexTravel( "10" );
-
     //
-    TblStations ts = new TblStations( args[0] );
+    TblStations ts = new TblStations( dataFile );
     ts.fillTravelTime();
 
     //
@@ -34,7 +28,8 @@ public class Main {
     // td.calcul(43, 173);
     // td.calcul(167, 351);
     // td.calcul(362, 92);
-    td.calcul(47, 37);
+
+    td.calcul(4, 15);
 
     // td.printTblDijkstra();
     td.printWay();

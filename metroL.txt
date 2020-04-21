@@ -260,7 +260,7 @@ V 0255 Pont-Neuf 07
 T 0256 Porte Dauphine 02
 V 0257 Porte Dorée 08
 V 0258 Porte Maillot 01
-V 0259 Porte d'Auteuil 02
+V 0259 Porte d'Auteuil 10
 V 0260 Porte d'Italie 07
 V 0261 Porte d'Ivry 07
 T 0262 Porte d'Orléans 04

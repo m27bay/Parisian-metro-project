@@ -671,6 +671,148 @@ public class Metro {
   /**
     *
     */
+  public void knowDirection( int numStationStart, int numStationStop, int numLine )
+  {
+    //
+    int line07 = strLineToInt( "07" );
+    int line7b = strLineToInt( "7b" );
+    int line10 = strLineToInt( "10" );
+    int line13 = strLineToInt( "13" );
+
+    // Right line
+    if( numLine  !=  line07
+    &&  numLine  !=  line7b
+    &&  numLine  !=  line10
+    &&  numLine  !=  line13 )
+      knowDirectionRight( numStationStart, numStationStop, numLine );
+
+    // loop line
+    else if( numLine  ==  line7b )
+      knowDirectionLoop( numStationStart, numStationStop, numLine );
+
+    // fork line
+    else if( numLine  ==  line07
+         ||  numLine  ==  line10
+         ||  numLine  ==  line13 )
+      knowDirectionFork( numStationStart, numStationStop, numLine );
+  }
+
+  /**
+    *
+    */
+  public void knowDirectionRight( int numStationStart, int numStationStop, int numLine )
+  {
+    //
+    ArrayList<Travel> tmp = this.metro[numLine].getListTravel();
+    int direction = 0;
+
+    //
+    for( Travel t : tmp )
+    {
+      if( t.getStationStart().equals( whatStation( numStationStart ) )
+      &&  t.getStationStop().equals( whatStation( numStationStop ) ) )
+      {
+        direction = tmp.size() - 1;
+        break;
+      }
+    }
+
+    //
+    if( direction  ==  0 )
+      System.out.println("Direction: "+tmp.get( direction ).getStationStart()+"\n" );
+    else
+      System.out.println("Direction: "+tmp.get( direction ).getStationStop()+"\n" );
+  }
+
+  /**
+    *
+    */
+  public void knowDirectionLoop( int numStationStart, int numStationStop, int numLine )
+  {
+        //
+    ArrayList<Travel> tmp = this.metro[numLine].getListTravel();
+    int direction = 0;
+
+    //
+    for( Travel t : tmp )
+    {
+      if( t.getStationStart().equals( whatStation( numStationStart ) )
+      &&  t.getStationStop().equals( whatStation( numStationStop ) ) )
+      {
+        direction = 5;
+        break;
+      }
+    }
+
+    //
+    if( direction  ==  0 )
+      System.out.println("Direction: "+tmp.get( direction ).getStationStart()+"\n" );
+    else
+      System.out.println("Direction: "+tmp.get( direction ).getStationStop()+"\n" );
+  }
+
+  /**
+    *
+    */
+  public void knowDirectionFork( int numStationStart, int numStationStop, int numLine )
+  {
+    System.out.println( "Direction: Unknown\n" );
+  }
+
+  /**
+    *
+    */
+  public void printTravelDetail( int way[], int wayLength )
+  {
+    //
+    int i = 0;
+
+    //
+    if( whatStation( way[0] ).getName().equals( whatStation( way[1] ).getName() ) )
+      i = 1;
+
+    //
+    String lineStart = whatMetroLine( way[i] );
+    System.out.println( "You start at\n" + whatStation( way[i] ).toString()
+                      + " line "+lineStart );
+    knowDirection( way[0], way[1], strLineToInt( lineStart ) );
+    i++;
+
+    //
+    lineStart = whatMetroLine( way[i] );
+    String lineNow  = "Unknown";
+    Station stationNow;
+
+    //
+    for(; i < wayLength - 1; i++ )
+    {
+      //
+      lineNow = whatMetroLine( way[i] );
+      stationNow = whatStation( way[i] );
+
+      //
+      if( !lineStart.equals( lineNow ) )
+      {
+        System.out.println("\nAt the station\n"+stationNow.toString()+
+          ".\nYou switch to the line: "+lineNow );
+        System.out.println(i+" "+(i+1)+" "+wayLength);
+        knowDirection( way[i], way[i + 1], strLineToInt( lineNow ) );
+        lineStart = lineNow;
+      }
+
+      //
+      System.out.println(stationNow.toString()+" line "+lineNow );
+    }
+    System.out.println();
+
+    //
+    System.out.println( "You stop at\n" + whatStation( way[i] ).toString()
+                      + " line "+whatMetroLine( way[i] )+"\n" );
+  }
+
+  /**
+    *
+    */
   public void printStation()
   {
     for( MetroLine m: metro)

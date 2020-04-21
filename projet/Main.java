@@ -18,6 +18,8 @@ public class Main {
     // metro.printStation();
     // metro.printTravel();
 
+    metro.printIndexTravel( "10" );
+
     //
     TblStations ts = new TblStations( args[0] );
     ts.fillTravelTime();
@@ -26,9 +28,23 @@ public class Main {
     Matrice mat = new Matrice( ts.getTbl() );
 
     //
+    System.out.println();
     TblDijkstra td = new TblDijkstra( mat );
-    td.calcul(43, 173);
-    td.printTblDijkstra();
+
+    // td.calcul(43, 173);
+    // td.calcul(167, 351);
+    // td.calcul(362, 92);
+    td.calcul(47, 37);
+
+    // td.printTblDijkstra();
     td.printWay();
+
+    //
+    System.out.println();
+    metro.printTravelDetail( td.getWay(), td.getWay().length );
+
+    //
+    System.out.println();
+    System.out.println( td.travelTime() );
   }
 }

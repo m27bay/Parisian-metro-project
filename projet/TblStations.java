@@ -145,8 +145,25 @@ public class TblStations {
         travelTime = Integer.parseInt( line.substring( pos2, line.length() ) );
 
         // Fill the matrix with the travel time
-        this.tbl[ stationStart ][ stationStop ] = travelTime;
-        this.tbl[ stationStop ][ stationStart ] = travelTime;
+        if( stationStart  ==  34   &&  stationStop  == 248
+        ||  stationStart  ==  248  &&  stationStop  == 280
+        ||  stationStart  ==  280  &&  stationStop  == 92
+        ||  stationStart  ==  92   &&  stationStop  == 34
+        ||  stationStart  ==  36   &&  stationStop  == 198
+        ||  stationStart  ==  198  &&  stationStop  == 52
+        ||  stationStart  ==  52   &&  stationStop  == 201
+        ||  stationStart  ==  201  &&  stationStop  == 145
+        ||  stationStart  ==  145  &&  stationStop  == 372
+        ||  stationStart  ==  373  &&  stationStop  == 196
+        ||  stationStart  ==  196  &&  stationStop  == 259
+        ||  stationStart  ==  259  &&  stationStop  == 36
+        )
+          this.tbl[ stationStart ][ stationStop ] = travelTime;
+        else
+        {
+          this.tbl[ stationStart ][ stationStop ] = travelTime;
+          this.tbl[ stationStop ][ stationStart ] = travelTime;
+        }
 
       }
     }

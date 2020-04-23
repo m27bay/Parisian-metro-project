@@ -29,7 +29,7 @@ public class Main {
     // td.calcul(167, 351);
     // td.calcul(362, 92);
 
-    td.calcul(4, 15);
+    td.calcul(99, 229);
 
     // td.printTblDijkstra();
     td.printWay();

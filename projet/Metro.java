@@ -758,19 +758,13 @@ public class Metro {
   /**
     *
     */
-  public void knowDirectionFork( int way[], int pos, int wayLength ) throws IOException
+  private String[] fillTbl( String metroLine ) throws IOException
   {
-    int tmp = pos;
-    while( whatMetroLine( way[tmp] ).equals( whatMetroLine( way[pos] ) )  )
-    {
-      if( tmp  ==  wayLength - 1 )
-        break;
-      tmp++;
-    }
-
-    // Variables
+     // Variables
     BufferedReader read = null;
     String line;
+    String[] tbl = new String[50];
+    int count = 0;
 
     // Init read
     try
@@ -781,11 +775,10 @@ public class Metro {
     // Exception
     catch(FileNotFoundException exception)
     {
-      System.out.println("Error in class 'Metro', method 'knowDirection':"+
+      System.out.println("Error in class 'Metro', method 'fillTbl':"+
               " file not found");
     }
 
-    int start = way[tmp - 1], stop = way[tmp];
     // Read
     while( ( line = read.readLine() )  !=  null )
     {
@@ -811,32 +804,117 @@ public class Metro {
         stationStart = Integer.parseInt( line.substring( pos1, pos2 ) );
         pos1 = pos2+=1;
 
-        if( whatStation( start ).getIsTerminus()  )
-          System.out.println("Direction: "+whatStation( start )+"\n" );
-        else if( whatStation( stop ).getIsTerminus() )
-          System.out.println("Direction: "+whatStation( stop )+"\n" );
-        else
-        {
-          if( stationStart  ==  start  ||  stationStart  ==  stop
-          ||  stationStop   ==  start  ||  stationStop  ==  stop
-          ||  stationStart  ==  36   &&  stationStop  == 198
-          ||  stationStart  ==  198  &&  stationStop  == 52
-          ||  stationStart  ==  52   &&  stationStop  == 201
-          ||  stationStart  ==  201  &&  stationStop  == 145
-          ||  stationStart  ==  145  &&  stationStop  == 372
-          ||  stationStart  ==  373  &&  stationStop  == 196
-          ||  stationStart  ==  196  &&  stationStop  == 259
-          ||  stationStart  ==  259  &&  stationStop  == 36 )
-          {
-            start = stationStart;
-            stop = stationStop;
-          }
-        }
+        // Read the second number
+        while( Character.isDigit( line.charAt(pos2) ) ) pos2++;
+        stationStop = Integer.parseInt( line.substring( pos1, pos2 ) );
+        pos1 = pos2+=1;
+
+        if( !whatMetroLine( stationStart ).equals( metroLine )
+         || !whatMetroLine( stationStop ).equals( metroLine ) )
+          continue;
+
+        tbl[count] = line;
+        count++;
       }
     }
 
     // Close and exit
     read.close();
+
+    //
+    String[] tbl2 = new String[count];
+
+    //
+    int count2 = 0;
+    for( int i = 0 ; i < count ; i++ )
+    {
+      tbl2[count2] = tbl[i];
+      System.out.println(tbl2[count2]);
+      count2++;
+    }
+    return tbl2;
+  }
+
+  /**
+    *
+    */
+  public void knowDirectionFork( int way[], int pos, int wayLength ) throws IOException
+  {
+    //
+    String[] tbl = fillTbl( whatMetroLine( way[pos] ) );
+
+    //
+    int direction = -1;
+
+    //
+    int stop, lastSeen = 0;
+    if( pos == 0 )
+    {
+      lastSeen = way[0];
+      stop  = way[1];
+    }
+
+    else
+    {
+      lastSeen = way[pos - 1];
+      stop  = way[pos];
+    }
+
+    //
+    while( direction  ==  -1 )
+    {
+      for( int i = 0 ; i < tbl.length ; i++ )
+      {
+        String s = tbl[i];
+
+        int stationStart = 0, stationStop = 0;
+        int pos1 = 0, pos2 = 0;
+
+        // Skip space and 'E'
+        while( !Character.isDigit( s.charAt(pos2) ) ) pos2++;
+        pos1 = pos2;
+
+        // Read the first number
+        while( Character.isDigit( s.charAt(pos2) ) ) pos2++;
+        stationStart = Integer.parseInt( s.substring( pos1, pos2 ) );
+        pos1 = pos2+=1;
+
+        // Read the second number
+        while( Character.isDigit( s.charAt(pos2) ) ) pos2++;
+        stationStop = Integer.parseInt( s.substring( pos1, pos2 ) );
+        pos1 = pos2+=1;
+
+        //
+        if( whatStation( lastSeen ).getIsTerminus() )
+          direction = lastSeen;
+        else if( whatStation( stop ).getIsTerminus() )
+          direction = stop;
+
+        //
+        else
+        {
+          if( stop  !=  stationStart  &&  lastSeen  ==  stationStop )
+          {
+            System.out.println("moving forward");
+            stop = stationStart;
+            lastSeen = stationStop;
+          }
+
+          else if( lastSeen  ==  stationStart  &&  stop  !=  stationStop )
+          {
+            System.out.println("moving forward2, stop:"+stop+", lastSeen: "+stationStart);
+            stop = stationStart;
+            lastSeen = stationStop;
+          }
+        }
+      }
+    }
+
+    //
+    if( direction  !=  -1 )
+      System.out.println("Direction: "+whatStation( direction )+"\n" );
+    else
+      System.out.println("Direction: Unknown\n" );
   }
 
   /**

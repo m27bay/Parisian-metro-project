@@ -25,11 +25,7 @@ public class Main {
     System.out.println();
     TblDijkstra td = new TblDijkstra( mat );
 
-    // td.calcul(43, 173);
-    // td.calcul(167, 351);
-    // td.calcul(362, 92);
-
-    td.calcul(99, 229);
+    td.calcul(278, 206);
 
     // td.printTblDijkstra();
     td.printWay();

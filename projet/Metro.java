@@ -454,33 +454,38 @@ public class Metro {
 		int numStationStart = way[ pos ];
 		int numStationStop = way[ pos + 1 ];
 		
-		//
+		// Metro line don't right
 		int line07 = strLineToInt( "07" );
 		int line7b = strLineToInt( "7b" );
 		int line10 = strLineToInt( "10" );
 		int line13 = strLineToInt( "13" );
 		
-		// fork line
+		// Fork line
 		if( numLine == line07
 				|| numLine == line10
 				|| numLine == line13
 				|| numLine == line7b )
 			knowDirectionFork( way, pos, wayLength );
-		
+			
+			// Right line
 		else
 			knowDirectionRight( numStationStart, numStationStop, numLine );
 	}
 	
 	/**
+	 * Print direction for right metro line
 	 *
+	 * @param numStationStart number of station start
+	 * @param numStationStop  number of station stop
+	 * @param numLine         line number
 	 */
 	public void knowDirectionRight( int numStationStart, int numStationStop, int numLine )
 	{
-		//
+		// get the travel list
 		ArrayList < Travel > tmp = this.metro[ numLine ].getListTravel();
 		int direction = 0;
 		
-		//
+		// Course in the travel list
 		for( Travel t : tmp )
 		{
 			if( t.getStationStart().equals( whatStation( numStationStart ) )
@@ -491,7 +496,7 @@ public class Metro {
 			}
 		}
 		
-		//
+		// Print direction
 		if( direction == 0 )
 			System.out.println( "Direction: " + tmp.get( direction ).getStationStart() + "\n" );
 		else
@@ -499,7 +504,13 @@ public class Metro {
 	}
 	
 	/**
+	 * Return a String table with all travel by metro line name
 	 *
+	 * @param metroLine the metro line name
+	 *
+	 * @return String table with all travel
+	 *
+	 * @throws IOException
 	 */
 	private String[] fillTbl( String metroLine ) throws IOException
 	{
@@ -507,6 +518,7 @@ public class Metro {
 		BufferedReader read = null;
 		String line;
 		String[] tbl = new String[ 50 ];
+		String[] parts = new String[ 3 ];
 		int count = 0;
 		
 		// Init read
@@ -534,29 +546,24 @@ public class Metro {
 				//
 			else
 			{
-				int stationStart = 0, stationStop = 0, travelTime = 0;
+				// Spilt line with the space
+				parts = line.split( " ", 4 );
 				
-				int pos1 = 0, pos2 = 0;
+				// Init Travel
+				Travel t = new Travel();
 				
-				// Skip space and 'E'
-				while( !Character.isDigit( line.charAt( pos2 ) ) ) pos2++;
-				pos1 = pos2;
+				int stationStart = Integer.parseInt( parts[ 1 ] );
+				int stationStop = Integer.parseInt( parts[ 2 ] );
 				
-				// Read the first number
-				while( Character.isDigit( line.charAt( pos2 ) ) ) pos2++;
-				stationStart = Integer.parseInt( line.substring( pos1, pos2 ) );
-				pos1 = pos2 += 1;
-				
-				// Read the second number
-				while( Character.isDigit( line.charAt( pos2 ) ) ) pos2++;
-				stationStop = Integer.parseInt( line.substring( pos1, pos2 ) );
-				pos1 = pos2 += 1;
-				
+				// Skip travel with two stations in different metro lined
 				if( !whatMetroLine( stationStart ).equals( metroLine )
 						|| !whatMetroLine( stationStop ).equals( metroLine ) )
 					continue;
 				
+				// Fill the table
 				tbl[ count ] = line;
+				
+				// Count number of travel
 				count++;
 			}
 		}
@@ -564,12 +571,13 @@ public class Metro {
 		// Close and exit
 		read.close();
 		
-		//
+		// Create new table
 		String[] tbl2 = new String[ count ];
 		
 		//
 		int count2 = 0;
 		
+		// Add travel in the new table except the empty element
 		for( int i = 0 ; i < count ; i++ )
 		{
 			tbl2[ count2 ] = tbl[ i ];
@@ -580,57 +588,55 @@ public class Metro {
 	}
 	
 	/**
+	 * Algo know direction with a fork
 	 *
+	 * @param way       the dijkstra table
+	 * @param pos       the position in the dijkstra table
+	 * @param wayLength the length of dijkstra table
+	 *
+	 * @throws IOException
 	 */
 	public void knowDirectionFork( int way[], int pos, int wayLength ) throws IOException
 	{
+		// Skip station in dijkstra table if two stations is in the same metro line
 		while( whatMetroLine( way[ pos ] ).equals( whatMetroLine( way[ pos + 1 ] ) ) && pos + 1 < wayLength - 1 ) pos++;
 		
+		// if while break because two station isn't in the same metro line
 		if( !whatMetroLine( way[ pos ] ).equals( whatMetroLine( way[ pos + 1 ] ) ) )
 			pos--;
 		
-		//
+		// Get all travel
 		String[] tbl = fillTbl( whatMetroLine( way[ pos ] ) );
 		
-		//
+		// Don't know direction
 		int direction = -1;
 		
 		//
 		int stop, lastSeen = 0;
 		lastSeen = way[ pos ];
 		stop = way[ pos + 1 ];
+		String parts[] = new String[ 3 ];
 		
 		//
 		while( direction == -1 )
 		{
+			// Course in the table
 			for( int i = 0 ; i < tbl.length ; i++ )
 			{
 				String s = tbl[ i ];
 				
-				int stationStart = 0, stationStop = 0;
-				int pos1 = 0, pos2 = 0;
+				parts = s.split( " ", 3 );
 				
-				// Skip space and 'E'
-				while( !Character.isDigit( s.charAt( pos2 ) ) ) pos2++;
-				pos1 = pos2;
+				int stationStart = Integer.parseInt( parts[ 1 ] );
+				int stationStop = Integer.parseInt( parts[ 2 ] );
 				
-				// Read the first number
-				while( Character.isDigit( s.charAt( pos2 ) ) ) pos2++;
-				stationStart = Integer.parseInt( s.substring( pos1, pos2 ) );
-				pos1 = pos2 += 1;
-				
-				// Read the second number
-				while( Character.isDigit( s.charAt( pos2 ) ) ) pos2++;
-				stationStop = Integer.parseInt( s.substring( pos1, pos2 ) );
-				pos1 = pos2 += 1;
-				
-				//
+				// If we have found a station which is a terminus
 				if( whatStation( lastSeen ).getIsTerminus() )
 					direction = lastSeen;
 				else if( whatStation( stop ).getIsTerminus() )
 					direction = stop;
 					
-					//
+					// Else check if we have a travel for course in the metro line
 				else
 				{
 					if( stop == stationStart && lastSeen != stationStop )
@@ -647,35 +653,37 @@ public class Metro {
 			}
 		}
 		
-		//
-		if( direction != -1 )
-			System.out.println( "Direction: " + whatStation( direction ) + "\n" );
-		else
-			System.out.println( "Direction: Unknown\n" );
+		// print direction
+		System.out.println( "Direction: " + whatStation( direction ) + "\n" );
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	/**
+	 * Print travel
 	 *
+	 * @param way       the dijkstra table
+	 * @param wayLength the length of dijkstra table
+	 *
+	 * @throws IOException
 	 */
 	public void printTravelDetail( int way[], int wayLength ) throws IOException
 	{
-		//
+		// Position in the dijkstra table
 		int i = 0;
 		
-		//
+		// If selection a station for start travel and isn't in the good line
 		if( whatStation( way[ 0 ] ).getName().equals( whatStation( way[ 1 ] ).getName() ) )
 			i = 1;
 		
-		//
+		// Print direction and the start station
 		String lineStart = whatMetroLine( way[ i ] );
 		System.out.println( "You start at\n" + whatStation( way[ i ] ).toString()
 				+ " line " + lineStart );
 		knowDirection( way, i, strLineToInt( lineStart ), wayLength );
 		i++;
 		
-		//
+		// 
 		lineStart = whatMetroLine( way[ i ] );
 		String lineNow = "Unknown";
 		Station stationNow;

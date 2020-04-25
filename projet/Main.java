@@ -32,18 +32,15 @@ public class Main {
     System.out.println();
     TblDijkstra td = new TblDijkstra( mat );
 
-    td.calcul(278, 206);
+    td.calcul(36, 15);
 
     // td.printTblDijkstra();
     td.printWay();
 
     //
     System.out.println();
-    metro.printTravelDetail( td.getWay(), td.getWay().length );
-
-    //
-    System.out.println();
-    System.out.println( td.travelTime() );
+    String time = td.travelTime();
+    metro.printTravelDetail( td.getWay(), td.getWay().length, time );
 
     Fenetre fen = new Fenetre();
   }

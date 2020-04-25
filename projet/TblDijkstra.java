@@ -87,7 +87,7 @@ public class TblDijkstra
     int seconds = this.dist[ this.arrived ];
     int minutes = seconds / 60;
     int hours   = minutes / 60;
-    return "travel time: "+hours+"h"+minutes%60+"min"+seconds%60+"sec";
+    return hours+"h"+minutes%60+"min"+seconds%60+"sec";
   }
 
   /**

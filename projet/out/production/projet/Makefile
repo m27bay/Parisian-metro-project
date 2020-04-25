@@ -1,5 +1,11 @@
 package1 = commons-lang3-3.9/commons-lang3-3.9.jar
-program = Metro.java TblStations.java Matrice.java TblDijkstra.java
+
+tools = Metro.java MetroLine.java Travel.java Station.java
+dijkstra = Matrice.java TblDijkstra.java TblStations.java
+graphics = Fenetre.java Panneau.java
+
+program = $(tools) $(dijkstra) $(graphics)
+
 dataFile = ../metroL.txt
 
 run : compile

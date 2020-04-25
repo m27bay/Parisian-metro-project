@@ -1,0 +1,6 @@
+S Boulogne, Jean Jaurès ligne 10
+D Gare d'Austerlitz ligne 10
+C Duroc ligne 13
+D Saint-Denis-Université ligne 13
+E Basilique de Saint-Denis ligne 13
+T 0h25min1sec

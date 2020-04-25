@@ -3,6 +3,10 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+// WFor write in the file
+import java.io.FileWriter;
+import java.io.PrintWriter;
+
 // Exception
 import java.io.IOException;
 import java.io.FileNotFoundException;
@@ -126,6 +130,54 @@ public class Metro {
 		}
 		
 		return -1;
+	}
+	
+	/**
+	 * Convert the position in the MetroLine table to his line name
+	 *
+	 * @param line the metro line need to convert
+	 *
+	 * @return position in MetroLine table
+	 */
+	private String intToStrLine( int line )
+	{
+		switch( line )
+		{
+			case 0:
+				return "01";
+			case 1:
+				return "02";
+			case 2:
+				return "03";
+			case 3:
+				return "3b";
+			case 4:
+				return "04";
+			case 5:
+				return "05";
+			case 6:
+				return "06";
+			case 7:
+				return "07";
+			case 8:
+				return "7b";
+			case 9:
+				return "08";
+			case 10:
+				return "09";
+			case 11:
+				return "10";
+			case 12:
+				return "11";
+			case 13:
+				return "12";
+			case 14:
+				return "13";
+			case 15:
+				return "14";
+		}
+		
+		return "unknown";
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -448,11 +500,14 @@ public class Metro {
 	 *
 	 * @throws IOException
 	 */
-	public void knowDirection( int[] way, int pos, int numLine, int wayLength ) throws IOException
+	public String knowDirection( int[] way, int pos, int numLine, int wayLength ) throws IOException
 	{
 		//
 		int numStationStart = way[ pos ];
 		int numStationStop = way[ pos + 1 ];
+		
+		//
+		String direction;
 		
 		// Metro line don't right
 		int line07 = strLineToInt( "07" );
@@ -465,11 +520,14 @@ public class Metro {
 				|| numLine == line10
 				|| numLine == line13
 				|| numLine == line7b )
-			knowDirectionFork( way, pos, wayLength );
+			direction = knowDirectionFork( way, pos, wayLength );
 			
 			// Right line
 		else
-			knowDirectionRight( numStationStart, numStationStop, numLine );
+			direction = knowDirectionRight( numStationStart, numStationStop, numLine );
+		
+		// Return
+		return direction;
 	}
 	
 	/**
@@ -479,7 +537,7 @@ public class Metro {
 	 * @param numStationStop  number of station stop
 	 * @param numLine         line number
 	 */
-	public void knowDirectionRight( int numStationStart, int numStationStop, int numLine )
+	public String knowDirectionRight( int numStationStart, int numStationStop, int numLine )
 	{
 		// get the travel list
 		ArrayList < Travel > tmp = this.metro[ numLine ].getListTravel();
@@ -498,9 +556,9 @@ public class Metro {
 		
 		// Print direction
 		if( direction == 0 )
-			System.out.println( "Direction: " + tmp.get( direction ).getStationStart() + "\n" );
+			return tmp.get( direction ).getStationStart().getName()+" ligne "+intToStrLine( numLine );
 		else
-			System.out.println( "Direction: " + tmp.get( direction ).getStationStop() + "\n" );
+			return tmp.get( direction ).getStationStop().getName()+" ligne "+intToStrLine( numLine );
 	}
 	
 	/**
@@ -596,7 +654,7 @@ public class Metro {
 	 *
 	 * @throws IOException
 	 */
-	public void knowDirectionFork( int way[], int pos, int wayLength ) throws IOException
+	public String knowDirectionFork( int way[], int pos, int wayLength ) throws IOException
 	{
 		// Skip station in dijkstra table if two stations is in the same metro line
 		while( whatMetroLine( way[ pos ] ).equals( whatMetroLine( way[ pos + 1 ] ) ) && pos + 1 < wayLength - 1 ) pos++;
@@ -615,7 +673,7 @@ public class Metro {
 		int stop, lastSeen = 0;
 		lastSeen = way[ pos ];
 		stop = way[ pos + 1 ];
-		String parts[] = new String[ 3 ];
+		String parts[] = new String[ 4 ];
 		
 		//
 		while( direction == -1 )
@@ -625,7 +683,7 @@ public class Metro {
 			{
 				String s = tbl[ i ];
 				
-				parts = s.split( " ", 3 );
+				parts = s.split( " ", 4 );
 				
 				int stationStart = Integer.parseInt( parts[ 1 ] );
 				int stationStop = Integer.parseInt( parts[ 2 ] );
@@ -654,7 +712,7 @@ public class Metro {
 		}
 		
 		// print direction
-		System.out.println( "Direction: " + whatStation( direction ) + "\n" );
+		return whatStation( direction ).getName()+" ligne "+whatMetroLine( direction );
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -667,10 +725,14 @@ public class Metro {
 	 *
 	 * @throws IOException
 	 */
-	public void printTravelDetail( int way[], int wayLength ) throws IOException
+	public void printTravelDetail( int way[], int wayLength, String time ) throws IOException
 	{
 		// Position in the dijkstra table
 		int i = 0;
+		
+		// Data for write to user
+		String[] data = new String[20];
+		int posData = 0;
 		
 		// If selection a station for start travel and isn't in the good line
 		if( whatStation( way[ 0 ] ).getName().equals( whatStation( way[ 1 ] ).getName() ) )
@@ -680,7 +742,10 @@ public class Metro {
 		String lineStart = whatMetroLine( way[ i ] );
 		System.out.println( "You start at\n" + whatStation( way[ i ] ).toString()
 				+ " line " + lineStart );
-		knowDirection( way, i, strLineToInt( lineStart ), wayLength );
+		data[posData] = "S "+whatStation( way[i] ).getName()+" ligne "+lineStart+"\n";
+		posData++;
+		data[posData] = "D "+knowDirection( way, i, strLineToInt( lineStart ), wayLength )+"\n";
+		posData++;
 		i++;
 		
 		// 
@@ -688,7 +753,7 @@ public class Metro {
 		String lineNow = "Unknown";
 		Station stationNow;
 		
-		//
+		// print global travel
 		for( ; i < wayLength - 1 ; i++ )
 		{
 			//
@@ -700,24 +765,46 @@ public class Metro {
 			{
 				System.out.println( "\nAt the station\n" + stationNow.toString() +
 						".\nYou switch to the line: " + lineNow );
-				knowDirection( way, i, strLineToInt( lineNow ), wayLength );
+				
+				//
+				data[posData] = "C "+stationNow.getName()+" ligne "+lineNow+"\n";
+				posData++;
+				
+				//
+				String direction = knowDirection( way, i, strLineToInt( lineNow ), wayLength );
+				System.out.println("Direction : "+direction);
+				data[posData] = "D "+direction+"\n";
+				posData++;
+				
+				//
 				lineStart = lineNow;
 			}
 			
-			//
+			// print all stations
 			// System.out.println(stationNow.toString()+" line "+lineNow );
 		}
 		System.out.println();
 		
-		//
+		// Print end of travel
+		String lineStop = whatMetroLine( way[ i ] );
 		System.out.println( "You stop at\n" + whatStation( way[ i ] ).toString()
-				+ " line " + whatMetroLine( way[ i ] ) + "\n" );
+				+ " line " + lineStop + "\n" );
+		
+		System.out.println("Time: "+time);
+		
+		//
+		data[posData] = "E "+whatStation( way[ i ] ).getName()+" ligne "+lineStop+"\n";
+		posData++;
+		data[posData] = "T "+time+"\n";
+		posData++;
+		
+		writeDataFile( "UserTravel.txt", data );
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	/**
-	 *
+	 * Print all Stations
 	 */
 	public void printStation()
 	{
@@ -731,7 +818,7 @@ public class Metro {
 	}
 	
 	/**
-	 *
+	 * Print Station at index
 	 */
 	public void printIndexStation( String index )
 	{
@@ -744,7 +831,7 @@ public class Metro {
 	}
 	
 	/**
-	 *
+	 * Print all Travel
 	 */
 	public void printTravel()
 	{
@@ -758,7 +845,7 @@ public class Metro {
 	}
 	
 	/**
-	 *
+	 * Print travel at index
 	 */
 	public void printIndexTravel( String index )
 	{
@@ -768,4 +855,31 @@ public class Metro {
 				"//////////////////////////////\n" );
 		m.printTravel();
 	}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	/**
+	 * Write in data file
+	 *
+	 * @param UsertravelFile the file for write user information
+	 *
+	 * @throws IOException
+	 */
+	public void writeDataFile( String UsertravelFile, String[] data) throws IOException
+	{
+		FileWriter fileWriter = new FileWriter( UsertravelFile );
+		
+		PrintWriter printWriter = new PrintWriter( fileWriter );
+		
+		for( String s : data )
+		{
+			if( s != null )
+				printWriter.print( s );
+		}
+		
+		printWriter.close();
+	}
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+

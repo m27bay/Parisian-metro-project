@@ -1,6 +1,13 @@
 // Exception
 import java.io.IOException;
 
+// awt
+import java.awt.Color;
+
+// swing
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 public class Main {
   public static void main(String[] args) throws IOException
   {
@@ -37,5 +44,7 @@ public class Main {
     //
     System.out.println();
     System.out.println( td.travelTime() );
+
+    Fenetre fen = new Fenetre();
   }
 }

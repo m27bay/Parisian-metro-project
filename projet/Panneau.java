@@ -40,19 +40,19 @@ public class Panneau extends JPanel {
 		g.setFont( font );
 		g.setColor( Color.black );
 		
-		int winWidth   = 1500;
-		int winHeight  = 750;
+		int winWidth = 1500;
+		int winHeight = 750;
 		
-		int imgWidth   = 1014;
-		int imgHeight  = 709;
+		int imgWidth = 1014;
+		int imgHeight = 709;
 		
-		int widthStay  = winWidth  - imgWidth;
+		int widthStay = winWidth - imgWidth;
 		int heightStay = winHeight - imgHeight;
 		
 		int numDraw = 1;
 		int posDraw = 50;
 		
-		g.drawString( "Travel Plan", winWidth - widthStay + widthStay/3, 17 );
+		g.drawString( "Travel Plan", winWidth - widthStay + widthStay / 3, 17 );
 		String data[] = null;
 		
 		try
@@ -71,14 +71,14 @@ public class Panneau extends JPanel {
 				dataSize++;
 		}
 		
-		g.drawString( "Start station : "+data[0], 1050, posDraw*numDraw );
+		g.drawString( "Start station : " + data[ 0 ], 1050, posDraw * numDraw );
 		numDraw++;
-		g.drawString( "Direction : "+data[1], 1050, posDraw*numDraw );
+		g.drawString( "Direction : " + data[ 1 ], 1050, posDraw * numDraw );
 		numDraw++;
 		
-		for( int i = 2 ; i < dataSize- 3 ; i++ )
+		for( int i = 2 ; i < dataSize - 3 ; i++ )
 		{
-			if( data[i] != null )
+			if( data[ i ] != null )
 			{
 				g.drawString( "Switch line at the station : " + data[ i ], 1050, posDraw * numDraw );
 				numDraw++;
@@ -87,9 +87,9 @@ public class Panneau extends JPanel {
 			}
 		}
 		
-		g.drawString( "End station : "+data[dataSize-2], 1050, posDraw*numDraw );
+		g.drawString( "End station : " + data[ dataSize - 2 ], 1050, posDraw * numDraw );
 		numDraw++;
-		g.drawString( "Global time : "+data[dataSize-1], 1050, posDraw*numDraw );
+		g.drawString( "Global time : " + data[ dataSize - 1 ], 1050, posDraw * numDraw );
 		numDraw++;
 		
 	}
@@ -101,8 +101,8 @@ public class Panneau extends JPanel {
 		String line;
 		
 		//
-		String parts[] = new String[4];
-		String data[] = new String[20];
+		String parts[] = new String[ 4 ];
+		String data[] = new String[ 20 ];
 		int dataPos = 0;
 		
 		// Init read
@@ -123,11 +123,11 @@ public class Panneau extends JPanel {
 		{
 			// Skip header
 			if( line.charAt( 0 ) == '#' ) continue;
-			
-			// Time
+				
+				// Time
 			else if( line.charAt( 0 ) == 'T' )
 			{
-				data[dataPos] = line.substring( 2, line.length() );
+				data[ dataPos ] = line.substring( 2, line.length() );
 				dataPos++;
 			}
 			
@@ -135,7 +135,7 @@ public class Panneau extends JPanel {
 			else
 			{
 				parts = line.split( " ", 4 );
-				data[dataPos] = parts[1]+" "+parts[2]+" "+parts[3];
+				data[ dataPos ] = parts[ 1 ] + " " + parts[ 2 ] + " " + parts[ 3 ];
 				dataPos++;
 			}
 		}

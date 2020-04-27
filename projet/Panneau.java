@@ -25,7 +25,7 @@ public class Panneau extends JPanel {
 	 */
 	public void paintComponent( Graphics g )
 	{
-		Font font = new Font( "Courier", Font.BOLD, 20 );
+		Font font = new Font( "Courier", Font.BOLD, 15 );
 		
 		try
 		{
@@ -81,7 +81,7 @@ public class Panneau extends JPanel {
 		{
 			if( data[ i ] != null )
 			{
-				g.drawString( "Switch line at the station : " + data[ i ], 1050, posDraw * numDraw );
+				g.drawString( "Switch at the station : " + data[ i ], 1050, posDraw * numDraw );
 				numDraw++;
 				g.drawString( "Direction : " + data[ i + 1 ], 1050, posDraw * numDraw );
 				numDraw++;

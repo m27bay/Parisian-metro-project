@@ -1,6 +1,6 @@
-S Boulogne, Jean Jaurès ligne 10
-D Gare d'Austerlitz ligne 10
-C Duroc ligne 13
-D Saint-Denis-Université ligne 13
-E Basilique de Saint-Denis ligne 13
-T 0h25min1sec
+S Grande Arche de la Défense ligne 01
+D Château de Vincennes ligne 01
+C Concorde ligne 08
+D Place Balard ligne 08
+E La Motte Picquet, Grenelle ligne 08
+T 0h16min4sec

@@ -6,22 +6,23 @@ import java.awt.Color;
 import java.awt.Image;
 
 // For read the file
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 
 // swing
 import javax.swing.JPanel;
 
 // io
-import java.io.File;
-import java.io.IOException;
-import java.io.FileNotFoundException;
 
 // imageio
 import javax.imageio.ImageIO;
 
 public class Panneau extends JPanel {
 	
+	/**
+	 * Draw
+	 *
+	 * @param g the graphic
+	 */
 	public void paintComponent( Graphics g )
 	{
 		Font font = new Font( "Courier", Font.BOLD, 20 );
@@ -92,8 +93,26 @@ public class Panneau extends JPanel {
 		g.drawString( "Global time : " + data[ dataSize - 1 ], 1050, posDraw * numDraw );
 		numDraw++;
 		
+		try
+		{
+			resetDataFile( "UserTravel.txt" );
+		}
+		catch( IOException e )
+		{
+			e.printStackTrace();
+		}
+		
 	}
 	
+	/**
+	 * Read in the data file
+	 *
+	 * @param userDataFile file with user information like start station, stop station, travel,...
+	 *
+	 * @return data String[]
+	 *
+	 * @throws IOException
+	 */
 	private String[] readUserData( String userDataFile ) throws IOException
 	{
 		// Variables
@@ -144,5 +163,23 @@ public class Panneau extends JPanel {
 		read.close();
 		
 		return data;
+	}
+	
+	/**
+	 * Reset in data file
+	 *
+	 * @param UserTravelFile the file for write user information
+	 *
+	 * @throws IOException
+	 */
+	public void resetDataFile( String UserTravelFile ) throws IOException
+	{
+		FileWriter fileWriter = new FileWriter( UserTravelFile );
+		
+		PrintWriter printWriter = new PrintWriter( fileWriter );
+
+		printWriter.print( "\n" );
+		
+		printWriter.close();
 	}
 }

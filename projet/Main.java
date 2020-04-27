@@ -1,47 +1,29 @@
 // Exception
+
 import java.io.IOException;
-
-// awt
-import java.awt.Color;
-
-// swing
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.util.Scanner;
 
 public class Main {
-  public static void main(String[] args) throws IOException
-  {
-    //
-    String dataFile = "../metroL.txt";
-
-    //
-    Metro metro = new Metro( dataFile );
-    metro.initLine();
-
-    // metro.printStation();
-    // metro.printTravel();
-
-    //
-    TblStations ts = new TblStations( dataFile );
-    ts.fillTravelTime();
-
-    //
-    Matrice mat = new Matrice( ts.getTbl() );
-
-    //
-    System.out.println();
-    TblDijkstra td = new TblDijkstra( mat );
-
-    td.calcul(36, 15);
-
-    // td.printTblDijkstra();
-    td.printWay();
-
-    //
-    System.out.println();
-    String time = td.travelTime();
-    metro.printTravelDetail( td.getWay(), td.getWay().length, time );
-
-    Fenetre fen = new Fenetre();
-  }
+	public static void main( String[] args ) throws IOException
+	{
+		
+		//
+		String dataFile = "../metroL.txt";
+		
+		// diff exit Exit 32
+		// diff random travel Random Travel
+		String test = "exit";
+		int diff = test.compareTo( "Exit" );
+		if( diff < 0 )
+			diff = -diff;
+		System.out.println( "diff : "+ diff);
+		System.out.println("Did you mean : 'Exit' ?");
+		
+		//
+		/*
+		Menu burger = new Menu( dataFile );
+		burger.initMenu();
+		burger.run();
+		*/
+	}
 }

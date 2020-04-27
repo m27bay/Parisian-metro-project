@@ -60,6 +60,29 @@ public class Metro {
 	}
 	
 	/**
+	 * convert name station to his number
+	 *
+	 * @param nameStation the name station
+	 *
+	 * @return
+	 */
+	public int convertNameToNumStation( String nameStation )
+	{
+		int found = -1;
+		
+		for( MetroLine m : metro )
+		{
+			for( Station s : m.getListStation() )
+			{
+				if( s.getName().equals( nameStation ) )
+					found = s.getNumber();
+			}
+		}
+		
+		return found;
+	}
+	
+	/**
 	 * Found in the MetroLine table the line corresponding to 'numStation'
 	 *
 	 * @param numStation number station need to found
@@ -556,9 +579,9 @@ public class Metro {
 		
 		// Print direction
 		if( direction == 0 )
-			return tmp.get( direction ).getStationStart().getName()+" ligne "+intToStrLine( numLine );
+			return tmp.get( direction ).getStationStart().getName() + " ligne " + intToStrLine( numLine );
 		else
-			return tmp.get( direction ).getStationStop().getName()+" ligne "+intToStrLine( numLine );
+			return tmp.get( direction ).getStationStop().getName() + " ligne " + intToStrLine( numLine );
 	}
 	
 	/**
@@ -712,7 +735,7 @@ public class Metro {
 		}
 		
 		// print direction
-		return whatStation( direction ).getName()+" ligne "+whatMetroLine( direction );
+		return whatStation( direction ).getName() + " ligne " + whatMetroLine( direction );
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -722,6 +745,7 @@ public class Metro {
 	 *
 	 * @param way       the dijkstra table
 	 * @param wayLength the length of dijkstra table
+	 * @param time      the travel time formatted (XXhXXminXXsec)
 	 *
 	 * @throws IOException
 	 */
@@ -731,7 +755,7 @@ public class Metro {
 		int i = 0;
 		
 		// Data for write to user
-		String[] data = new String[20];
+		String[] data = new String[ 20 ];
 		int posData = 0;
 		
 		// If selection a station for start travel and isn't in the good line
@@ -742,9 +766,9 @@ public class Metro {
 		String lineStart = whatMetroLine( way[ i ] );
 		System.out.println( "You start at\n" + whatStation( way[ i ] ).toString()
 				+ " line " + lineStart );
-		data[posData] = "S "+whatStation( way[i] ).getName()+" ligne "+lineStart+"\n";
+		data[ posData ] = "S " + whatStation( way[ i ] ).getName() + " ligne " + lineStart + "\n";
 		posData++;
-		data[posData] = "D "+knowDirection( way, i, strLineToInt( lineStart ), wayLength )+"\n";
+		data[ posData ] = "D " + knowDirection( way, i, strLineToInt( lineStart ), wayLength ) + "\n";
 		posData++;
 		i++;
 		
@@ -767,13 +791,13 @@ public class Metro {
 						".\nYou switch to the line: " + lineNow );
 				
 				//
-				data[posData] = "C "+stationNow.getName()+" ligne "+lineNow+"\n";
+				data[ posData ] = "C " + stationNow.getName() + " ligne " + lineNow + "\n";
 				posData++;
 				
 				//
 				String direction = knowDirection( way, i, strLineToInt( lineNow ), wayLength );
-				System.out.println("Direction : "+direction);
-				data[posData] = "D "+direction+"\n";
+				System.out.println( "Direction : " + direction );
+				data[ posData ] = "D " + direction + "\n";
 				posData++;
 				
 				//
@@ -790,12 +814,12 @@ public class Metro {
 		System.out.println( "You stop at\n" + whatStation( way[ i ] ).toString()
 				+ " line " + lineStop + "\n" );
 		
-		System.out.println("Time: "+time);
+		System.out.println( "Time: " + time );
 		
 		//
-		data[posData] = "E "+whatStation( way[ i ] ).getName()+" ligne "+lineStop+"\n";
+		data[ posData ] = "E " + whatStation( way[ i ] ).getName() + " ligne " + lineStop + "\n";
 		posData++;
-		data[posData] = "T "+time+"\n";
+		data[ posData ] = "T " + time + "\n";
 		posData++;
 		
 		writeDataFile( "UserTravel.txt", data );
@@ -861,13 +885,13 @@ public class Metro {
 	/**
 	 * Write in data file
 	 *
-	 * @param UsertravelFile the file for write user information
+	 * @param UserTravelFile the file for write user information
 	 *
 	 * @throws IOException
 	 */
-	public void writeDataFile( String UsertravelFile, String[] data) throws IOException
+	public void writeDataFile( String UserTravelFile, String[] data ) throws IOException
 	{
-		FileWriter fileWriter = new FileWriter( UsertravelFile );
+		FileWriter fileWriter = new FileWriter( UserTravelFile );
 		
 		PrintWriter printWriter = new PrintWriter( fileWriter );
 		

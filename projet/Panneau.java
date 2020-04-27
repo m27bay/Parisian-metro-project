@@ -57,7 +57,7 @@ public class Panneau extends JPanel {
 		
 		try
 		{
-			data = readUserData( "Usertravel.txt" );
+			data = readUserData( "UserTravel.txt" );
 		}
 		catch( IOException e )
 		{

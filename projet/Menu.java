@@ -62,7 +62,7 @@ public class Menu {
 			{
 				System.out.println( "\nExit : to Quit the program." );
 				System.out.println( "Random Travel : the program takes two stations at random and do the travel." );
-				System.out.println( "Classic Travel : the user choose two stations and the program makes the travel." );
+				System.out.println( "Classic Travel : the user choose two stations and the program makes the travel.\n" );
 			}
 			
 			//do a travel at random

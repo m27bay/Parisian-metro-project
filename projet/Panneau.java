@@ -178,7 +178,7 @@ public class Panneau extends JPanel {
 		
 		PrintWriter printWriter = new PrintWriter( fileWriter );
 
-		printWriter.print( "\n" );
+		printWriter.print( "" );
 		
 		printWriter.close();
 	}

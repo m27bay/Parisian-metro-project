@@ -130,7 +130,8 @@ public class Metro {
 			try
 			{
 				_line = Integer.parseInt( line );
-				if( _line < 3 )
+				// "01" "02" "03"
+				if( _line <= 3 )
 				{
 					_line -= 1;
 				}
@@ -809,7 +810,7 @@ public class Metro {
 		data[ posData ] = "T " + time + "\n";
 		posData++;
 		
-		writeDataFile( "UserTravel.txt", data );
+		writeDataFile( "../UserTravel.txt", data );
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

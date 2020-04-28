@@ -58,7 +58,7 @@ public class Panneau extends JPanel {
 		
 		try
 		{
-			data = readUserData( "UserTravel.txt" );
+			data = readUserData( "../UserTravel.txt" );
 		}
 		catch( IOException e )
 		{
@@ -92,16 +92,6 @@ public class Panneau extends JPanel {
 		numDraw++;
 		g.drawString( "Global time : " + data[ dataSize - 1 ], 1050, posDraw * numDraw );
 		numDraw++;
-		
-		try
-		{
-			resetDataFile( "UserTravel.txt" );
-		}
-		catch( IOException e )
-		{
-			e.printStackTrace();
-		}
-		
 	}
 	
 	/**

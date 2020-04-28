@@ -53,7 +53,7 @@ public class Menu {
 			//command help
 			if( choice.equals( "Help" ) )
 			{
-				System.out.println("\n Here are All the commands you can do. Please respect the typography of the commands within '...' \n");
+				System.out.println("\n Here are all the commands you can do. Please respect the typography. For exit please type Exit.\n");
 				System.out.println( " 'Random Travel' : the program takes two stations at random and do the travel." );
 				System.out.println( " 'Classic Travel' : the user choose two stations and the program makes the travel." );
 				System.out.println( " 'Exit' : to Quit the program.\n" );
@@ -61,23 +61,58 @@ public class Menu {
 			}
 			
 			//do a travel at random
-			else if( choice.equals( "Random Travel" ) )
+			else if( choice.contains( "Travel" ) )
 			{
-				Random rand = new Random();
-				int max = 375;
-				int min = 0;
-				int stationAleatoire = rand.nextInt( max - min + 1 ) + min;
-				int stationAleatoire2 = rand.nextInt( max - min + 1 ) + min;
+				int numStart = -1, numStop = -1;
 				
-				while( stationAleatoire == stationAleatoire2 )
+				//
+				if( choice.equals( "Random Travel" ) )
 				{
-					stationAleatoire = rand.nextInt( max - min + 1 ) + min;
-					stationAleatoire2 = rand.nextInt( max - min + 1 ) + min;
+					Random rand = new Random();
+					int max = 375;
+					do
+					{
+						numStart = rand.nextInt( max + 1 );
+						numStop = rand.nextInt( max + 1 );
+						
+					} while( numStart == numStop );
+				}
+				
+				// user choose a travel
+				else if( choice.equals( "Classic Travel" ) )
+				{
+					// ask user
+					do
+					{
+						// where are you?
+						System.out.println( "Where are you ? Write the name of the Station " );
+						System.out.print( " > " );
+						String start = scan.nextLine();
+						
+						// where do you want to go?
+						System.out.println( "Where do you want to go ? Write the name of the Station" );
+						System.out.print( " > " );
+						String stop = scan.nextLine();
+						
+						//metro name start and stop
+						numStart = this.metro.convertNameToNumStation( start );
+						numStop = this.metro.convertNameToNumStation( stop );
+						
+						//if don't know station
+						if( numStart == -1 || numStop == -1 )
+							System.out.println( "Unknown start or destination. Please enter a right start or destination" );
+						
+					} while( numStart == -1 || numStop == -1 );
+				}
+				else
+				{
+					System.out.println( "Command unknown." );
+					continue;
 				}
 				
 				//waiting for the travel
 				System.out.println( "Travel calcul in process..." );
-				this.td.calcul( stationAleatoire, stationAleatoire2 );
+				this.td.calcul( numStart, numStop );
 				
 				//do the travel
 				String time = this.td.travelTime();
@@ -85,43 +120,6 @@ public class Menu {
 				Fenetre fen = new Fenetre();
 			}
 			
-			// user choose a travel
-			else if( choice.equals( "Classic Travel" ) )
-			{
-				int numStart = -1, numStop = -1;
-				
-				// ask user
-				do
-				{
-					// where are you?
-					System.out.println( "Where are you ? Write the name of the Station " );
-					System.out.print( " > " );
-					String start = scan.nextLine();
-					
-					// where do you want to go?
-					System.out.println( "Where do you want to go ? Write the name of the Station" );
-					System.out.print( " > " );
-					String stop = scan.nextLine();
-					
-					//metro name start and stop
-					numStart = this.metro.convertNameToNumStation( start );
-					numStop = this.metro.convertNameToNumStation( stop );
-					
-					//if don't know station
-					if( numStart == -1 || numStop == -1 )
-						System.out.println( "Unknown start or destination. Please enter a right start or destination" );
-					
-				} while( numStart == -1 || numStop == -1 );
-				
-				// processing..
-				System.out.println( "Travel calcul in process..." );
-				this.td.calcul( numStart, numStop );
-				
-				// do travel
-				String time = this.td.travelTime();
-				metro.printTravelDetail( this.td.getWay(), this.td.getWay().length, time );
-				Fenetre fen = new Fenetre();
-			}
 			
 			// if exit
 			else if( choice.equals( "Exit" ) )

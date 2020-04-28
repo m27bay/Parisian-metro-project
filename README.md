@@ -18,8 +18,8 @@ Implementation of dijkstra algorithm with the parisian metro
  - picture/ : with picture used
  
 ### Graphic part
- - Fentre.java : (FLO) Petite ligne qui explique en gros c'est quoi le fichier ( voir mes exemples )
- - Panneau.java : (FLO) Petite ligne qui explique en gros c'est quoi le fichier ( voir mes exemples )
+ - Fentre.java : Create a window in java.
+ - Panneau.java : Concern everythings that will happend inside the window.
 
 ### Dijkstra part
  - Matrice.java : (ADRIEN) Petite ligne qui explique en gros c'est quoi le fichier ( voir mes exemples )
@@ -33,9 +33,9 @@ Implementation of dijkstra algorithm with the parisian metro
  - Metro.java : Class which represente global metro ( MetroLine table )
 
 ### Global part
- - Menu.java : (FLO) Petite ligne qui explique en gros c'est quoi le fichier ( voir mes exemples )
- - Main.java : (FLO) Petite ligne qui explique en gros c'est quoi le fichier ( voir mes exemples )
- - Makefile : (FLO) Petite ligne qui explique en gros c'est quoi le fichier ( voir mes exemples )
+ - Menu.java : This is the menu, where the user can make choices about the travel.
+ - Main.java : This is the main class of the program.
+ - Makefile : This is where are all the commands are to compile, execute or delete class of the program.
 
 # Autor
 CAMBRESY Florian => Graphic & Global part

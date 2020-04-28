@@ -39,20 +39,13 @@ public class Menu {
 	public void run() throws IOException
 	{
 		//
-		boolean notFinish = true;
-		String[] tab = new String[3];
-		tab[0] = "Help";
-		tab[1] = "Random Travel";
-		tab[2] = "Classic Travel";
-		
-		//
 		String choice = "unknown";
 		Scanner scan = new Scanner( System.in );
 		System.out.println( "\nWrite 'Help' to show all commands" );
 
 		
 		// look if program is finish
-		while( notFinish )
+		while( true )
 		{
 			System.out.print( " > " );
 			choice = scan.nextLine();
@@ -149,7 +142,7 @@ public class Menu {
 			//
 			else
 			{
-				// System.out.print( "Choice unknown." );
+				System.out.print( "Choice unknown." );
 				// int diff = 0;
 				
 				// for( String s : tab)

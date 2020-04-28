@@ -1,6 +1,6 @@
 package1 = commons-lang3-3.9/commons-lang3-3.9.jar
 
-tools = Metro.java MetroLine.java Travel.java Station.java
+tools = Metro.java MetroLine.java Travel.java Station.java Menu.java
 dijkstra = Matrice.java TblDijkstra.java TblStations.java
 graphics = Fenetre.java Panneau.java
 

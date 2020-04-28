@@ -1,6 +1,0 @@
-S Grande Arche de la Défense ligne 01
-D Château de Vincennes ligne 01
-C Concorde ligne 08
-D Place Balard ligne 08
-E La Motte Picquet, Grenelle ligne 08
-T 0h16min4sec

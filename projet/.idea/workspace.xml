@@ -20,18 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6902f748-b083-41ed-9cae-68019e3b594a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/UserTravel.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projet/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projet/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projet/Fenetre.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projet/Fenetre.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projet/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projet/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projet/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projet/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projet/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projet/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projet/Metro.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projet/Metro.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projet/Panneau.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/projet/Panneau.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/projet/UserTravel.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Metro.java" beforeDir="false" afterPath="$PROJECT_DIR$/Metro.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

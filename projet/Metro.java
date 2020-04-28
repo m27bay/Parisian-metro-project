@@ -20,8 +20,8 @@ import java.util.LinkedList;
 public class Metro {
 	
 	// Attributes
-	private MetroLine[] metro;
-	private String dataFile;
+	private final MetroLine[] metro;
+	private final String dataFile;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -37,7 +37,7 @@ public class Metro {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	/**
-	 * Found in MetrolLine table the station corresponding to 'numStation'
+	 * Found in MetroLine table the station corresponding to 'numStation'
 	 *
 	 * @param numStation station number need to found
 	 *
@@ -116,43 +116,36 @@ public class Metro {
 	 */
 	private int strLineToInt( String line )
 	{
-		switch( line )
+		int _line = -1;
+		if( line.equals( "3b" ) )
 		{
-			case "01":
-				return 0;
-			case "02":
-				return 1;
-			case "03":
-				return 2;
-			case "3b":
-				return 3;
-			case "04":
-				return 4;
-			case "05":
-				return 5;
-			case "06":
-				return 6;
-			case "07":
-				return 7;
-			case "7b":
-				return 8;
-			case "08":
-				return 9;
-			case "09":
-				return 10;
-			case "10":
-				return 11;
-			case "11":
-				return 12;
-			case "12":
-				return 13;
-			case "13":
-				return 14;
-			case "14":
-				return 15;
+			_line = 3;
+		}
+		else if( line.equals( "7b" ) )
+		{
+			_line = 8;
+		}
+		else
+		{
+			try
+			{
+				_line = Integer.parseInt( line );
+				if( _line < 3 )
+				{
+					_line -= 1;
+				}
+				else if( _line > 8 )
+				{
+					_line += 1;
+				}
+			}
+			catch( NumberFormatException exception )
+			{
+				exception.getMessage();
+			}
 		}
 		
-		return -1;
+		return _line;
 	}
 	
 	/**
@@ -164,43 +157,33 @@ public class Metro {
 	 */
 	private String intToStrLine( int line )
 	{
-		switch( line )
+		String _line = "unknown";
+		
+		if( line == 3 )
 		{
-			case 0:
-				return "01";
-			case 1:
-				return "02";
-			case 2:
-				return "03";
-			case 3:
-				return "3b";
-			case 4:
-				return "04";
-			case 5:
-				return "05";
-			case 6:
-				return "06";
-			case 7:
-				return "07";
-			case 8:
-				return "7b";
-			case 9:
-				return "08";
-			case 10:
-				return "09";
-			case 11:
-				return "10";
-			case 12:
-				return "11";
-			case 13:
-				return "12";
-			case 14:
-				return "13";
-			case 15:
-				return "14";
+			_line = "3b";
+		}
+		else if( line == 8 )
+		{
+			_line = "7b";
+		}
+		else
+		{
+			if( line < 3 )
+			{
+				_line = "0" + String.valueOf( line + 1 );
+			}
+			else if( line < 8 )
+			{
+				_line = "0" + String.valueOf( line );
+			}
+			else
+			{
+				_line = "0" + String.valueOf( line - 1 );
+			}
 		}
 		
-		return "unknown";
+		return _line;
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -808,10 +791,10 @@ public class Metro {
 			// System.out.println(stationNow.toString()+" line "+lineNow );
 		}
 		System.out.println();
-
+		
 		// If selection a station for start travel and isn't in the good line
-		if( whatStation( way[ i-1 ] ).getName().equals( whatStation( way[ i ] ).getName() ) )
-			i --;
+		if( whatStation( way[ i - 1 ] ).getName().equals( whatStation( way[ i ] ).getName() ) )
+			i--;
 		
 		// Print end of travel
 		String lineStop = whatMetroLine( way[ i ] );

@@ -53,9 +53,11 @@ public class Menu {
 			//command help
 			if( choice.equals( "Help" ) )
 			{
-				System.out.println( "\nExit : to Quit the program." );
-				System.out.println( "Random Travel : the program takes two stations at random and do the travel." );
-				System.out.println( "Classic Travel : the user choose two stations and the program makes the travel.\n" );
+				System.out.println("\n Here are All the commands you can do. Please respect the typography of the commands within '...' \n");
+				System.out.println( " 'Random Travel' : the program takes two stations at random and do the travel." );
+				System.out.println( " 'Classic Travel' : the user choose two stations and the program makes the travel." );
+				System.out.println( " 'Exit' : to Quit the program.\n" );
+
 			}
 			
 			//do a travel at random
@@ -139,10 +141,10 @@ public class Menu {
 				
 			}
 			
-			//
+			// if command unknown
 			else
 			{
-				System.out.print( "Choice unknown." );
+				System.out.print( "Command unknown." );
 				// int diff = 0;
 				
 				// for( String s : tab)

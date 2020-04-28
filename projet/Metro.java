@@ -808,6 +808,10 @@ public class Metro {
 			// System.out.println(stationNow.toString()+" line "+lineNow );
 		}
 		System.out.println();
+
+		// If selection a station for start travel and isn't in the good line
+		if( whatStation( way[ i-1 ] ).getName().equals( whatStation( way[ i ] ).getName() ) )
+			i --;
 		
 		// Print end of travel
 		String lineStop = whatMetroLine( way[ i ] );

@@ -40,11 +40,16 @@ public class Menu {
 	{
 		//
 		boolean notFinish = true;
+		String[] tab = new String[3];
+		tab[0] = "Help";
+		tab[1] = "Random Travel";
+		tab[2] = "Classic Travel";
 		
 		//
 		String choice = "unknown";
 		Scanner scan = new Scanner( System.in );
 		System.out.println( "\nWrite 'Help' to show all commands" );
+
 		
 		// look if program is finish
 		while( notFinish )
@@ -55,9 +60,9 @@ public class Menu {
 			//command help
 			if( choice.equals( "Help" ) )
 			{
-				System.out.println( "Exit : to Quit the program." );
+				System.out.println( "\nExit : to Quit the program." );
 				System.out.println( "Random Travel : the program takes two stations at random and do the travel." );
-				System.out.println( "Classic Travel : the user choose two stations and the program makes the travel." );
+				System.out.println( "Classic Travel : the user choose two stations and the program makes the travel.\n" );
 			}
 			
 			//do a travel at random
@@ -82,6 +87,7 @@ public class Menu {
 				//do the travel
 				String time = this.td.travelTime();
 				metro.printTravelDetail( this.td.getWay(), this.td.getWay().length, time );
+				Fenetre fen = new Fenetre();
 			}
 			
 			// user choose a travel
@@ -93,12 +99,12 @@ public class Menu {
 				do
 				{
 					// where are you?
-					System.out.println( "Where are you ?" );
+					System.out.println( "Where are you ? Write the name of the Station " );
 					System.out.print( " > " );
 					String start = scan.nextLine();
 					
 					// where do you want to go?
-					System.out.println( "Where do you want to go ?" );
+					System.out.println( "Where do you want to go ? Write the name of the Station" );
 					System.out.print( " > " );
 					String stop = scan.nextLine();
 					
@@ -107,10 +113,10 @@ public class Menu {
 					numStop = this.metro.convertNameToNumStation( stop );
 					
 					//if don't know station
-					if( numStart == -1 && numStop == -1 )
+					if( numStart == -1 || numStop == -1 )
 						System.out.println( "Unknown start or destination. Please enter a right start or destination" );
 					
-				} while( numStart == -1 && numStop == -1 );
+				} while( numStart == -1 || numStop == -1 );
 				
 				// processing..
 				System.out.println( "Travel calcul in process..." );
@@ -119,24 +125,50 @@ public class Menu {
 				// do travel
 				String time = this.td.travelTime();
 				metro.printTravelDetail( this.td.getWay(), this.td.getWay().length, time );
+				Fenetre fen = new Fenetre();
 			}
 			
 			// if exit
 			else if( choice.equals( "Exit" ) )
 			{
+				System.out.println( "Are you sure? If yes write 'Yes'" );
+				System.out.print( " > " );
+
 				String sure = scan.nextLine();
-				System.out.println( "Are you sure?" );
 				
 				// sure of exit
+				// System.out.print( " > " );
 				if( sure.equals( "Yes" ) )
-					notFinish = false;
+				{	
+					System.out.println("Exit Success.");
+					return ;
+				}
 				
 			}
 			
 			//
 			else
 			{
-				System.out.println( "choice unknown" );
+				// System.out.print( "Choice unknown." );
+				// int diff = 0;
+				
+				// for( String s : tab)
+				// {
+				// 	// System.out.println(s);
+				// 	diff = choice.compareTo(s);
+				// 	// System.out.println(diff);
+				// 	if(diff < 0)
+				// 	{
+				// 		diff = -diff;
+				// 	}
+				// 	if(diff <=32)
+				// 	{
+				// 		System.out.println(" But, did you mean " + s );
+				// 		break;
+				// 	}
+
+				// }
+				System.out.println();
 			}
 		}
 		

@@ -1,6 +1,6 @@
-S Pierre Curie ligne 07
-D La Courneuve, 8 Mai 1945 ligne 07
-C Palais Royal, Musée du Louvre ligne 01
-D Grande Arche de la Défense ligne 01
-E Tuileries ligne 01
-T 0h15min58sec
+S Corentin Celton ligne 12
+D Porte de la Chapelle ligne 012
+C Concorde ligne 7b
+D Place Balard ligne 7b
+E Invalides ligne 7b
+T 0h14min37sec

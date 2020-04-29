@@ -24,5 +24,6 @@ public class Fenetre extends JFrame {
 		this.setContentPane( new Panneau() );
 		
 		this.setVisible( true );
+		System.out.prin
 	}
 }

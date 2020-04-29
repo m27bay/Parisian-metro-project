@@ -1,6 +1,6 @@
-S Corentin Celton ligne 12
-D Porte de la Chapelle ligne 012
-C Concorde ligne 7b
-D Place Balard ligne 7b
-E Invalides ligne 7b
-T 0h14min37sec
+S Jacques Bonsergent ligne 05
+D Place d'Italie ligne 05
+C Place d'Italie ligne 06
+D Charles de Gaulle, Étoile ligne 06
+E Dupleix ligne 06
+T 0h22min11sec

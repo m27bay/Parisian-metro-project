@@ -14,5 +14,6 @@ public class Main {
 		burger.initMenu();
 		burger.run();
 		
+		// Surement la fenetre
 	}
 }

@@ -134,7 +134,7 @@ public class Menu {
 				if( sure.equals( "Yes" ) )
 				{	
 					System.out.println("Exit Success.");
-					System.exit(10) ;
+					return;
 				}
 				
 			}

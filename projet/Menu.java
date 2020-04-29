@@ -130,11 +130,11 @@ public class Menu {
 				String sure = scan.nextLine();
 				
 				// sure of exit
-				// System.out.print( " > " );
 				if( sure.equals( "Yes" ) )
 				{	
 					System.out.println("Exit Success.");
-					return;
+					System.exit( 0 );
+					// return don't work, don't know why
 				}
 				
 			}

@@ -13,7 +13,5 @@ public class Main {
 		Menu burger = new Menu( dataFile );
 		burger.initMenu();
 		burger.run();
-		
-		// Surement la fenetre
 	}
 }

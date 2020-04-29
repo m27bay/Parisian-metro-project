@@ -1,4 +1,6 @@
-S Pigalle ligne 02
-D Nation ligne 02
-E Père Lachaise ligne 02
-T 0h9min34sec
+S Place des Fêtes ligne 11
+D Châtelet ligne 011
+C Belleville ligne 02
+D Porte Dauphine ligne 02
+E Blanche ligne 02
+T 0h13min27sec

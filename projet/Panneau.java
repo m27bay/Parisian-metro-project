@@ -29,9 +29,9 @@ public class Panneau extends JPanel {
 		
 		try
 		{
-			Image img = ImageIO.read( new File( "picture/plan.jpg" ) );
+			Image img = ImageIO.read( new File( "picture/plan2.jpg" ) );
 			//Pour une image de fond
-			g.drawImage( img, 0, 0, 1014, 709, this );
+			g.drawImage( img, 0, 0, 1014*(2/3), 709*(2/3), this );
 		}
 		catch( IOException e )
 		{
@@ -41,19 +41,16 @@ public class Panneau extends JPanel {
 		g.setFont( font );
 		g.setColor( Color.black );
 		
-		int winWidth = 1500;
-		int winHeight = 750;
+		int imgWidth = 1014*(2/3);
+		int imgHeight = 709*(2/3);
 		
-		int imgWidth = 1014;
-		int imgHeight = 709;
-		
-		int widthStay = winWidth - imgWidth;
-		int heightStay = winHeight - imgHeight;
+		int winWidth = 900;
+		int wiwnHeight = 900;
 		
 		int numDraw = 1;
 		int posDraw = 50;
 		
-		g.drawString( "Travel Plan", winWidth - widthStay + widthStay / 3, 17 );
+		g.drawString( "Travel Plan", winWidth / 2, 17 );
 		String data[] = null;
 		
 		try
@@ -72,25 +69,26 @@ public class Panneau extends JPanel {
 				dataSize++;
 		}
 		
-		g.drawString( "Start station : " + data[ 0 ], 1050, posDraw * numDraw );
+		int startWrite = winWidth/3;
+		g.drawString( "Start station : " + data[ 0 ], startWrite, posDraw * numDraw );
 		numDraw++;
-		g.drawString( "Direction : " + data[ 1 ], 1050, posDraw * numDraw );
+		g.drawString( "Direction : " + data[ 1 ], startWrite, posDraw * numDraw );
 		numDraw++;
 		
 		for( int i = 2 ; i < dataSize - 3 ; i++ )
 		{
 			if( data[ i ] != null )
 			{
-				g.drawString( "Switch at the station : " + data[ i ], 1050, posDraw * numDraw );
+				g.drawString( "Switch at the station : " + data[ i ], startWrite, posDraw * numDraw );
 				numDraw++;
-				g.drawString( "Direction : " + data[ i + 1 ], 1050, posDraw * numDraw );
+				g.drawString( "Direction : " + data[ i + 1 ], startWrite, posDraw * numDraw );
 				numDraw++;
 			}
 		}
 		
-		g.drawString( "End station : " + data[ dataSize - 2 ], 1050, posDraw * numDraw );
+		g.drawString( "End station : " + data[ dataSize - 2 ], startWrite, posDraw * numDraw );
 		numDraw++;
-		g.drawString( "Global time : " + data[ dataSize - 1 ], 1050, posDraw * numDraw );
+		g.drawString( "Global time : " + data[ dataSize - 1 ], startWrite, posDraw * numDraw );
 		numDraw++;
 	}
 	

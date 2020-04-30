@@ -1,6 +1,10 @@
-S Place des Fêtes ligne 11
-D Châtelet ligne 011
-C Belleville ligne 02
-D Porte Dauphine ligne 02
-E Blanche ligne 02
-T 0h13min27sec
+S Saint-Jacques line 06
+D Nation line 06
+C Place d'Italie line 05
+D Bobigny, Pablo Picasso line 05
+C République line 11
+D Mairie des Lilas line 11
+C Place des Fêtes line 7b
+D Pré-Saint-Gervais line 7b
+E Danube line 7b
+T 0h27min42sec

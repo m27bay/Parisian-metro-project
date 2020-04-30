@@ -56,7 +56,7 @@ public class Menu {
 				System.out.println("\n Here are all the commands you can do. Please respect the typography. For exit please type Exit.\n");
 				System.out.println( " 'Random Travel' : the program takes two stations at random and do the travel." );
 				System.out.println( " 'Classic Travel' : the user choose two stations and the program makes the travel." );
-				System.out.println( " 'Exit' : to Quit the program.(error 10)\n" );
+				System.out.println( " 'Exit' : to Quit the program.(error 0)\n" );
 
 			}
 			

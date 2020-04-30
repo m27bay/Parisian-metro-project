@@ -180,7 +180,7 @@ public class Metro {
 			}
 			else
 			{
-				_line = "0" + String.valueOf( line - 1 );
+				_line = String.valueOf( line - 1 );
 			}
 		}
 		
@@ -563,9 +563,9 @@ public class Metro {
 		
 		// Print direction
 		if( direction == 0 )
-			return tmp.get( direction ).getStationStart().getName() + " ligne " + intToStrLine( numLine );
+			return tmp.get( direction ).getStationStart().getName() + " line " + intToStrLine( numLine );
 		else
-			return tmp.get( direction ).getStationStop().getName() + " ligne " + intToStrLine( numLine );
+			return tmp.get( direction ).getStationStop().getName() + " line " + intToStrLine( numLine );
 	}
 	
 	/**
@@ -719,7 +719,7 @@ public class Metro {
 		}
 		
 		// print direction
-		return whatStation( direction ).getName() + " ligne " + whatMetroLine( direction );
+		return whatStation( direction ).getName() + " line " + whatMetroLine( direction );
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -750,7 +750,7 @@ public class Metro {
 		String lineStart = whatMetroLine( way[ i ] );
 		System.out.println( "You start at\n" + whatStation( way[ i ] ).toString()
 				+ " line " + lineStart );
-		data[ posData ] = "S " + whatStation( way[ i ] ).getName() + " ligne " + lineStart + "\n";
+		data[ posData ] = "S " + whatStation( way[ i ] ).getName() + " line " + lineStart + "\n";
 		posData++;
 		data[ posData ] = "D " + knowDirection( way, i, strLineToInt( lineStart ), wayLength ) + "\n";
 		posData++;
@@ -775,7 +775,7 @@ public class Metro {
 						".\nYou switch to the line: " + lineNow );
 				
 				//
-				data[ posData ] = "C " + stationNow.getName() + " ligne " + lineNow + "\n";
+				data[ posData ] = "C " + stationNow.getName() + " line " + lineNow + "\n";
 				posData++;
 				
 				//
@@ -805,7 +805,7 @@ public class Metro {
 		System.out.println( "Time: " + time );
 		
 		//
-		data[ posData ] = "E " + whatStation( way[ i ] ).getName() + " ligne " + lineStop + "\n";
+		data[ posData ] = "E " + whatStation( way[ i ] ).getName() + " line " + lineStop + "\n";
 		posData++;
 		data[ posData ] = "T " + time + "\n";
 		posData++;

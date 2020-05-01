@@ -88,6 +88,8 @@ public class TblDijkstra {
 	}
 	
 	/**
+	 * Create a String with the time
+	 *
 	 * @return time in format XXhXXminXXsec
 	 */
 	public String travelTime()

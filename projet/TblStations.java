@@ -43,7 +43,6 @@ public class TblStations {
 
   /**
     * Count the nuumber ouf stations
-    * @param file_name the name of the file
     * @return the number of stations
     */
   private int stationCount() throws IOException
@@ -144,6 +143,7 @@ public class TblStations {
         travelTime = Integer.parseInt( line.substring( pos2, line.length() ) );
 
         // Fill the matrix with the travel time
+        // This 'if' look travel in only one direction (like line 7b, 10, ...)
         if( stationStart  ==  34   &&  stationStop  == 248
         ||  stationStart  ==  248  &&  stationStop  == 280
         ||  stationStart  ==  280  &&  stationStop  == 92
@@ -152,7 +152,7 @@ public class TblStations {
         ||  stationStart  ==  198  &&  stationStop  == 52
         ||  stationStart  ==  52   &&  stationStop  == 201
         ||  stationStart  ==  201  &&  stationStop  == 145
-        ||  stationStart  ==  145  &&  stationStop  == 372
+        ||  stationStart  ==  145  &&  stationStop  == 373
         ||  stationStart  ==  373  &&  stationStop  == 196
         ||  stationStart  ==  196  &&  stationStop  == 259
         ||  stationStart  ==  259  &&  stationStop  == 36

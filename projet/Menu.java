@@ -116,6 +116,7 @@ public class Menu {
 				
 				//do the travel
 				String time = this.td.travelTime();
+				td.printWay();
 				metro.printTravelDetail( this.td.getWay(), this.td.getWay().length, time );
 				Fenetre fen = new Fenetre();
 			}
@@ -143,24 +144,6 @@ public class Menu {
 			else
 			{
 				System.out.print( "Command unknown." );
-				// int diff = 0;
-				
-				// for( String s : tab)
-				// {
-				// 	// System.out.println(s);
-				// 	diff = choice.compareTo(s);
-				// 	// System.out.println(diff);
-				// 	if(diff < 0)
-				// 	{
-				// 		diff = -diff;
-				// 	}
-				// 	if(diff <=32)
-				// 	{
-				// 		System.out.println(" But, did you mean " + s );
-				// 		break;
-				// 	}
-
-				// }
 				System.out.println();
 			}
 		}

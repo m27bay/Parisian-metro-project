@@ -1,6 +1,10 @@
-S Créteil-Université line 7b
-D Place Balard line 7b
-C Daumesnil line 06
-D Charles de Gaulle, Étoile line 06
-E Montparnasse Bienvenue line 06
-T 0h18min20sec
+S Saint-Jacques line 06
+D Nation line 06
+C Place d'Italie line 05
+D Bobigny, Pablo Picasso line 05
+C République line 11
+D Mairie des Lilas line 11
+C Place des Fêtes line 7b
+D Pré-Saint-Gervais line 7b
+E Danube line 7b
+T 0h27min42sec

@@ -9,10 +9,10 @@ import java.util.Collections;
 // swing
 import javax.swing.JPanel;
 
-// io
-
 // imageio
 import javax.imageio.ImageIO;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 public class Panneau extends JPanel {
 	
@@ -28,9 +28,6 @@ public class Panneau extends JPanel {
 		Font font = new Font( "Courier", Font.BOLD, police );
 		g.setFont( font );
 		g.setColor( Color.white );
-		
-		int winWidth = 800, winHeight = 800;
-		int gap = 25;
 		
 		// Draw GUI
 		drawGUI( g, police, font );
@@ -101,22 +98,22 @@ public class Panneau extends JPanel {
 				dataSize++;
 		}
 		
-		//
+		// Init
 		g.setFont( new Font( "Courier", Font.BOLD, 15 ) );
-		police = 13;
-		int posStart = 310;
-		int gab = police + police / 3;
-		int numCharMax = 18;
+		police = 13; // Change police
+		int posStart = 310; // Position for right to write
+		int gab = police + police / 3; // Gab between
+		int numCharMax = 18; // For cut String if too long
 		String decay = "                     "; //< DO NOT MODIFIED
 		String metroName = null; String line = null;
 		
-		//
+		// Part for the start station
 		metroName = data[ 0 ].substring( 0, data[ 0 ].indexOf( "line" ) - 1 );
 		if( metroName.length() > numCharMax )
 			metroName = metroName.substring( 0, numCharMax ).concat( "..." );
 		g.drawString( metroName, 80, 96 );
 		
-		//
+		// Part for the stop station
 		metroName = data[ dataSize - 2 ].substring( 0, data[ dataSize - 2 ].indexOf( "line" ) - 1 );
 		if( metroName.length() > numCharMax )
 			metroName = data[ dataSize - 2 ].substring( 0, numCharMax ).concat( "..." );
@@ -125,7 +122,7 @@ public class Panneau extends JPanel {
 		// Reset
 		g.setColor( Color.black );
 		
-		//
+		// Part for the direction (name station, and line)
 		metroName = data[ 1 ];
 		metroName = metroName.substring( 0, metroName.indexOf( "line" ) - 1 );
 		if( metroName.length() > numCharMax )
@@ -136,12 +133,12 @@ public class Panneau extends JPanel {
 		g.drawString( decay + line, 20, posStart );
 		posStart += ( 2 * gab );
 		
-		//
+		// Part for draw all
 		for( int i = 2 ; i < dataSize - 3 ; i += 2 )
 		{
 			if( data[ i ] != null )
 			{
-				//
+				// Part for the switch station
 				metroName = data[ i ].substring( 0, data[ i ].indexOf( "line" ) - 1 );
 				if( metroName.length() > numCharMax )
 					metroName = data[ i ].substring( 0, numCharMax ).concat( "..." );
@@ -150,7 +147,7 @@ public class Panneau extends JPanel {
 				g.drawString( decay + metroName, 20, posStart );
 				posStart += gab;
 				
-				//
+				// Part for the station direction
 				metroName = data[ i + 1 ];
 				metroName = metroName.substring( 0, metroName.indexOf( "line" ) - 1 );
 				if( metroName.length() > numCharMax )
@@ -163,7 +160,7 @@ public class Panneau extends JPanel {
 			}
 		}
 		
-		//
+		// Part for global time
 		g.drawString( "Global time : " + data[ dataSize - 1 ], 20, imgHeight - ( 2 * gab ) );
 	}
 	

@@ -116,7 +116,6 @@ public class Menu {
 				
 				//do the travel
 				String time = this.td.travelTime();
-				td.printWay();
 				metro.printTravelDetail( this.td.getWay(), this.td.getWay().length, time );
 				Fenetre fen = new Fenetre();
 			}

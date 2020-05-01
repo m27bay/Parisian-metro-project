@@ -1,3 +1,6 @@
+/**
+ * Class Travel
+ */
 public class Travel {
 	
 	// Attributes

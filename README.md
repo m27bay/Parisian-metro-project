@@ -22,8 +22,9 @@ Implementation of dijkstra algorithm with the parisian metro
  - Panneau.java : Concern everythings that will happend inside the window.
 
 ### Dijkstra part
- - Matrice.java : (ADRIEN) Petite ligne qui explique en gros c'est quoi le fichier ( voir mes exemples )
- - TblDijkstra.java : (ADRIEN) Petite ligne qui explique en gros c'est quoi le fichier ( voir mes exemples )
+ - Matrice.java : Tools to manipulate matrix
+ - TblDijkstra.java : Class which create an array with the value of time between stations. These
+   values are set for the shortest distance between two stations requested.
 
 ### Metro part
  - TblStation.java : Prepare a 'Matrice' with all stations and travels between them.

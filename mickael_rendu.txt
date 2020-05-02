@@ -1,0 +1,18 @@
+Rapport projet algorithme des graphes
+Ma partie :
+	- Lire le fichiers de configuration afin de créer une matrice avec toutes les stations et les distances pour pouvoir appliquer Dijkstra.
+	- Création des structures de données pour pouvoir stocker les stations, les voyages, les lignes de métros et le métro dans ça globalité.
+
+Explication globale:
+Première partie: Lecture du fichiers et création de la matrice
+
+Cette partie concerne le fichier ' TblStation.java '.
+Ce dernier étant composé de:
+	Trois attributs qui sont :
+		- private final int tblSize 		// Le taille du tableau
+		- private final String dataFile 	// Le fichier de configuration
+		- private final int tbl[ ][ ]		// Le tableau rempli
+
+	D'un constructeur, qui instancie une variable de type TblStation.
+public TblStations( String dataFile ) throws IOExeptions 
+		this.dataFile = data

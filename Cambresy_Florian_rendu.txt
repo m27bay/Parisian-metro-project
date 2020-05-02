@@ -1,0 +1,30 @@
+Partie de Florian CAMBRESY
+
+Je me suis occupé de la Partie Graphique du projet, cette partie est composée des classes suivantes :
+- Fenetre.java ;
+- Panneau.java ;
+- Une fonction dans Metro.java ;
+- UserTravel.txt ;
+- Menu.java ;
+- Main.java ;
+- Makefile
+
+La class Fenetre.java permet de faire apparaître une fenêtre graphique de la taille souhaitée dans laquelle on appelle la classe Panneau qui va nous permettre de faire notre affichage graphique.
+
+La class Panneau.java contient tout les élements permettant d'afficher ce que l'on souhaite dans notre fenetre.On y trouve donc la taille des caractères ainsi que la police, les images de font d'écran de la fenêtre. Cette classe contient la fonction drawTravel, qui nous permet d'afficher la station de départ, celle d'arrivée, les changements de ligne, les directions ainsi que le temps de trajet. Ces données sont lues dans le fichier UserTravel.txt grâce à la fonction userdataFile puis enregistrées et affichées sur la fenêtre via le panneau.
+
+Dans la class Metro.java se trouve la fonction writeDataFile qui permet d'écrire les informations du trajet(départ, arrivée, changements de lignes, directions, temps de trajet) dans un fichier.txt qui se nomme UserTravel.txt.
+
+La class Menu.java permet d'appeller toutes les classes pour pouvoir executer un trajet. Grâce au menu l'utilisteur peut utiliser quatre commandes:
+Help: pour afficher toute les commandes disponibles.
+Random Travel: éffectue un trajet de façon aléatoire. 
+Classic Travel: éffectue un trajet choisit par l'utilisateur.
+Exit: pour quitter le programme.
+Si la commande n'est pas reconnue alors le programme affichera "commande inconnue"
+
+La class Main.java est la class principale où la class Menu est appelée pour effectuer le programme. Cette class inclue le fichier metroL.txt où est repertorié toutes les stations de métro ainsi que les temps de trajet entre stations.
+
+Le Makefile où sont écrit tous les outils de compilation, suppression et éxecution du programme:
+run: pour compiler et executer
+compile: pour compiler
+clean: pour supprimer les .class.

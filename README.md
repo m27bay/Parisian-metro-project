@@ -24,7 +24,7 @@ Implementation of dijkstra algorithm with the parisian metro
 ### Dijkstra part
  - Matrice.java : Tools to manipulate matrix
  - TblDijkstra.java : Class which create an array with the value of time between stations. These
-   values are set for the shortest distance between two stations requested.
+   values are set for the shortest time between two stations requested.
 
 ### Metro part
  - TblStation.java : Prepare a 'Matrice' with all stations and travels between them.

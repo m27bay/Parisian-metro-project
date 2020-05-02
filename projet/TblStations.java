@@ -13,14 +13,14 @@ import java.io.FileNotFoundException;
 public class TblStations {
 	
 	// Attribut(s)
-	private int tblSize;
-	private String dataFile;
-	private int tbl[][];
+	private final int tblSize;
+	private final String dataFile;
+	private final int[][] tbl;
 	
 	/**
 	 * @param dataFile the metro data file
 	 *
-	 * @throws IOException
+	 * @throws IOException for read
 	 */
 	public TblStations( String dataFile ) throws IOException
 	{

@@ -1,5 +1,4 @@
 // awt
-
 import java.awt.Color;
 
 // swing

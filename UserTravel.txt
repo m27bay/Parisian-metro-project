@@ -1,10 +1,6 @@
-S Saint-Jacques line 06
-D Nation line 06
-C Place d'Italie line 05
-D Bobigny, Pablo Picasso line 05
-C République line 11
-D Mairie des Lilas line 11
-C Place des Fêtes line 7b
-D Pré-Saint-Gervais line 7b
-E Danube line 7b
-T 0h27min42sec
+S Porte des Lilas line 11
+D Châtelet line 11
+C Belleville line 02
+D Porte Dauphine line 02
+E Victor Hugo line 02
+T 0h21min56sec

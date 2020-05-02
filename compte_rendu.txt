@@ -1,0 +1,26 @@
+Compte rendu du projet :
+
+	Le projet a était codé en Java car c'est un langage modulables, il n'y a ni problèmes de gestion de la mémoire grâce au "garbage collector", ni de problème de gestion de pointeur. Il contient aussi une vaste bibliothèque de fonctions permettant de simplifier le code.
+	
+
+	Dans cette première partie nous présenterons les structures de données choisies (objets).
+
+	Les temps entre les stations présents dans le fichier "Metro.txt" sont stockés dans un objet "Matrice" implémenté dans le fichier "Matrice.java".  Les indices ligne, colonne représentent les stations par leur numéro dans le fichier "Metro.txt", ainsi la station Abesse est la station d'indice 0, celle d' Alexandre Dumas la numéro 1, etc... Comme dit précédemment la matrice contient les temps entre les stations, pour connaître le temps entre la station 0 et 1, on peut regarder soit aux coordonnées (0,1), soit (1,0) de la matrice.
+
+	L'algorithme de Dijkstra est contenu dans l'objet "TblDijkstra". Il contient tout ce qui est nécessaire à l'algorithme et les résultats de celui-ci, tel que : 
+la matrice de temps entre les stations
+le numéro de station de départ et celui d'arrivé
+un tableau de vérification de chaque station pour savoir si le plus court chemin pour atteindre la station a était trouvé.
+le tableau des plus courtes distances entre la station de départ et les autres, appelé dist
+le tableau des pères (numéro de station) de chaque station obtenu par l'algorithme de Dijkstra, appelé father.
+notre chemin sous forme de tableau contenant l'ordre des stations, appelé way
+Dans chacun des tableaux l'indice correspond au numéro de la station.
+
+	Des méthodes gets sont présentent pour récupérer le temps de parcours et le tableau de chemin. La création de l'objet TblDijkstra se fait à partir de la  matrice de temps entre toutes les stations, lors de la création toutes les stations sont déclarées non-traité dans chacun des tableaux. Un non-traité dans le tableau de vérification signifie que le plus court temps entre la station de départ et celle d'arrivée n'a pas était trouvé, dans le tableau de distance cela signifie que la station n'a pas était encore rencontré dans l'algorithme (équivalent de distance infinie), dans celui des pères cela signifie que le père n'a pas encore était déterminé. Le fonctionnement des différentes fonctions pour l'algorithme sera précisé plus loin.
+
+Mettre vos parties pour les structures de données
+
+
+	Dans cette seconde partie nous expliquerons le fonctionnement des méthodes pour calculer le temps le plus court entre deux stations. 
+
+	La méthode Calcul ( station départ, station d'arrivé) permet de calculer le temps le plus court entre la station de départ et toutes les autres stations. Tout d'abord, dans cette méthode, seul le temps entre les stations voisines et celles départ est ajouté au tableau dist, la station de départ est déclaré traité (dès que une station est traité on ne touche plus à la valeur dans le tableau dist, tableau contenant les plus court temps, car c'est la plus petite valeur possible) et son père est -1 (pas de père). Tant que toutes les stations n'ont pas était déclaré traité (Méthode finished ) et qu'il existe au moins une station atteignable ont continu de calculer les plus courts temps. Nous chercherons à chaque fois la station ayant le temps le plus court avec l'origine parmi les stations non-traité grâce à la méthode min(), avant de la déclaré traité. A partir de cette station on utilise la méthode treatment() qui actualise les temps entre notre station et les stations voisines si le temps trouvé (temps[origine - station] + temps[station - voisin] ) est plus court que celui dans le tableau dist ou si la station n'a pas était rencontrée auparavant. Si le temps d'une station est actualisé alors la station trouvé par min est déclaré père de celle-ci. Dès que tous les sommets ont étaient traités, on utilise la méthode CalculWay qui renvoie le tableau des numéros des stations à prendre. Pour trouver le chemin, on stocke les pères en partant de la station d'arrivée jusqu'à la station de départ, puis on inverse l'ordre.

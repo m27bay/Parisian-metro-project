@@ -130,7 +130,6 @@ public class Metro {
 			try
 			{
 				_line = Integer.parseInt( line );
-				// "01" "02" "03"
 				if( _line <= 3 )
 				{
 					_line -= 1;
@@ -192,7 +191,7 @@ public class Metro {
 	/**
 	 * Call all init functions
 	 *
-	 * @throws IOException
+	 * @throws IOException for read the file
 	 */
 	public void initLine() throws IOException
 	{
@@ -205,7 +204,7 @@ public class Metro {
 	/**
 	 * Read the number station and station number in the dataFile
 	 *
-	 * @throws IOException
+	 * @throws IOException for read the file
 	 */
 	public void initLineStation() throws IOException
 	{
@@ -289,7 +288,7 @@ public class Metro {
 	/**
 	 * Init Travel
 	 *
-	 * @throws IOException
+	 * @throws IOException for read the file
 	 */
 	public void initLineTravel() throws IOException
 	{
@@ -505,7 +504,7 @@ public class Metro {
 	 * @param numLine   line number
 	 * @param wayLength size of dijkstra table
 	 *
-	 * @throws IOException
+	 * @throws IOException for read the file
 	 */
 	public String knowDirection( int[] way, int pos, int numLine, int wayLength ) throws IOException
 	{
@@ -529,7 +528,7 @@ public class Metro {
 				|| numLine == line7b )
 			direction = knowDirectionFork( way, pos, wayLength );
 			
-			// Right line
+		// Right line
 		else
 			direction = knowDirectionRight( numStationStart, numStationStop, numLine );
 		
@@ -575,7 +574,7 @@ public class Metro {
 	 *
 	 * @return String table with all travel
 	 *
-	 * @throws IOException
+	 * @throws IOException for read the file
 	 */
 	private String[] fillTbl( String metroLine ) throws IOException
 	{
@@ -659,9 +658,9 @@ public class Metro {
 	 * @param pos       the position in the dijkstra table
 	 * @param wayLength the length of dijkstra table
 	 *
-	 * @throws IOException
+	 * @throws IOException for read the file
 	 */
-	public String knowDirectionFork( int way[], int pos, int wayLength ) throws IOException
+	public String knowDirectionFork( int[] way, int pos, int wayLength ) throws IOException
 	{
 		// Skip station in dijkstra table if two stations is in the same metro line
 		while( whatMetroLine( way[ pos ] ).equals( whatMetroLine( way[ pos + 1 ] ) ) && pos + 1 < wayLength - 1 ) pos++;
@@ -731,7 +730,7 @@ public class Metro {
 	 * @param wayLength the length of dijkstra table
 	 * @param time      the travel time formatted (XXhXXminXXsec)
 	 *
-	 * @throws IOException
+	 * @throws IOException for read the file
 	 */
 	public void printTravelDetail( int way[], int wayLength, String time ) throws IOException
 	{
@@ -875,7 +874,7 @@ public class Metro {
 	 *
 	 * @param UserTravelFile the file for write user information
 	 *
-	 * @throws IOException
+	 * @throws IOException For write in the file
 	 */
 	public void writeDataFile( String UserTravelFile, String[] data ) throws IOException
 	{

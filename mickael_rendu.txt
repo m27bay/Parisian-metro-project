@@ -97,5 +97,52 @@ Puis, arrive la classe 'MetroLine.java', qui représente une ligne de métro, é
 		public void printTravel() // Afficher tous les trajets de la ligne.
 
 Nous finissons par la classe 'Metro.java', qui manipule les précédentes classes et qui est la partie majeur de mon travail ( 895 lignes ) :
-	private final MetroLine[] metro //
-	private final String dataFile //
+	Elle est définie ainsi :
+		private final MetroLine[] metro // Le tableau de ligne de métro.
+		private final String dataFile // Le nom du fichier de configuration.
+
+	Vient ensuite le constructeur :
+		public Metro( String dataFile ) // Initialise le tableau metro avec une taille de 16 ( 14 lignes + 3b et 7b ).
+
+
+	Et pour conclure les méthodes:
+		private Station whatStation( int numStation ) // Retourne la Station correspondant au numéro.
+		public int convertNameToNumStation( String nameStation ) // Retourn le numéro d'une station correspondant à son nom.
+		private String whatMetroLine( int numStation )
+		// Retourne le nom de la ligne de métro sur laquelle est la station caractérisée par son numéro.
+
+		private int strLineToInt( String line ) // Converti le nom de la ligne en indice pour avoir ça position dans le tableau.
+		private String intToStrLine( int line ) // Converti l'indice de la ligne en son nom.
+
+		public void initLine() // Initialise la liste de stations et la liste de trajets.
+		public void initLineStation() // Initialise la liste de stations.
+		public void initLineTravel() // Initialise la liste de trajets
+
+		public void sortTravel() // Trie toutes les listes de trajets.
+		public void sortIndexTravel( int index ) // Trie la liste de trajets de la ligne 'index'.
+
+		public String knowDirection( int[] way, int pos, int numLine, int wayLength )
+		// Retourne la direction à prendre pour la suite du trajet, en fonction du tableau de station à empreinter 'way', de la position ou l'on si situe 'pos', du numéro de la ligne 'numLine'.
+
+		public String knowDirectionRight( int numStationStart, int numStationStop, int numLine ) // Retourne la direction si la ligne est droite
+		private String[] fillTbl( String metroLine )
+		// Retourne un tableau de String composé de tous les voyages possibles sur la ligne 'metroLine'.
+
+		public String knowDirectionFork( int[] way, int pos, int wayLength )
+		// Retourne la direction si la ligne n'est pas droite (fourche et boucle), en fonction du tableau de station à empreinter 'way', de la position ou l'on si situe 'pos'.
+
+		public void printTravelDetail( int way[], int wayLength, String time ) // Affiche le trajet que doit prendre l'utilisateur.
+
+		public void printStation() // Affiche toutes les stations.
+		public void printIndexStation( String index )
+		// Affiche toutes les stations dans la ligne qui est situé dans le tableau à la position 'index'.
+
+		public void printTravel() // Affiche tous les trajets.
+		public void printIndexTravel( String index )
+		// Affiche tous les trajets possibles sur la ligne qui est situé dans le tableau à la position 'index'.
+
+		public void writeDataFile( String UserTravelFile, String[] data )
+		// Ecrit un fichier avec les informations du voyages utilisé pour l'affichage de la partie graphique.
+
+
+Explication de quelques fonctions en détails:

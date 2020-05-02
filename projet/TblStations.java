@@ -43,16 +43,6 @@ public class TblStations {
 	}
 	
 	/**
-	 * Getter: Get the matrix size
-	 *
-	 * @return the matrix size
-	 */
-	public int getSize()
-	{
-		return this.tblSize;
-	}
-	
-	/**
 	 * Count the nuumber ouf stations
 	 *
 	 * @return the number of stations

@@ -56,7 +56,7 @@ public class Panneau extends JPanel {
 		int imgHeight = 757;
 		try
 		{
-			Image img = ImageIO.read( new File( "picture/Capture2.jpg" ) );
+			Image img  = ImageIO.read( new File( "picture/Capture2.jpg" ) );
 			Image img2 = ImageIO.read( new File( "picture/Plan.jpg" ) );
 			//Pour une image de fond
 			g.drawImage( img, 0, 0, img1Width, imgHeight, this );

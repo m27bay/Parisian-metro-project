@@ -1,13 +1,17 @@
 Compte rendu du projet :
 
-	Le projet a était codé en Java car c'est un langage modulables, il n'y a ni problèmes de gestion de la mémoire grâce au "garbage collector", ni de problème de gestion de pointeur. Il contient aussi une vaste bibliothèque de fonctions permettant de simplifier le code.
+	Le projet a été codé en Java car c'est un langage modulable, il n'y a pas les problèmes de gestion de mémoire, grâce au "garbage collector", ou de problème de gestion de pointeurs. De plus le Java contient une vaste bibliothèque de fonctions et d'outil permettant de simplifier le code, comme la classe String faciltant beaucoup la lecture dans le fichier, ainsi que le manipulation de chaine de
+caratères .
 	
 
-	Dans cette première partie nous présenterons les structures de données choisies (objets).
+	Dans cette première partie nous présenterons les structures de données choisies ( appelées objets dans le langage Java).
 
-	Les temps entre les stations présents dans le fichier "Metro.txt" sont stockés dans un objet "Matrice" implémenté dans le fichier "Matrice.java".  Les indices ligne, colonne représentent les stations par leur numéro dans le fichier "Metro.txt", ainsi la station Abesse est la station d'indice 0, celle d' Alexandre Dumas la numéro 1, etc... Comme dit précédemment la matrice contient les temps entre les stations, pour connaître le temps entre la station 0 et 1, on peut regarder soit aux coordonnées (0,1), soit (1,0) de la matrice.
+	Les temps entre les stations ainsi que le numéro des stations présents dans le fichier "MetroL.txt" sont stockés dans un objet "Matrice" implémenté dans le fichier "Matrice.java".  Les indices 'ligne', 'colonne' représentent les stations par leurs numéros dans le fichier "MetroL.txt", ainsi la station Abbesse est la station d'indice 0, celle d'Alexandre Dumas la numéro 1, etc...
+Comme dit précédemment la matrice contient les temps entre les stations, pour connaître le temps entre la station 0 et 1, on peut regarder soit aux coordonnées (0,1), soit (1,0) de la matrice car le trajet peut se faire dans les deux sens.
+Exception faite pour certain trajet comme par exemple la fin de la station 7b (la boucle entre Botzaris et Pré-Saint-Gervais)
+et la ligne 10 (entre Boulogne Jean Jaurès et Javel-André Citroën), ou nous avons seul sens de circulation en fonction de la direction.
 
-	L'algorithme de Dijkstra est contenu dans l'objet "TblDijkstra". Il contient tout ce qui est nécessaire à l'algorithme et les résultats de celui-ci, tel que : 
+	(A finir) L'algorithme de Dijkstra est contenu dans l'objet "TblDijkstra". Il contient tout ce qui est nécessaire à l'algorithme et les résultats de celui-ci, tel que : 
 la matrice de temps entre les stations
 le numéro de station de départ et celui d'arrivé
 un tableau de vérification de chaque station pour savoir si le plus court chemin pour atteindre la station a était trouvé.

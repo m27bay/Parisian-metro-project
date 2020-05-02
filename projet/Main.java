@@ -10,8 +10,8 @@ public class Main {
 		String dataFile = "../metroL.txt";
 	
 		//
-		Menu burger = new Menu( dataFile );
-		burger.initMenu();
-		burger.run();
+		Menu menu = new Menu( dataFile );
+		menu.initMenu();
+		menu.run();
 	}
 }

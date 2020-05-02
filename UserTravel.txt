@@ -1,4 +1,10 @@
-S Villiers ligne 02
-D Nation ligne 02
-E Rome ligne 02
-T 0h0min53sec
+S Saint-Jacques line 06
+D Nation line 06
+C Place d'Italie line 05
+D Bobigny, Pablo Picasso line 05
+C République line 11
+D Mairie des Lilas line 11
+C Place des Fêtes line 7b
+D Pré-Saint-Gervais line 7b
+E Danube line 7b
+T 0h27min42sec

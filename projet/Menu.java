@@ -56,7 +56,7 @@ public class Menu {
 				System.out.println("\n Here are all the commands you can do. Please respect the typography. For exit please type Exit.\n");
 				System.out.println( " 'Random Travel' : the program takes two stations at random and do the travel." );
 				System.out.println( " 'Classic Travel' : the user choose two stations and the program makes the travel." );
-				System.out.println( " 'Exit' : to Quit the program.(error 10)\n" );
+				System.out.println( " 'Exit' : to Quit the program.(error 0)\n" );
 
 			}
 			
@@ -143,24 +143,6 @@ public class Menu {
 			else
 			{
 				System.out.print( "Command unknown." );
-				// int diff = 0;
-				
-				// for( String s : tab)
-				// {
-				// 	// System.out.println(s);
-				// 	diff = choice.compareTo(s);
-				// 	// System.out.println(diff);
-				// 	if(diff < 0)
-				// 	{
-				// 		diff = -diff;
-				// 	}
-				// 	if(diff <=32)
-				// 	{
-				// 		System.out.println(" But, did you mean " + s );
-				// 		break;
-				// 	}
-
-				// }
 				System.out.println();
 			}
 		}

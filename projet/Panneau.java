@@ -1,20 +1,18 @@
 // awt
 
-import java.awt.Graphics;
-import java.awt.Font;
-import java.awt.Color;
-import java.awt.Image;
+import java.awt.*;
 
 // For read the file
 import java.io.*;
+import java.util.Collections;
 
 // swing
 import javax.swing.JPanel;
 
-// io
-
 // imageio
 import javax.imageio.ImageIO;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 public class Panneau extends JPanel {
 	
@@ -25,37 +23,65 @@ public class Panneau extends JPanel {
 	 */
 	public void paintComponent( Graphics g )
 	{
-		Font font = new Font( "Courier", Font.BOLD, 15 );
+		// Init graphic
+		int police = 16;
+		Font font = new Font( "Courier", Font.BOLD, police );
+		g.setFont( font );
+		g.setColor( Color.white );
 		
+		// Draw GUI
+		drawGUI( g, police, font );
+	}
+	
+	private void drawGUI( Graphics g, int police, Font font )
+	{
+		// Draw image
+		int imgWeight = drawImage( g );
+		
+		// Draw travel
+		drawTravel( g, police, imgWeight, font );
+	}
+	
+	/**
+	 * Draw background image
+	 *
+	 * @param g the graph
+	 *
+	 * @return image height
+	 */
+	private int drawImage( Graphics g )
+	{
+		// Image
+		int img1Width = 295, img2Width = 1083;
+		int imgHeight = 757;
 		try
 		{
-			Image img = ImageIO.read( new File( "picture/plan.jpg" ) );
+			Image img = ImageIO.read( new File( "picture/Capture2.jpg" ) );
+			Image img2 = ImageIO.read( new File( "picture/Plan.jpg" ) );
 			//Pour une image de fond
-			g.drawImage( img, 0, 0, 1014, 709, this );
+			g.drawImage( img, 0, 0, img1Width, imgHeight, this );
+			g.drawImage( img2, img1Width, 0, img2Width, imgHeight, this );
 		}
 		catch( IOException e )
 		{
 			e.printStackTrace();
 		}
-		
-		g.setFont( font );
-		g.setColor( Color.black );
-		
-		int winWidth = 1500;
-		int winHeight = 750;
-		
-		int imgWidth = 1014;
-		int imgHeight = 709;
-		
-		int widthStay = winWidth - imgWidth;
-		int heightStay = winHeight - imgHeight;
-		
-		int numDraw = 1;
-		int posDraw = 50;
-		
-		g.drawString( "Travel Plan", winWidth - widthStay + widthStay / 3, 17 );
+		return imgHeight;
+	}
+	
+	/**
+	 * Draw the travel in the window
+	 *
+	 * @param g         the graph
+	 * @param police    the write size
+	 * @param imgHeight the image heigth
+	 * @param font      the font
+	 */
+	private void drawTravel( Graphics g, int police, int imgHeight, Font font )
+	{
+		//
+		int dataSize = 0;
 		String data[] = null;
-		
 		try
 		{
 			data = readUserData( "../UserTravel.txt" );
@@ -65,33 +91,77 @@ public class Panneau extends JPanel {
 			e.printStackTrace();
 		}
 		
-		int dataSize = 0;
+		//
 		for( String s : data )
 		{
 			if( s != null )
 				dataSize++;
 		}
 		
-		g.drawString( "Start station : " + data[ 0 ], 1050, posDraw * numDraw );
-		numDraw++;
-		g.drawString( "Direction : " + data[ 1 ], 1050, posDraw * numDraw );
-		numDraw++;
+		// Init
+		g.setFont( new Font( "Courier", Font.BOLD, 15 ) );
+		police = 13; // Change police
+		int posStart = 310; // Position for right to write
+		int gab = police + police / 3; // Gab between
+		int numCharMax = 18; // For cut String if too long
+		String decay = "                     "; //< DO NOT MODIFIED
+		String metroName = null; String line = null;
 		
-		for( int i = 2 ; i < dataSize - 3 ; i++ )
+		// Part for the start station
+		metroName = data[ 0 ].substring( 0, data[ 0 ].indexOf( "line" ) - 1 );
+		if( metroName.length() > numCharMax )
+			metroName = metroName.substring( 0, numCharMax ).concat( "..." );
+		g.drawString( metroName, 80, 96 );
+		
+		// Part for the stop station
+		metroName = data[ dataSize - 2 ].substring( 0, data[ dataSize - 2 ].indexOf( "line" ) - 1 );
+		if( metroName.length() > numCharMax )
+			metroName = data[ dataSize - 2 ].substring( 0, numCharMax ).concat( "..." );
+		g.drawString( metroName, 80, 146 );
+		
+		// Reset
+		g.setColor( Color.black );
+		
+		// Part for the direction (name station, and line)
+		metroName = data[ 1 ];
+		metroName = metroName.substring( 0, metroName.indexOf( "line" ) - 1 );
+		if( metroName.length() > numCharMax )
+			metroName = data[ 1 ].substring( 0, numCharMax ).concat( "..." );
+		g.drawString( "- Direction : " + metroName, 20, posStart );
+		posStart += gab;
+		line = data[ 1 ].substring( data[ 1 ].indexOf( "line" ), data[ 1 ].length());
+		g.drawString( decay + line, 20, posStart );
+		posStart += ( 2 * gab );
+		
+		// Part for draw all
+		for( int i = 2 ; i < dataSize - 3 ; i += 2 )
 		{
 			if( data[ i ] != null )
 			{
-				g.drawString( "Switch at the station : " + data[ i ], 1050, posDraw * numDraw );
-				numDraw++;
-				g.drawString( "Direction : " + data[ i + 1 ], 1050, posDraw * numDraw );
-				numDraw++;
+				// Part for the switch station
+				metroName = data[ i ].substring( 0, data[ i ].indexOf( "line" ) - 1 );
+				if( metroName.length() > numCharMax )
+					metroName = data[ i ].substring( 0, numCharMax ).concat( "..." );
+				g.drawString( "- Switch at the station :", 20, posStart );
+				posStart += gab;
+				g.drawString( decay + metroName, 20, posStart );
+				posStart += gab;
+				
+				// Part for the station direction
+				metroName = data[ i + 1 ];
+				metroName = metroName.substring( 0, metroName.indexOf( "line" ) - 1 );
+				if( metroName.length() > numCharMax )
+					metroName = data[ i + 1 ].substring( 0, numCharMax ).concat( "..." );
+				g.drawString( "- Direction : " + metroName, 20, posStart );
+				posStart += gab;
+				line = data[ i + 1 ].substring( data[ i + 1 ].indexOf( "line" ), data[ i + 1 ].length() );
+				g.drawString( decay + line, 20, posStart );
+				posStart += ( 2 * gab );
 			}
 		}
 		
-		g.drawString( "End station : " + data[ dataSize - 2 ], 1050, posDraw * numDraw );
-		numDraw++;
-		g.drawString( "Global time : " + data[ dataSize - 1 ], 1050, posDraw * numDraw );
-		numDraw++;
+		// Part for global time
+		g.drawString( "Global time : " + data[ dataSize - 1 ], 20, imgHeight - ( 2 * gab ) );
 	}
 	
 	/**
@@ -153,23 +223,5 @@ public class Panneau extends JPanel {
 		read.close();
 		
 		return data;
-	}
-	
-	/**
-	 * Reset in data file
-	 *
-	 * @param UserTravelFile the file for write user information
-	 *
-	 * @throws IOException
-	 */
-	public void resetDataFile( String UserTravelFile ) throws IOException
-	{
-		FileWriter fileWriter = new FileWriter( UserTravelFile );
-		
-		PrintWriter printWriter = new PrintWriter( fileWriter );
-
-		printWriter.print( "" );
-		
-		printWriter.close();
 	}
 }

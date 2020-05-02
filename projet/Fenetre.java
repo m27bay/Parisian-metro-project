@@ -17,7 +17,8 @@ public class Fenetre extends JFrame {
 	public Fenetre()
 	{
 		this.setTitle( "Metro Lines" );
-		this.setSize( 1700, 750 );
+		int winWidth = 1395, wiwnHeight = 795;
+		this.setSize( winWidth, wiwnHeight );
 		this.setLocationRelativeTo( null );
 		//this.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		

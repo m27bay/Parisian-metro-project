@@ -1,12 +1,12 @@
 Rapport projet algorithme des graphes
 Ma partie :
 	- Lire le fichiers de configuration afin de créer une matrice avec toutes les stations et les distances pour pouvoir appliquer Dijkstra.
-	- Création des structures de données pour pouvoir stocker les stations, les voyages, les lignes de métros et le métro dans ça globalité.
+	- Création des structures de données pour pouvoir stocker les stations, les voyages, les lignes de métros et le métro dans sa globalité.
 
 Explication globale:
 Première partie: Lire le fichiers de configuration afin de créer une matrice avec toutes les stations et les distances pour pouvoir appliquer Dijkstra.
 
-Cette partie concerne le fichier ' TblStation.java '.
+Cette partie concerne le fichier ' TblStation.java ' ( 200 lignes ).
 Ce dernier étant composé de:
 	Trois attributs qui sont :
 		- private final int tblSize 		// Le taille du tableau.
@@ -24,14 +24,14 @@ Ce dernier étant composé de:
 		public int[][] getTbl() // Retourn le tableau.
 		private int stationCount() // Compte le nombre de station.
 		public void fillTravelTime().
-		// Rempli le tableau avec des -1 si la distance entre deux stations n'est pas définie.
-		// Rempli la diagonale avec des 0, cela correspond donc à la distance entre une station et elle même.
+		// Permet de remplir le tableau avec des -1 si la distance entre deux stations n'est pas définie.
+		// Permet aussi de remplir la diagonale avec des 0, cela correspond donc à la distance entre une station et elle même.
 		// Enfin, si la distance entre la station i et j est définie remplie la case [i][j] ainsi que la case [j][i]
 		// sauf pour une partie de la ligne 7 et de la ligne 10, où nous avons un trajet différent en fonction du sens de circulation.
 		public void print().
 
-Deuxième partie: Créations de structures de données pour pouvoir stocker les stations, les voyages; les lignes de métros et le métro dans ça globalté.
-Pour commencer nous avons la classe 'Station.java' qui est constituée de la manière suivante:
+Deuxième partie: Créations de structures de données pour pouvoir stocker les stations, les voyages; les lignes de métros et le métro dans sa globalté.
+Pour commencer nous avons la classe 'Station.java' qui est constituée de la manière suivante ( 108 lignes ):
 	Nous avons donc les attributs suivants:
 		private final String name.
 		private final int number.
@@ -42,14 +42,14 @@ Pour commencer nous avons la classe 'Station.java' qui est constituée de la man
 		public Station( String name, int number, boolean isTerminus ).
 
 	Et enfin les methodes:
-		public String getName() // Retournant le nom de la station.
-		public int getNumber() // Retournant le numéro de la station.
-		public boolean getIsTerminus() // Retournant si oui ou non la station est un terminus.
-		public String toString() // Retournant une String avec le nom, le numéro, et le booléen 'isTerminus' de la station.
+		public String getName() // Retourne le nom de la station.
+		public int getNumber() // Retourne le numéro de la station.
+		public boolean getIsTerminus() // Retourne si oui ou non la station est un terminus.
+		public String toString() // Retourne une String avec le nom, le numéro, et le booléen 'isTerminus' de la station.
 		public boolean equals( Station other ). // Retourne un booléen indiquant si les deux stations sont égales.
 		public Station copy(). // Retourne une copie de la station.
 
-Ensuite nous avons la class 'Travel.java', représentant un voyage entre deux stations, implémenté comme suit:
+Ensuite nous avons la class 'Travel.java', représentant un voyage entre deux stations, implémenté comme suit ( 162 lignes ):
 	On commence par les attributs:
 		private Station stationStart, stationStop. // La station de départ et la station d'arrivée, sens prendre en compte le sens de direction.
 		private int time. // Le temps de voyage entre ces deux stations.
@@ -59,24 +59,43 @@ Ensuite nous avons la class 'Travel.java', représentant un voyage entre deux st
 		public Travel( Station stationStart, Station stationStop, int time ).
 
 	Suivie par les méthodes:
-		public int getNumStationStart() // Retournant le numero de la station de départ.
-		public Station getStationStart() // Retournant la station de départ.
-		public void setStationStart( Station stationStart ) // Permet de modifier la station de départ.
+		public int getNumStationStart() // Retourne le numero de la station de départ.
+		public Station getStationStart() // Retourne la station de départ.
+		public void setStationStart( Station stationStart ) // Modifie la station de départ.
 
-		public int getNumStationStop() // Retournant le numero de la station d'arrivée.
-		public Station getStationStop() // Retournant la station d'arrivée.
-		public void setStationStop( Station stationStop ) // Permet de modifier la station d'arrivée.
+		public int getNumStationStop() // Retourne le numero de la station d'arrivée.
+		public Station getStationStop() // Retourne la station d'arrivée.
+		public void setStationStop( Station stationStop ) // Modifie la station d'arrivée.
 
-		public int getTime() // Retournant le temps de trajet.
-		public void setTime( int time ) // Permet de modifier le temps de trajet.
+		public int getTime() // Retourne le temps de trajet.
+		public void setTime( int time ) // Modifie le temps de trajet.
 
-		public Travel switchStation() // Permet d'inverser la station de départ avec la station d'arrivée.
+		public Travel switchStation() // Inverse la station de départ avec la station d'arrivée.
 		public boolean equals( Travel other ) // Retourne un booléen indiquant si les deux trajet sont égaux.
 		public String toString() // Retourne une String avec les informtions sur les deux stations et le temps de trajet.
 
-Puis, arrive la classe 'MetroLine.java', qui représente une ligne de métro, écrite de cette façon:
+Puis, arrive la classe 'MetroLine.java', qui représente une ligne de métro, écrite de cette façon ( 132 lignes ):
 	Elle posède les attributs suivants;
 		private String name // Le nom de la ligne de métro.
 		private ArrayList < Station > listStation // La liste des stations présentes dans la ligne.
 		private ArrayList < Travel > listTravel // La liste des trajets.
-		
+
+	Nous instancions cette classe par le constructeur suivant:
+		public MetroLine().
+
+	Et pour finir les méthodes:
+		public String getName() // Retourne le le nom de la ligne.
+		public void setName( String newName ). // Change le nom de ligne.
+		public ArrayList < Station > getListStation() // Retourne la liste des stations.
+		public ArrayList < Travel > getListTravel() // Retourne la liste des trajets.
+		public void setListTravel( ArrayList < Travel > _new ) // Modifie la liste de trajet.
+
+		public void addStation( Station _new ) // Ajoute une nouvelle station à la liste de station.
+		public void addTravel( Travel _new ) // Ajoute un nouveau trajet à la liste de trajet.
+
+		public void printStation() // Affiche toutes les stations de la ligne.
+		public void printTravel() // Afficher tous les trajets de la ligne.
+
+Nous finissons par la classe 'Metro.java', qui manipule les précédentes classes et qui est la partie majeur de mon travail ( 895 lignes ) :
+	private final MetroLine[] metro //
+	private final String dataFile //

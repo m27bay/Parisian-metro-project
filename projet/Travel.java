@@ -124,13 +124,14 @@ public class Travel {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	/**
-	 * Copy this travel for init a new travel
+	 * Return a String with attributes
 	 *
-	 * @return new Travel
+	 * @return String
 	 */
-	public Travel copy()
+	public String toString()
 	{
-		return new Travel( this.stationStart, this.stationStop, this.time );
+		return this.stationStart.toString() + "\n\tto " +
+				this.stationStop.toString() + "\n\t\t: " + this.time + "\n";
 	}
 	
 	/**
@@ -155,17 +156,6 @@ public class Travel {
 		return other.getStationStart().equals( this.stationStart )
 				& other.getStationStop().equals( this.stationStop )
 				& other.getTime() == this.getTime();
-	}
-	
-	/**
-	 * Return a String with attributes
-	 *
-	 * @return String
-	 */
-	public String toString()
-	{
-		return this.stationStart.toString() + "\n\tto " +
-				this.stationStop.toString() + "\n\t\t: " + this.time + "\n";
 	}
 }
 

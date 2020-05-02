@@ -4,9 +4,9 @@
 public class Station {
 	
 	// Attributes
-	private String name;
-	private int number;
-	private boolean isTerminus;
+	private final String name;
+	private final int number;
+	private final boolean isTerminus;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	

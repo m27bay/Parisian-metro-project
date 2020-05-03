@@ -119,19 +119,31 @@ Nous finissons par la classe 'Metro.java', qui manipule les précédentes classe
 		public void initLineTravel() // Initialise la liste de trajets
 
 		public void sortTravel() // Trie toutes les listes de trajets.
-		public void sortIndexTravel( int index ) // Trie la liste de trajets de la ligne 'index'.
+MODIFIER public void sortIndexTravel( int index )
+		// Trie la liste de trajets de la ligne 'index'.
+		// On part du premier trajet que l'on voit et on l'ajoute dans la liste chaînée.
+		// Puis une regarde le trajet suivant et on essaie de l'aligner avec le précédent trajet, c'est à dire si le précédent est : A B ( on part de A vers B ) si pour le trajet suivant on remarque qu'il
+		// part de A ou arrive à A on l'ajoute à la tête de la liste afin d'avoir X A => A B dans la liste, et si le trajet suivant on part de B ou arrive de B on l'ajoute à la fin de la liste pour avoir
+		// A B => B Y ( X et Y étant d'autres stations ), on continue cela jusque'à avoir vu tous les éléments de la liste de trajets.
 
 		public String knowDirection( int[] way, int pos, int numLine, int wayLength )
 		// Retourne la direction à prendre pour la suite du trajet, en fonction du tableau de station à empreinter 'way', de la position ou l'on si situe 'pos', du numéro de la ligne 'numLine'.
 
-		public String knowDirectionRight( int numStationStart, int numStationStop, int numLine ) // Retourne la direction si la ligne est droite
-		private String[] fillTbl( String metroLine )
+MODIFIER public String knowDirectionRight( int numStationStart, int numStationStop, int numLine )
+        // Retourne la direction si la ligne est droite.
+		// Cette méthode fait appel à la méthode 'sortIndexTravel' et renvoie soit le premier élément de la liste trié soit le dernière, puisque en sortant de la méthode 'sortIndexTravel' on a placé
+		// les terminus en début et en fin de liste.
+		// Sauf pour la 7b ou le terminus et au millieu.
+
+        private String[] fillTbl( String metroLine )
 		// Retourne un tableau de String composé de tous les voyages possibles sur la ligne 'metroLine'.
 
-		public String knowDirectionFork( int[] way, int pos, int wayLength )
+MODIFIER public String knowDirectionFork( int[] way, int pos, int wayLength )
 		// Retourne la direction si la ligne n'est pas droite (fourche et boucle), en fonction du tableau de station à empreinter 'way', de la position ou l'on si situe 'pos'.
+		// On lit dans le fichier chaque transition en partant de la ou nous sommes en bloquant la transition pour revenir en arrière et on s'arrête que lorsque l'on tombe sur un terminus.
+		// Elle fait appel a fillTbl ce qui nou sassure de ne pas avoir un terminus d'une autre ligne.
 
-		public void printTravelDetail( int way[], int wayLength, String time ) // Affiche le trajet que doit prendre l'utilisateur.
+MODIFIER public void printTravelDetail( int way[], int wayLength, String time ) // Affiche le trajet que doit prendre l'utilisateur et fait appel à 'writeDataFile() pour écrire les informations'.
 
 		public void printStation() // Affiche toutes les stations.
 		public void printIndexStation( String index )
@@ -144,5 +156,7 @@ Nous finissons par la classe 'Metro.java', qui manipule les précédentes classe
 		public void writeDataFile( String UserTravelFile, String[] data )
 		// Ecrit un fichier avec les informations du voyages utilisé pour l'affichage de la partie graphique.
 
-
-Explication de quelques fonctions en détails:
+MODIFER
+Comment s'articule le tout ?
+    Le centre de mon travail est la fonction 'printTravelDetail' qui récupère les informations produites par l'algorithme de dijkstra, affiche les stations en fonctions de leurs numéros ainsi que les
+    lignes de métros via le même procédé. Elle est en charge aussi de trouvé et d'afficher les terminus.

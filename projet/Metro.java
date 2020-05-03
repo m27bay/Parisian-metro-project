@@ -117,36 +117,43 @@ public class Metro {
 	 */
 	private int strLineToInt( String line )
 	{
-		int _line = -1;
-		if( line.equals( "3b" ) )
+		switch( line )
 		{
-			_line = 3;
-		}
-		else if( line.equals( "7b" ) )
-		{
-			_line = 8;
-		}
-		else
-		{
-			try
-			{
-				_line = Integer.parseInt( line );
-				if( _line <= 3 )
-				{
-					_line -= 1;
-				}
-				else if( _line > 8 )
-				{
-					_line += 1;
-				}
-			}
-			catch( NumberFormatException exception )
-			{
-				exception.getMessage();
-			}
+			case "01":
+				return 0;
+			case "02":
+				return 1;
+			case "03":
+				return 2;
+			case "3b":
+				return 3;
+			case "04":
+				return 4;
+			case "05":
+				return 5;
+			case "06":
+				return 6;
+			case "07":
+				return 7;
+			case "7b":
+				return 8;
+			case "08":
+				return 9;
+			case "09":
+				return 10;
+			case "10":
+				return 11;
+			case "11":
+				return 12;
+			case "12":
+				return 13;
+			case "13":
+				return 14;
+			case "14":
+				return 15;
 		}
 		
-		return _line;
+		return -1;
 	}
 	
 	/**
@@ -158,33 +165,43 @@ public class Metro {
 	 */
 	private String intToStrLine( int line )
 	{
-		String _line = "unknown";
+		switch( line )
+		{
+			case 0:
+				return "01";
+			case 1:
+				return "02";
+			case 2:
+				return "03";
+			case 3:
+				return "3b";
+			case 4:
+				return "04";
+			case 5:
+				return "05";
+			case 6:
+				return "06";
+			case 7:
+				return "07";
+			case 8:
+				return "7b";
+			case 9:
+				return "08";
+			case 10:
+				return "09";
+			case 11:
+				return "10";
+			case 12:
+				return "11";
+			case 13:
+				return "12";
+			case 14:
+				return "13";
+			case 15:
+				return "14";
+		}
 		
-		if( line == 3 )
-		{
-			_line = "3b";
-		}
-		else if( line == 8 )
-		{
-			_line = "7b";
-		}
-		else
-		{
-			if( line < 3 )
-			{
-				_line = "0" + String.valueOf( line + 1 );
-			}
-			else if( line < 8 )
-			{
-				_line = "0" + String.valueOf( line );
-			}
-			else
-			{
-				_line = String.valueOf( line - 1 );
-			}
-		}
-		
-		return _line;
+		return "unknown";
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -848,10 +865,10 @@ public class Metro {
 		System.out.println();
 		
 		// If selection a station for start travel and isn't in the good line
-		if( whatStation( way[ i - 1 ] ).getName().equals( whatStation( way[ i ] ).getName() ) )
+		if( whatStation( way[ wayLength - 2 ] ).getName().equals( whatStation( way[ wayLength - 1 ] ).getName() ) )
 		{
 			i--;
-			time2 = whatTime( way[ i - 1 ], way[ i ] );
+			time2 = whatTime( way[ wayLength - 2 ], way[ wayLength - 1  ] );
 		}
 		
 		// Print end of travel

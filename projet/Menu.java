@@ -122,7 +122,7 @@ public class Menu {
 				
 				//do the travel
 				int time = this.td.getTmpTotal();
-				// this.td.printWay();
+				this.td.printWay();
 				metro.printTravelDetail( this.td.getWay(), this.td.getWay().length, time );
 				Fenetre fen = new Fenetre();
 			}
@@ -141,7 +141,6 @@ public class Menu {
 				{	
 					System.out.println("Exit Success.");
 					System.exit( 0 );
-					// return don't work, don't know why
 				}
 				
 			}

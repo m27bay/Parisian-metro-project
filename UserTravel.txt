@@ -1,6 +1,6 @@
-S Porte des Lilas line 11
-D Châtelet line 11
-C Belleville line 02
-D Porte Dauphine line 02
-E Victor Hugo line 02
-T 0h21min56sec
+S Simplon line 04
+D Porte d'Orléans line 04
+C Marcadet Poissonniers line 12
+D Mairie d'Issy line 12
+E Porte de Versailles line 12
+T 0h21min6sec

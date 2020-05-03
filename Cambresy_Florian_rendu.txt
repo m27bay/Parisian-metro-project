@@ -28,3 +28,5 @@ Le Makefile où sont écrit tous les outils de compilation, suppression et éxec
 run: pour compiler et executer
 compile: pour compiler
 clean: pour supprimer les .class.
+
+Il y a cependant un probleme d'affichage parmit les membres du groupe, certain étant sur Windows et d'autre sur linus pour coder. (voir les screens)

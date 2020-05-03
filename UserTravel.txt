@@ -1,6 +1,8 @@
-S Porte des Lilas line 11
-D Châtelet line 11
-C Belleville line 02
-D Porte Dauphine line 02
-E Victor Hugo line 02
-T 0h21min56sec
+S Jasmin line 09
+D Pont de Sèvres line 9
+C Michel Ange Molitor line 10
+D Gare d'Austerlitz line 10
+C Sèvres Babylone line 12
+D Porte de la Chapelle line 12
+E Assemblée Nationale line 12
+T 0h15min10sec

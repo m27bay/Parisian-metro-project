@@ -751,7 +751,9 @@ public class Metro {
 				+ " line " + lineStart );
 		data[ posData ] = "S " + whatStation( way[ i ] ).getName() + " line " + lineStart + "\n";
 		posData++;
-		data[ posData ] = "D " + knowDirection( way, i, strLineToInt( lineStart ), wayLength ) + "\n";
+		String direction = knowDirection( way, i, strLineToInt( lineStart ), wayLength );
+		data[ posData ] = "D " + direction + "\n";
+		System.out.println( "Direction : " + direction);
 		posData++;
 		i++;
 		
@@ -778,7 +780,7 @@ public class Metro {
 				posData++;
 				
 				//
-				String direction = knowDirection( way, i, strLineToInt( lineNow ), wayLength );
+				direction = knowDirection( way, i, strLineToInt( lineNow ), wayLength );
 				System.out.println( "Direction : " + direction );
 				data[ posData ] = "D " + direction + "\n";
 				posData++;

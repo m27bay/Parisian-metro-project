@@ -88,19 +88,6 @@ public class TblDijkstra {
 	}
 	
 	/**
-	 * Create a String with the time
-	 *
-	 * @return time in format XXhXXminXXsec
-	 */
-	public String travelTime()
-	{
-		int seconds = this.dist[ this.arrived ];
-		int minutes = seconds / 60;
-		int hours = minutes / 60;
-		return hours + "h" + minutes % 60 + "min" + seconds % 60 + "sec";
-	}
-	
-	/**
 	 * Getter: Obtenir le nombre de colonne
 	 *
 	 * @return le nombre de colonne

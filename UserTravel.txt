@@ -1,6 +1,4 @@
-S Villiers line 03
-D Galliéni line 03
-C Saint-Lazare line 13
-D Châtillon-Montrouge line 13
-E Montparnasse Bienvenue line 13
-T 0h13min26sec
+S Montparnasse Bienvenue line 06
+D Nation line 06
+E Chevaleret line 06
+T 0h6min43sec

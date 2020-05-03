@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 
 // Tools
+import java.sql.SQLSyntaxErrorException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -528,7 +529,7 @@ public class Metro {
 				|| numLine == line7b )
 			direction = knowDirectionFork( way, pos, wayLength );
 			
-		// Right line
+			// Right line
 		else
 			direction = knowDirectionRight( numStationStart, numStationStop, numLine );
 		
@@ -723,6 +724,56 @@ public class Metro {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
+	private int whatTime( int numStart, int numStop ) throws IOException
+	{
+		// Variables
+		BufferedReader read = null;
+		String line;
+		String[] parts = new String[ 4 ];
+		
+		// Init read
+		try
+		{
+			read = new BufferedReader( new FileReader( this.dataFile ) );
+		}
+		
+		// Exception
+		catch( FileNotFoundException exception )
+		{
+			System.out.println( "Error in class 'Metro', method 'whatTime':" +
+					" file not found" );
+		}
+		
+		// Read
+		while( ( line = read.readLine() ) != null )
+		{
+			//
+			if( line.charAt( 0 ) == '#'
+					|| line.charAt( 0 ) == 'V'
+					|| line.charAt( 0 ) == 'T' )
+				continue;
+				
+				//
+			else
+			{
+				// Spilt line with the space
+				parts = line.split( " ", 4 );
+				
+				int stationStart = Integer.parseInt( parts[ 1 ] );
+				int stationStop = Integer.parseInt( parts[ 2 ] );
+				
+				if( stationStart == numStart && stationStop == numStop
+						|| stationStart == numStop && stationStop == numStart )
+				{
+					return Integer.parseInt( parts[ 3 ] );
+				}
+			}
+		}
+		
+		return 0;
+	}
+	
+	
 	/**
 	 * Print travel
 	 *
@@ -732,18 +783,20 @@ public class Metro {
 	 *
 	 * @throws IOException for read the file
 	 */
-	public void printTravelDetail( int way[], int wayLength, String time ) throws IOException
+	public void printTravelDetail( int way[], int wayLength, int time ) throws IOException
 	{
 		// Position in the dijkstra table
 		int i = 0;
 		
 		// Data for write to user
 		String[] data = new String[ 20 ];
-		int posData = 0;
-		
+		int posData = 0, time1 = 0, time2 = 0;
 		// If selection a station for start travel and isn't in the good line
 		if( whatStation( way[ 0 ] ).getName().equals( whatStation( way[ 1 ] ).getName() ) )
+		{
 			i = 1;
+			time1 = whatTime( way[ 0 ], way[ 1 ] );
+		}
 		
 		// Print direction and the start station
 		String lineStart = whatMetroLine( way[ i ] );
@@ -753,7 +806,7 @@ public class Metro {
 		posData++;
 		String direction = knowDirection( way, i, strLineToInt( lineStart ), wayLength );
 		data[ posData ] = "D " + direction + "\n";
-		System.out.println( "Direction : " + direction);
+		System.out.println( "Direction : " + direction );
 		posData++;
 		i++;
 		
@@ -796,22 +849,42 @@ public class Metro {
 		
 		// If selection a station for start travel and isn't in the good line
 		if( whatStation( way[ i - 1 ] ).getName().equals( whatStation( way[ i ] ).getName() ) )
+		{
 			i--;
+			time2 = whatTime( way[ i - 1 ], way[ i ] );
+		}
 		
 		// Print end of travel
 		String lineStop = whatMetroLine( way[ i ] );
 		System.out.println( "You stop at\n" + whatStation( way[ i ] ).toString()
 				+ " line " + lineStop + "\n" );
 		
-		System.out.println( "Time: " + time );
+		time -= time1;
+		time -= time2;
+		String timeFormat = travelTime( time );
+		
+		System.out.println( "Time: " + timeFormat );
 		
 		//
 		data[ posData ] = "E " + whatStation( way[ i ] ).getName() + " line " + lineStop + "\n";
 		posData++;
-		data[ posData ] = "T " + time + "\n";
+		data[ posData ] = "T " + timeFormat + "\n";
 		posData++;
 		
 		writeDataFile( "../UserTravel.txt", data );
+	}
+	
+	/**
+	 * Create a String with the time
+	 *
+	 * @return time in format XXhXXminXXsec
+	 */
+	private String travelTime( int time )
+	{
+		int seconds = time;
+		int minutes = seconds / 60;
+		int hours = minutes / 60;
+		return hours + "h" + minutes % 60 + "min" + seconds % 60 + "sec";
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

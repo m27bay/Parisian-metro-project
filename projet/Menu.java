@@ -121,7 +121,8 @@ public class Menu {
 				this.td.calcul( numStart, numStop );
 				
 				//do the travel
-				String time = this.td.travelTime();
+				int time = this.td.getTmpTotal();
+				// this.td.printWay();
 				metro.printTravelDetail( this.td.getWay(), this.td.getWay().length, time );
 				Fenetre fen = new Fenetre();
 			}

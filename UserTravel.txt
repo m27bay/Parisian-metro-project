@@ -1,17 +1,6 @@
-<<<<<<< HEAD
-S Jasmin line 09
-D Pont de Sèvres line 9
-C Michel Ange Molitor line 10
-D Gare d'Austerlitz line 10
-C Sèvres Babylone line 12
-D Porte de la Chapelle line 12
-E Assemblée Nationale line 12
-T 0h15min10sec
-=======
-S Simplon line 04
-D Porte d'Orléans line 04
-C Marcadet Poissonniers line 12
-D Mairie d'Issy line 12
-E Porte de Versailles line 12
-T 0h21min6sec
->>>>>>> 843d4c0a2742b5d222725ce2d370466ba7d341a5
+S Villiers line 03
+D Galliéni line 03
+C Saint-Lazare line 13
+D Châtillon-Montrouge line 13
+E Montparnasse Bienvenue line 13
+T 0h13min26sec

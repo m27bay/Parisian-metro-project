@@ -94,6 +94,12 @@ public class Menu {
 						System.out.print( " > " );
 						String stop = scan.nextLine();
 						
+						if( start.equals( stop ) )
+						{
+							System.out.println( "You are already arrived." );
+							continue;
+						}
+						
 						//metro name start and stop
 						numStart = this.metro.convertNameToNumStation( start );
 						numStop = this.metro.convertNameToNumStation( stop );

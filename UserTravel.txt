@@ -1,4 +1,8 @@
-S Gare de Lyon line 14
-D Madeleine line 14
-E Châtelet line 14
-T 0h4min47sec
+S Les Gobelins line 07
+D Villejuif, Louis Aragon line 07
+C Place d'Italie line 06
+D Nation line 06
+C Nation line 02
+D Porte Dauphine line 02
+E Alexandre Dumas line 02
+T 0h17min57sec

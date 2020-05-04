@@ -6,10 +6,11 @@ graphics = Fenetre.java Panneau.java
 
 program = $(tools) $(dijkstra) $(graphics)
 
-dataFile = ../metroL.txt
-
 run : compile
-	java -cp  $(package1):. Main $(dataFile)
+	java -cp  $(package1):. Main
+
+run2 : compile
+	java -cp  $(package1):. Main random
 
 compile : clean
 	javac -cp $(package1) Main.java $(program)

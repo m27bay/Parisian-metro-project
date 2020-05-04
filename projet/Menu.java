@@ -92,18 +92,19 @@ public class Menu {
 						System.out.print( " > " );
 						String stop = scan.nextLine();
 						
-						if( start.equals( stop ) )
+						//metro name start and stop
+						numStart = this.metro.convertNameToNumStation( start );
+						numStop = this.metro.convertNameToNumStation( stop );
+						
+						//
+						if( start.equals( stop ) && numStart != -1 && numStop != -1 )
 						{
 							System.out.println( "You are already arrived." );
 							continue;
 						}
 						
-						//metro name start and stop
-						numStart = this.metro.convertNameToNumStation( start );
-						numStop = this.metro.convertNameToNumStation( stop );
-						
 						//if don't know station
-						if( numStart == -1 || numStop == -1 )
+						else if( numStart == -1 || numStop == -1 )
 							System.out.println( "Unknown start or destination. Please enter a right start or destination" );
 						
 					} while( numStart == -1 || numStop == -1 );
@@ -118,26 +119,39 @@ public class Menu {
 				System.out.println( "Travel calcul in process..." );
 				
 				//do the travel
+				int way[] = null;
 				int minTime = Integer.MAX_VALUE, time = 0;
 				for( int station : metro.whatStationEquals( numStart ) )
 				{
 					if( station != 0 )
 					{
-						this.td.calcul( station, numStop );
-						time = this.td.getTmpTotal();
-						
-						if( time < minTime )
+						for( int station2 : metro.whatStationEquals( numStop ) )
 						{
-							minTime = time;
+							if( station2 != 0 )
+							{
+								this.td.calcul( station, station2 );
+								time = this.td.getTmpTotal();
+								
+								if( time < minTime )
+								{
+									way = this.td.getWay();
+									minTime = time;
+								}
+							}
+							else
+								break;
 						}
 					}
 					else
 						break;
 				}
 				
-				this.td.printWay();
-				metro.printTravelDetail( this.td.getWay(), this.td.getWay().length, time );
-				// Fenetre fen = new Fenetre();
+				for( int station : way )
+					System.out.print( station+" " );
+				System.out.println();
+				
+				metro.printTravelDetail( way, way.length, minTime );
+				Fenetre fen = new Fenetre();
 			}
 			
 			

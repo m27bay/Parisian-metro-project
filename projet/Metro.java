@@ -154,27 +154,26 @@ public class Metro {
 	 */
 	private int strLineToInt( String line )
 	{
-		return switch( line )
-				{
-					case "01" -> 0;
-					case "02" -> 1;
-					case "03" -> 2;
-					case "3b" -> 3;
-					case "04" -> 4;
-					case "05" -> 5;
-					case "06" -> 6;
-					case "07" -> 7;
-					case "7b" -> 8;
-					case "08" -> 9;
-					case "09" -> 10;
-					case "10" -> 11;
-					case "11" -> 12;
-					case "12" -> 13;
-					case "13" -> 14;
-					case "14" -> 15;
-					default -> -1;
-				};
-		
+		switch( line )
+		{
+			case "01" : return 0;
+			case "02" : return 1;
+			case "03" : return 2;
+			case "3b" : return 3;
+			case "04" : return 4;
+			case "05" : return 5;
+			case "06" : return 6;
+			case "07" : return 7;
+			case "7b" : return 8;
+			case "08" : return 9;
+			case "09" : return 10;
+			case "10" : return 11;
+			case "11" : return 12;
+			case "12" : return 13;
+			case "13" : return 14;
+			case "14" : return 15;
+			default : return -1;
+		}
 	}
 	
 	/**
@@ -186,27 +185,26 @@ public class Metro {
 	 */
 	private String intToStrLine( int line )
 	{
-		return switch( line )
-				{
-					case 0 -> "01";
-					case 1 -> "02";
-					case 2 -> "03";
-					case 3 -> "3b";
-					case 4 -> "04";
-					case 5 -> "05";
-					case 6 -> "06";
-					case 7 -> "07";
-					case 8 -> "7b";
-					case 9 -> "08";
-					case 10 -> "09";
-					case 11 -> "10";
-					case 12 -> "11";
-					case 13 -> "12";
-					case 14 -> "13";
-					case 15 -> "14";
-					default -> "unknown";
-				};
-		
+		switch( line )
+		{
+			case 0 : return "01";
+			case 1 : return "02";
+			case 2 : return "03";
+			case 3 : return "3b";
+			case 4 : return "04";
+			case 5 : return "05";
+			case 6 : return "06";
+			case 7 : return "07";
+			case 8 : return "7b";
+			case 9 : return "08";
+			case 10 : return "09";
+			case 11 : return "10";
+			case 12 : return "11";
+			case 13 : return "12";
+			case 14 : return "13";
+			case 15 : return "14";
+			default : return "unknown";
+		}
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

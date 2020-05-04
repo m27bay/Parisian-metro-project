@@ -1,6 +1,4 @@
-S Mairie de Saint-Ouen line 13
-D Châtillon-Montrouge line 13
-C Miromesnil line 09
-D Mairie de Montreuil line 09
-E Saint-Ambroise line 09
-T 0h20min20sec
+S Gare de Lyon line 14
+D Madeleine line 14
+E Châtelet line 14
+T 0h4min47sec

@@ -19,6 +19,8 @@ public class Main {
 				menu.run();
 			case 1 :
 				menu.randomTravel();
+			default :
+				System.out.println("Unknown");
 		}
 	}
 }

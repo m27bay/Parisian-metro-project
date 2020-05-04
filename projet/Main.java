@@ -8,10 +8,17 @@ public class Main {
 	{
 		//
 		String dataFile = "../metroL.txt";
-	
+		
 		//
 		Menu menu = new Menu( dataFile );
 		menu.initMenu();
-		menu.run();
+		
+		switch( args.length )
+		{
+			case 0 :
+				menu.run();
+			case 1 :
+				menu.randomTravel();
+		}
 	}
 }

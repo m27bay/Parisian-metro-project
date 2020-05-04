@@ -119,7 +119,7 @@ public class Menu {
 				System.out.println( "Travel calcul in process..." );
 				
 				//do the travel
-				int way[] = null;
+				int[] way = null;
 				int minTime = Integer.MAX_VALUE, time = 0;
 				for( int station : metro.whatStationEquals( numStart ) )
 				{
@@ -151,7 +151,7 @@ public class Menu {
 				System.out.println();
 				
 				metro.printTravelDetail( way, way.length, minTime );
-				Fenetre fen = new Fenetre();
+				// Fenetre fen = new Fenetre();
 			}
 			
 			
@@ -179,6 +179,52 @@ public class Menu {
 				System.out.println();
 			}
 		}
+	}
+	
+	public void randomTravel() throws IOException
+	{
+		Random rand = new Random();
+		int max = 375;
+		int numStart = -1, numStop = -1;
 		
+		do
+		{
+			numStart = rand.nextInt( max + 1 );
+			numStop = rand.nextInt( max + 1 );
+			
+		} while( numStart == numStop );
+		
+		int[] way = null;
+		int minTime = Integer.MAX_VALUE, time = 0;
+		for( int station : metro.whatStationEquals( numStart ) )
+		{
+			if( station != 0 )
+			{
+				for( int station2 : metro.whatStationEquals( numStop ) )
+				{
+					if( station2 != 0 )
+					{
+						this.td.calcul( station, station2 );
+						time = this.td.getTmpTotal();
+						
+						if( time < minTime )
+						{
+							way = this.td.getWay();
+							minTime = time;
+						}
+					}
+					else
+						break;
+				}
+			}
+			else
+				break;
+		}
+		
+		for( int station : way )
+			System.out.print( station+" " );
+		System.out.println();
+		
+		metro.printTravelDetail( way, way.length, minTime );
 	}
 }

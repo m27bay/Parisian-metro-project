@@ -1,8 +1,4 @@
-S Gambetta line 03
-D Pont de Levallois, Bécon line 03
-C Réaumur Sébastopol line 04
-D Porte d'Orléans line 04
-C Montparnasse Bienvenue line 12
-D Mairie d'Issy line 12
-E Pasteur line 12
-T 0h22min14sec
+S Montparnasse Bienvenue line 06
+D Nation line 06
+E Quai de la Gare line 06
+T 0h7min36sec

@@ -7,13 +7,12 @@ public class Menu {
 	//
 	private final Metro metro;
 	private final TblStations ts;
-	private final TblDijkstra td;
-	// private final Fenetre win;
+	private TblDijkstra td;
 	
 	/**
 	 * @param dataFile file with metro information
 	 *
-	 * @throws IOException
+	 * @throws IOException for read the file
 	 */
 	public Menu( String dataFile ) throws IOException
 	{
@@ -21,11 +20,10 @@ public class Menu {
 		this.ts = new TblStations( dataFile );
 		Matrice mat = new Matrice( this.ts.getTbl() );
 		this.td = new TblDijkstra( mat );
-		// this.win = new Fenetre();
 	}
 	
 	/**
-	 * @throws IOException
+	 * @throws IOException for read the file
 	 */
 	public void initMenu() throws IOException
 	{
@@ -42,7 +40,7 @@ public class Menu {
 		String choice = "unknown";
 		Scanner scan = new Scanner( System.in );
 		System.out.println( "\nWrite 'Help' to show all commands" );
-
+		
 		
 		// look if program is finish
 		while( true )
@@ -53,11 +51,11 @@ public class Menu {
 			//command help
 			if( choice.equals( "Help" ) )
 			{
-				System.out.println("\n Here are all the commands you can do. Please respect the typography. For exit please type Exit.\n");
+				System.out.println( "\n Here are all the commands you can do. Please respect the typography. For exit please type Exit.\n" );
 				System.out.println( " 'Random Travel' : the program takes two stations at random and do the travel." );
 				System.out.println( " 'Classic Travel' : the user choose two stations and the program makes the travel." );
 				System.out.println( " 'Exit' : to Quit the program.(error 0)\n" );
-
+				
 			}
 			
 			//do a travel at random
@@ -118,13 +116,28 @@ public class Menu {
 				
 				//waiting for the travel
 				System.out.println( "Travel calcul in process..." );
-				this.td.calcul( numStart, numStop );
 				
 				//do the travel
-				int time = this.td.getTmpTotal();
+				int minTime = Integer.MAX_VALUE, time = 0;
+				for( int station : metro.whatStationEquals( numStart ) )
+				{
+					if( station != 0 )
+					{
+						this.td.calcul( station, numStop );
+						time = this.td.getTmpTotal();
+						
+						if( time < minTime )
+						{
+							minTime = time;
+						}
+					}
+					else
+						break;
+				}
+				
 				this.td.printWay();
 				metro.printTravelDetail( this.td.getWay(), this.td.getWay().length, time );
-				Fenetre fen = new Fenetre();
+				// Fenetre fen = new Fenetre();
 			}
 			
 			
@@ -133,13 +146,13 @@ public class Menu {
 			{
 				System.out.println( "Are you sure? If yes write 'Yes'" );
 				System.out.print( " > " );
-
+				
 				String sure = scan.nextLine();
 				
 				// sure of exit
 				if( sure.equals( "Yes" ) )
-				{	
-					System.out.println("Exit Success.");
+				{
+					System.out.println( "Exit Success." );
 					System.exit( 0 );
 				}
 				

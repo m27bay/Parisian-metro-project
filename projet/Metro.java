@@ -65,7 +65,7 @@ public class Metro {
 	 *
 	 * @param nameStation the name station
 	 *
-	 * @return
+	 * @return the number of the station
 	 */
 	public int convertNameToNumStation( String nameStation )
 	{
@@ -76,7 +76,10 @@ public class Metro {
 			for( Station s : m.getListStation() )
 			{
 				if( s.getName().equals( nameStation ) )
+				{
 					found = s.getNumber();
+					break;
+				}
 			}
 		}
 		
@@ -88,7 +91,7 @@ public class Metro {
 	 *
 	 * @param numStation number station need to found
 	 *
-	 * @return Line
+	 * @return metro line
 	 */
 	private String whatMetroLine( int numStation )
 	{
@@ -99,11 +102,45 @@ public class Metro {
 			for( Station s : m.getListStation() )
 			{
 				if( s.getNumber() == numStation )
+				{
 					found = m.getName();
+					break;
+				}
 			}
 		}
 		
 		return found;
+	}
+	
+	/**
+	 * Found all equals stations
+	 *
+	 * @param numStation the name of the station
+	 *
+	 * @return numbers of equals stations in a table
+	 */
+	public int[] whatStationEquals( int numStation )
+	{
+		//
+		String nameStation = whatStation( numStation ).getName();
+		int pos2 = 0;
+		int[] tmp = new int[10];
+		
+		//
+		for( MetroLine m : metro )
+		{
+			for( Station s : m.getListStation() )
+			{
+				if( s.getName().equals( nameStation ) )
+				{
+					tmp[pos2]= s.getNumber();
+					pos2++;
+				}
+			}
+		}
+		
+		//
+		return tmp;
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -117,43 +154,27 @@ public class Metro {
 	 */
 	private int strLineToInt( String line )
 	{
-		switch( line )
-		{
-			case "01":
-				return 0;
-			case "02":
-				return 1;
-			case "03":
-				return 2;
-			case "3b":
-				return 3;
-			case "04":
-				return 4;
-			case "05":
-				return 5;
-			case "06":
-				return 6;
-			case "07":
-				return 7;
-			case "7b":
-				return 8;
-			case "08":
-				return 9;
-			case "09":
-				return 10;
-			case "10":
-				return 11;
-			case "11":
-				return 12;
-			case "12":
-				return 13;
-			case "13":
-				return 14;
-			case "14":
-				return 15;
-		}
+		return switch( line )
+				{
+					case "01" -> 0;
+					case "02" -> 1;
+					case "03" -> 2;
+					case "3b" -> 3;
+					case "04" -> 4;
+					case "05" -> 5;
+					case "06" -> 6;
+					case "07" -> 7;
+					case "7b" -> 8;
+					case "08" -> 9;
+					case "09" -> 10;
+					case "10" -> 11;
+					case "11" -> 12;
+					case "12" -> 13;
+					case "13" -> 14;
+					case "14" -> 15;
+					default -> -1;
+				};
 		
-		return -1;
 	}
 	
 	/**
@@ -165,43 +186,27 @@ public class Metro {
 	 */
 	private String intToStrLine( int line )
 	{
-		switch( line )
-		{
-			case 0:
-				return "01";
-			case 1:
-				return "02";
-			case 2:
-				return "03";
-			case 3:
-				return "3b";
-			case 4:
-				return "04";
-			case 5:
-				return "05";
-			case 6:
-				return "06";
-			case 7:
-				return "07";
-			case 8:
-				return "7b";
-			case 9:
-				return "08";
-			case 10:
-				return "09";
-			case 11:
-				return "10";
-			case 12:
-				return "11";
-			case 13:
-				return "12";
-			case 14:
-				return "13";
-			case 15:
-				return "14";
-		}
+		return switch( line )
+				{
+					case 0 -> "01";
+					case 1 -> "02";
+					case 2 -> "03";
+					case 3 -> "3b";
+					case 4 -> "04";
+					case 5 -> "05";
+					case 6 -> "06";
+					case 7 -> "07";
+					case 8 -> "7b";
+					case 9 -> "08";
+					case 10 -> "09";
+					case 11 -> "10";
+					case 12 -> "11";
+					case 13 -> "12";
+					case 14 -> "13";
+					case 15 -> "14";
+					default -> "unknown";
+				};
 		
-		return "unknown";
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -868,7 +873,7 @@ public class Metro {
 		if( whatStation( way[ wayLength - 2 ] ).getName().equals( whatStation( way[ wayLength - 1 ] ).getName() ) )
 		{
 			i--;
-			time2 = whatTime( way[ wayLength - 2 ], way[ wayLength - 1  ] );
+			time2 = whatTime( way[ wayLength - 2 ], way[ wayLength - 1 ] );
 		}
 		
 		// Print end of travel

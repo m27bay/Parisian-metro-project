@@ -1,92 +1,86 @@
-S Parmentier line 03
-D Pont de Levallois, Bécon line 03
-C Havre Caumartin line 09
-D Pont de Sèvres line 09
-E Franklin D. Roosevelt line 09
-T 0h13min25sec
-
-
-S Croix de Chavaux line 09
-D Pont de Sèvres line 09
-C Nation line 02
-D Porte Dauphine line 02
-E Belleville line 02
-T 0h13min4sec
-
-
-S Saint-Fargeau line 3b
-D Gambetta line 3b
-C Gambetta line 03
-D Pont de Levallois, Bécon line 03
-C Père Lachaise line 02
-D Nation line 02
-C Nation line 06
-D Charles de Gaulle, Étoile line 06
-E Bercy line 06
-T 0h19min25sec
-
-
-S Les Sablons line 01
-D Château de Vincennes line 01
-C Concorde line 08
-D Place Balard line 08
-E Boucicaut line 08
-T 0h16min18sec
-
-
-S Mouton-Duvernet line 04
-D Porte de Clignancourt line 04
-E Porte de Clignancourt line 04
-T 0h17min1sec
-
-
-S Place de Clichy line 13
-D Châtillon-Montrouge line 13
-C Miromesnil line 09
+S Billancourt line 09
 D Mairie de Montreuil line 09
-E Richelieu Drouot line 09
-T 0h9min39sec
+C Havre Caumartin line 03
+D Galliéni line 03
+E Gambetta line 03
+T 0h25min58sec
 
 
-S Kléber line 06
-D Charles de Gaulle, Étoile line 06
-C Charles de Gaulle, Étoile line 01
-D Château de Vincennes line 01
-E Nation line 01
-T 0h18min27sec
-
-
-S Ourcq line 05
-D Place d'Italie line 05
-C Gare du Nord line 04
+S Père Lachaise line 03
+D Pont de Levallois, Bécon line 03
+C Réaumur Sébastopol line 04
 D Porte d'Orléans line 04
-C Strasbourg Saint-Denis line 08
-D Place Balard line 08
-E La Tour-Maubourg line 08
-T 0h21min18sec
+E Denfert Rochereau line 04
+T 0h16min56sec
 
 
-S Porte des Lilas line 11
-D Châtelet line 11
-C République line 09
+S Lourmel line 08
+D Créteil-Préfecture line 08
+C République line 11
+D Mairie des Lilas line 11
+E Goncourt line 11
+T 0h19min55sec
+
+
+S Ternes line 02
+D Nation line 02
+C Stalingrad line 07
+D La Courneuve, 8 Mai 1945 line 07
+E Corentin-Cariou line 07
+T 0h16min29sec
+
+
+S Nation line 09
 D Pont de Sèvres line 09
-E Miromesnil line 09
-T 0h17min38sec
+E République line 09
+T 0h4min24sec
 
 
-S Basilique de Saint-Denis line 13
-D Châtillon-Montrouge line 13
-C Miromesnil line 09
-D Pont de Sèvres line 09
-E Alma Marceau line 09
-T 0h15min56sec
-
-
-S Dupleix line 06
-D Nation line 06
-C La Motte Picquet, Grenelle line 10
+S Rue du Bac line 12
+D Mairie d'Issy line 12
+C Sèvres Babylone line 10
 D Gare d'Austerlitz line 10
-E Gare d'Austerlitz line 10
-T 0h13min25sec
+C Jussieu line 07
+D Villejuif, Louis Aragon line 07
+E Censier Daubenton line 07
+T 0h12min52sec
+
+
+S République line 05
+D Place d'Italie line 05
+C Place d'Italie line 07
+D Villejuif, Louis Aragon line 07
+E Villejuif, Louis Aragon line 07
+T 0h15min33sec
+
+
+S Arts et Métiers line 03
+D Galliéni line 03
+C République line 08
+D Créteil-Préfecture line 08
+E Porte de Charenton line 08
+T 0h14min19sec
+
+
+S Charles de Gaulle, Étoile line 01
+D Château de Vincennes line 01
+C Franklin D. Roosevelt line 09
+D Mairie de Montreuil line 09
+E Mairie de Montreuil line 09
+T 0h22min8sec
+
+
+S Porte de Clignancourt line 04
+D Porte d'Orléans line 04
+C Gare du Nord line 05
+D Place d'Italie line 05
+E Richard Lenoir line 05
+T 0h12min6sec
+
+
+S Place Balard line 08
+D Créteil-Préfecture line 08
+E Faidherbe-Chaligny line 08
+T 0h19min2sec
 
 

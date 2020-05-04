@@ -1,6 +1,4 @@
-S Dupleix line 06
-D Nation line 06
-C La Motte Picquet, Grenelle line 10
-D Gare d'Austerlitz line 10
-E Gare d'Austerlitz line 10
-T 0h13min25sec
+S Place Balard line 08
+D Créteil-Préfecture line 08
+E Faidherbe-Chaligny line 08
+T 0h19min2sec

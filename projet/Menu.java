@@ -3,12 +3,12 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Menu {
-	
+
 	//
 	private final Metro metro;
 	private final TblStations ts;
 	private TblDijkstra td;
-	
+
 	/**
 	 * @param dataFile file with metro information
 	 *
@@ -21,7 +21,7 @@ public class Menu {
 		Matrice mat = new Matrice( this.ts.getTbl() );
 		this.td = new TblDijkstra( mat );
 	}
-	
+
 	/**
 	 * @throws IOException for read the file
 	 */
@@ -30,7 +30,7 @@ public class Menu {
 		this.metro.initLine();
 		this.ts.fillTravelTime();
 	}
-	
+
 	/**
 	 *
 	 */
@@ -40,14 +40,14 @@ public class Menu {
 		String choice = "unknown";
 		Scanner scan = new Scanner( System.in );
 		System.out.println( "\nWrite 'Help' to show all commands" );
-		
-		
+
+
 		// look if program is finish
 		while( true )
 		{
 			System.out.print( " > " );
 			choice = scan.nextLine();
-			
+
 			//command help
 			if( choice.equals( "Help" ) )
 			{
@@ -55,14 +55,14 @@ public class Menu {
 				System.out.println( " 'Random Travel' : the program takes two stations at random and do the travel." );
 				System.out.println( " 'Classic Travel' : the user choose two stations and the program makes the travel." );
 				System.out.println( " 'Exit' : to Quit the program.(error 0)\n" );
-				
+
 			}
-			
+
 			//do a travel at random
 			else if( choice.contains( "Travel" ) )
 			{
 				int numStart = -1, numStop = -1;
-				
+
 				//
 				if( choice.equals( "Random Travel" ) )
 				{
@@ -72,10 +72,10 @@ public class Menu {
 					{
 						numStart = rand.nextInt( max + 1 );
 						numStop = rand.nextInt( max + 1 );
-						
+
 					} while( numStart == numStop );
 				}
-				
+
 				// user choose a travel
 				else if( choice.equals( "Classic Travel" ) )
 				{
@@ -86,27 +86,27 @@ public class Menu {
 						System.out.println( "Where are you ? Write the name of the Station " );
 						System.out.print( " > " );
 						String start = scan.nextLine();
-						
+
 						// where do you want to go?
 						System.out.println( "Where do you want to go ? Write the name of the Station" );
 						System.out.print( " > " );
 						String stop = scan.nextLine();
-						
+
 						//metro name start and stop
 						numStart = this.metro.convertNameToNumStation( start );
 						numStop = this.metro.convertNameToNumStation( stop );
-						
+
 						//
 						if( start.equals( stop ) && numStart != -1 && numStop != -1 )
 						{
 							System.out.println( "You are already arrived." );
 							continue;
 						}
-						
+
 						//if don't know station
 						else if( numStart == -1 || numStop == -1 )
 							System.out.println( "Unknown start or destination. Please enter a right start or destination" );
-						
+
 					} while( numStart == -1 || numStop == -1 );
 				}
 				else
@@ -114,10 +114,10 @@ public class Menu {
 					System.out.println( "Command unknown." );
 					continue;
 				}
-				
+
 				//waiting for the travel
 				System.out.println( "Travel calcul in process..." );
-				
+
 				//do the travel
 				int[] way = null;
 				int minTime = Integer.MAX_VALUE, time = 0;
@@ -131,7 +131,7 @@ public class Menu {
 							{
 								this.td.calcul( station, station2 );
 								time = this.td.getTmpTotal();
-								
+
 								if( time < minTime )
 								{
 									way = this.td.getWay();
@@ -145,33 +145,40 @@ public class Menu {
 					else
 						break;
 				}
-				
+
+				if( way == null )
+				{
+					this.td.calcul( numStart, numStop );
+					time = this.td.getTmpTotal();
+					way = this.td.getWay();
+				}
+
 				for( int station : way )
 					System.out.print( station+" " );
 				System.out.println();
-				
+
 				metro.printTravelDetail( way, way.length, minTime );
 				// Fenetre fen = new Fenetre();
 			}
-			
-			
+
+
 			// if exit
 			else if( choice.equals( "Exit" ) )
 			{
 				System.out.println( "Are you sure? If yes write 'Yes'" );
 				System.out.print( " > " );
-				
+
 				String sure = scan.nextLine();
-				
+
 				// sure of exit
 				if( sure.equals( "Yes" ) )
 				{
 					System.out.println( "Exit Success." );
 					System.exit( 0 );
 				}
-				
+
 			}
-			
+
 			// if command unknown
 			else
 			{
@@ -180,20 +187,20 @@ public class Menu {
 			}
 		}
 	}
-	
+
 	public void randomTravel() throws IOException
 	{
 		Random rand = new Random();
 		int max = 375;
 		int numStart = -1, numStop = -1;
-		
+
 		do
 		{
 			numStart = rand.nextInt( max + 1 );
 			numStop = rand.nextInt( max + 1 );
-			
+
 		} while( numStart == numStop );
-		
+
 		int[] way = null;
 		int minTime = Integer.MAX_VALUE, time = 0;
 		for( int station : metro.whatStationEquals( numStart ) )
@@ -206,7 +213,7 @@ public class Menu {
 					{
 						this.td.calcul( station, station2 );
 						time = this.td.getTmpTotal();
-						
+
 						if( time < minTime )
 						{
 							way = this.td.getWay();
@@ -220,11 +227,11 @@ public class Menu {
 			else
 				break;
 		}
-		
+
 		for( int station : way )
 			System.out.print( station+" " );
 		System.out.println();
-		
+
 		metro.printTravelDetail( way, way.length, minTime );
 	}
 }

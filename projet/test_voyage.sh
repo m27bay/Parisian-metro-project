@@ -2,7 +2,6 @@
 
 rm -f ../save.txt
 touch ../save.txt
-"save" > ../save.txt
 
 for i in `seq 0 10`
 do

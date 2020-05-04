@@ -19,13 +19,13 @@ import java.util.LinkedList;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 public class Metro {
-	
+
 	// Attributes
 	private final MetroLine[] metro;
 	private final String dataFile;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 	/**
 	 * Builder
 	 */
@@ -36,7 +36,7 @@ public class Metro {
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 	/**
 	 * Found in MetroLine table the station corresponding to 'numStation'
 	 *
@@ -47,7 +47,7 @@ public class Metro {
 	private Station whatStation( int numStation )
 	{
 		Station found = new Station();
-		
+
 		for( MetroLine m : metro )
 		{
 			for( Station s : m.getListStation() )
@@ -56,10 +56,10 @@ public class Metro {
 					found = s.copy();
 			}
 		}
-		
+
 		return found;
 	}
-	
+
 	/**
 	 * convert name station to his number
 	 *
@@ -70,7 +70,7 @@ public class Metro {
 	public int convertNameToNumStation( String nameStation )
 	{
 		int found = -1;
-		
+
 		for( MetroLine m : metro )
 		{
 			for( Station s : m.getListStation() )
@@ -82,10 +82,10 @@ public class Metro {
 				}
 			}
 		}
-		
+
 		return found;
 	}
-	
+
 	/**
 	 * Found in the MetroLine table the line corresponding to 'numStation'
 	 *
@@ -96,7 +96,7 @@ public class Metro {
 	private String whatMetroLine( int numStation )
 	{
 		String found = "Unknown";
-		
+
 		for( MetroLine m : metro )
 		{
 			for( Station s : m.getListStation() )
@@ -108,10 +108,10 @@ public class Metro {
 				}
 			}
 		}
-		
+
 		return found;
 	}
-	
+
 	/**
 	 * Found all equals stations
 	 *
@@ -125,7 +125,7 @@ public class Metro {
 		String nameStation = whatStation( numStation ).getName();
 		int pos2 = 0;
 		int[] tmp = new int[10];
-		
+
 		//
 		for( MetroLine m : metro )
 		{
@@ -138,13 +138,13 @@ public class Metro {
 				}
 			}
 		}
-		
+
 		//
 		return tmp;
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 	/**
 	 * Convert the line name to this position in the MetroLine table
 	 *
@@ -175,7 +175,7 @@ public class Metro {
 			default : return -1;
 		}
 	}
-	
+
 	/**
 	 * Convert the position in the MetroLine table to his line name
 	 *
@@ -208,7 +208,7 @@ public class Metro {
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 	/**
 	 * Call all init functions
 	 *
@@ -218,10 +218,10 @@ public class Metro {
 	{
 		initLineStation();
 		initLineTravel();
-		
+
 		sortTravel();
 	}
-	
+
 	/**
 	 * Read the number station and station number in the dataFile
 	 *
@@ -232,61 +232,61 @@ public class Metro {
 		// Variables
 		BufferedReader read = null;
 		String line;
-		
+
 		// Init MetroLine table
 		for( int i = 0 ; i < 16 ; i++ )
 			this.metro[ i ] = new MetroLine();
-		
+
 		// Init read
 		try
 		{
 			read = new BufferedReader( new FileReader( this.dataFile ) );
 		}
-		
+
 		// Exception
 		catch( FileNotFoundException exception )
 		{
 			System.out.println( "Error in class 'Metro', method 'initLineStation':" +
 					" file not found" );
 		}
-		
+
 		// Read
 		while( ( line = read.readLine() ) != null )
 		{
 			// Skip header
 			if( line.charAt( 0 ) == '#' ) continue;
-				
+
 				// Skip travels
 			else if( line.charAt( 0 ) == 'E' ) continue;
-				
+
 				// read stations
 			else if( line.charAt( 0 ) == 'V' || line.charAt( 0 ) == 'T' )
 			{
 				// Check the metro line
 				String strLine = line.substring( line.length() - 2, line.length() );
-				
+
 				// Init station number
 				String strNumber = line.substring( 2, 6 );
 				int number = Integer.parseInt( strNumber );
-				
+
 				// Init name station
 				String name = line.substring( 7, line.length() - 3 );
-				
+
 				// Init terminus
 				Station _new;
 				if( line.charAt( 0 ) == 'T' )
 					_new = new Station( name, number, true );
 				else
 					_new = new Station( name, number, false );
-				
+
 				// Fill
 				this.metro[ strLineToInt( strLine ) ].addStation( _new );
 			}
 		}
-		
+
 		// Close and exit
 		read.close();
-		
+
 		// Init MetroLine name
 		this.metro[ 0 ].setName( "01" );
 		this.metro[ 1 ].setName( "02" );
@@ -305,7 +305,7 @@ public class Metro {
 		this.metro[ 14 ].setName( "13" );
 		this.metro[ 15 ].setName( "14" );
 	}
-	
+
 	/**
 	 * Init Travel
 	 *
@@ -317,20 +317,20 @@ public class Metro {
 		BufferedReader read = null;
 		String line;
 		String parts[] = new String[ 4 ];
-		
+
 		// Init read
 		try
 		{
 			read = new BufferedReader( new FileReader( this.dataFile ) );
 		}
-		
+
 		// Exception
 		catch( FileNotFoundException exception )
 		{
 			System.out.println( "Error in class 'Metro', method 'initLineTravel':" +
 					" file not found" );
 		}
-		
+
 		// Read
 		while( ( line = read.readLine() ) != null )
 		{
@@ -339,41 +339,41 @@ public class Metro {
 					|| line.charAt( 0 ) == 'V'
 					|| line.charAt( 0 ) == 'T' )
 				continue;
-				
+
 				//
 			else
 			{
 				// Spilt line with the space
 				parts = line.split( " ", 4 );
-				
+
 				// Init Travel
 				Travel t = new Travel();
-				
+
 				int stationStart = Integer.parseInt( parts[ 1 ] );
 				int stationStop = Integer.parseInt( parts[ 2 ] );
 				int travelTime = Integer.parseInt( parts[ 3 ] );
-				
+
 				// Set station start
 				t.setStationStart( whatStation( stationStart ) );
 				t.setStationStop( whatStation( stationStop ) );
 				t.setTime( travelTime );
-				
+
 				// Set MetroLine name
 				String lineStart = whatMetroLine( stationStart );
 				String lineStop = whatMetroLine( stationStop );
-				
+
 				// Add travel except liaison
 				if( lineStart.equals( lineStop ) )
 					this.metro[ strLineToInt( lineStart ) ].addTravel( t );
 			}
 		}
-		
+
 		// Close and exit
 		read.close();
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 	/**
 	 * Sort travel
 	 */
@@ -382,7 +382,7 @@ public class Metro {
 		for( int i = 0 ; i < 16 ; i++ )
 			sortIndexTravel( i );
 	}
-	
+
 	/**
 	 * Sort list travel if the line is a right line
 	 *
@@ -397,10 +397,10 @@ public class Metro {
 			LinkedList < Travel > _new;
 			ArrayList < Travel > list;
 			int count = 0;
-			
+
 			_new = new LinkedList < Travel >();
 			list = this.metro[ index ].getListTravel();
-			
+
 			// While we haven't see every elements
 			while( count < list.size() )
 			{
@@ -412,7 +412,7 @@ public class Metro {
 						_new.add( t );
 						count++;
 					}
-					
+
 					// If linkedList have one element
 					else if( _new.size() == 1 )
 					{
@@ -420,7 +420,7 @@ public class Metro {
 						if( t.equals( _new.peek() )
 								|| t.switchStation().equals( _new.peek() ) )
 							continue;
-						
+
 						// We have : travel = (station1, go to, station2)
 						//  	  _new.peek = (station1, go to, station3)
 						if( t.getNumStationStart() == _new.peek().getNumStationStart() )
@@ -431,7 +431,7 @@ public class Metro {
 							_new.addFirst( t.switchStation() );
 							count++;
 						}
-						
+
 						// We have : travel = (station2, go to, station1)
 						// 		  _new.peek = (station1, go to, station3)
 						else if( t.getNumStationStop() == _new.peek().getNumStationStart() )
@@ -442,7 +442,7 @@ public class Metro {
 							_new.addFirst( t );
 							count++;
 						}
-						
+
 						// We have : travel = (station2, go to, station1)
 						// 		  _new.peek = (station3, go to, station1)
 						else if( t.getNumStationStop() == _new.peek().getNumStationStop() )
@@ -453,7 +453,7 @@ public class Metro {
 							_new.add( t.switchStation() );
 							count++;
 						}
-						
+
 						// We have : travel = (station1, go to, station2)
 						// 		  _new.peek = (station3, go to, station1)
 						else if( t.getNumStationStart() == _new.peek().getNumStationStop() )
@@ -465,7 +465,7 @@ public class Metro {
 							count++;
 						}
 					}
-					
+
 					// Same method but with a bigger linkedList
 					else
 					{
@@ -474,28 +474,28 @@ public class Metro {
 								|| t.switchStation().equals( _new.peek() )
 								|| t.switchStation().equals( _new.peekLast() ) )
 							continue;
-						
+
 						//
 						if( t.getNumStationStart() == _new.peek().getNumStationStart() )
 						{
 							_new.addFirst( t.switchStation() );
 							count++;
 						}
-						
+
 						//
 						else if( t.getNumStationStop() == _new.peek().getNumStationStart() )
 						{
 							_new.addFirst( t );
 							count++;
 						}
-						
+
 						//
 						else if( t.getNumStationStop() == _new.peekLast().getNumStationStop() )
 						{
 							_new.add( t.switchStation() );
 							count++;
 						}
-						
+
 						//
 						else if( t.getNumStationStart() == _new.peekLast().getNumStationStop() )
 						{
@@ -505,10 +505,10 @@ public class Metro {
 					}
 				}
 			}
-			
+
 			// Change old list with new new sort list
 			this.metro[ index ].setListTravel( new ArrayList < Travel >( _new ) );
-			
+
 			// CLear all list
 			_new.clear();
 			list.clear();
@@ -516,7 +516,7 @@ public class Metro {
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 	/**
 	 * Found direction
 	 *
@@ -532,31 +532,31 @@ public class Metro {
 		//
 		int numStationStart = way[ pos ];
 		int numStationStop = way[ pos + 1 ];
-		
+
 		//
 		String direction;
-		
+
 		// Metro line don't right
 		int line07 = strLineToInt( "07" );
 		int line7b = strLineToInt( "7b" );
 		int line10 = strLineToInt( "10" );
 		int line13 = strLineToInt( "13" );
-		
+
 		// Fork line
 		if( numLine == line07
 				|| numLine == line10
 				|| numLine == line13
 				|| numLine == line7b )
 			direction = knowDirectionFork( way, pos, wayLength );
-			
+
 			// Right line
 		else
 			direction = knowDirectionRight( numStationStart, numStationStop, numLine );
-		
+
 		// Return
 		return direction;
 	}
-	
+
 	/**
 	 * Print direction for right metro line
 	 *
@@ -569,7 +569,7 @@ public class Metro {
 		// get the travel list
 		ArrayList < Travel > tmp = this.metro[ numLine ].getListTravel();
 		int direction = 0;
-		
+
 		// Course in the travel list
 		for( Travel t : tmp )
 		{
@@ -580,14 +580,14 @@ public class Metro {
 				break;
 			}
 		}
-		
+
 		// Print direction
 		if( direction == 0 )
 			return tmp.get( direction ).getStationStart().getName() + " line " + intToStrLine( numLine );
 		else
 			return tmp.get( direction ).getStationStop().getName() + " line " + intToStrLine( numLine );
 	}
-	
+
 	/**
 	 * Return a String table with all travel by metro line name
 	 *
@@ -605,20 +605,20 @@ public class Metro {
 		String[] tbl = new String[ 50 ];
 		String[] parts = new String[ 3 ];
 		int count = 0;
-		
+
 		// Init read
 		try
 		{
 			read = new BufferedReader( new FileReader( this.dataFile ) );
 		}
-		
+
 		// Exception
 		catch( FileNotFoundException exception )
 		{
 			System.out.println( "Error in class 'Metro', method 'fillTbl':" +
 					" file not found" );
 		}
-		
+
 		// Read
 		while( ( line = read.readLine() ) != null )
 		{
@@ -627,51 +627,51 @@ public class Metro {
 					|| line.charAt( 0 ) == 'V'
 					|| line.charAt( 0 ) == 'T' )
 				continue;
-				
+
 				//
 			else
 			{
 				// Spilt line with the space
 				parts = line.split( " ", 4 );
-				
+
 				// Init Travel
 				Travel t = new Travel();
-				
+
 				int stationStart = Integer.parseInt( parts[ 1 ] );
 				int stationStop = Integer.parseInt( parts[ 2 ] );
-				
+
 				// Skip travel with two stations in different metro lined
 				if( !whatMetroLine( stationStart ).equals( metroLine )
 						|| !whatMetroLine( stationStop ).equals( metroLine ) )
 					continue;
-				
+
 				// Fill the table
 				tbl[ count ] = line;
-				
+
 				// Count number of travel
 				count++;
 			}
 		}
-		
+
 		// Close and exit
 		read.close();
-		
+
 		// Create new table
 		String[] tbl2 = new String[ count ];
-		
+
 		//
 		int count2 = 0;
-		
+
 		// Add travel in the new table except the empty element
 		for( int i = 0 ; i < count ; i++ )
 		{
 			tbl2[ count2 ] = tbl[ i ];
 			count2++;
 		}
-		
+
 		return tbl2;
 	}
-	
+
 	/**
 	 * Algo know direction with a fork
 	 *
@@ -685,23 +685,23 @@ public class Metro {
 	{
 		// Skip station in dijkstra table if two stations is in the same metro line
 		while( whatMetroLine( way[ pos ] ).equals( whatMetroLine( way[ pos + 1 ] ) ) && pos + 1 < wayLength - 1 ) pos++;
-		
+
 		// if while break because two station isn't in the same metro line
 		if( !whatMetroLine( way[ pos ] ).equals( whatMetroLine( way[ pos + 1 ] ) ) )
 			pos--;
-		
+
 		// Get all travel
 		String[] tbl = fillTbl( whatMetroLine( way[ pos ] ) );
-		
+
 		// Don't know direction
 		int direction = -1;
-		
+
 		//
 		int stop, lastSeen = 0;
 		lastSeen = way[ pos ];
 		stop = way[ pos + 1 ];
 		String parts[] = new String[ 4 ];
-		
+
 		//
 		while( direction == -1 )
 		{
@@ -709,19 +709,19 @@ public class Metro {
 			for( int i = 0 ; i < tbl.length ; i++ )
 			{
 				String s = tbl[ i ];
-				
+
 				parts = s.split( " ", 4 );
-				
+
 				int stationStart = Integer.parseInt( parts[ 1 ] );
 				int stationStop = Integer.parseInt( parts[ 2 ] );
-				
+
 				// If we have found a station which is a terminus
 				if( whatStation( lastSeen ).getIsTerminus() )
 					direction = lastSeen;
 				else if( whatStation( stop ).getIsTerminus() )
 					direction = stop;
-					
-					// Else check if we have a travel for course in the metro line
+
+				// Else check if we have a travel for course in the metro line
 				else
 				{
 					if( stop == stationStart && lastSeen != stationStop )
@@ -737,33 +737,33 @@ public class Metro {
 				}
 			}
 		}
-		
+
 		// print direction
 		return whatStation( direction ).getName() + " line " + whatMetroLine( direction );
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 	private int whatTime( int numStart, int numStop ) throws IOException
 	{
 		// Variables
 		BufferedReader read = null;
 		String line;
 		String[] parts = new String[ 4 ];
-		
+
 		// Init read
 		try
 		{
 			read = new BufferedReader( new FileReader( this.dataFile ) );
 		}
-		
+
 		// Exception
 		catch( FileNotFoundException exception )
 		{
 			System.out.println( "Error in class 'Metro', method 'whatTime':" +
 					" file not found" );
 		}
-		
+
 		// Read
 		while( ( line = read.readLine() ) != null )
 		{
@@ -772,16 +772,16 @@ public class Metro {
 					|| line.charAt( 0 ) == 'V'
 					|| line.charAt( 0 ) == 'T' )
 				continue;
-				
+
 				//
 			else
 			{
 				// Spilt line with the space
 				parts = line.split( " ", 4 );
-				
+
 				int stationStart = Integer.parseInt( parts[ 1 ] );
 				int stationStop = Integer.parseInt( parts[ 2 ] );
-				
+
 				if( stationStart == numStart && stationStop == numStop
 						|| stationStart == numStop && stationStop == numStart )
 				{
@@ -789,11 +789,11 @@ public class Metro {
 				}
 			}
 		}
-		
+
 		return 0;
 	}
-	
-	
+
+
 	/**
 	 * Print travel
 	 *
@@ -807,7 +807,7 @@ public class Metro {
 	{
 		// Position in the dijkstra table
 		int i = 0;
-		
+
 		// Data for write to user
 		String[] data = new String[ 20 ];
 		int posData = 0, time1 = 0, time2 = 0;
@@ -817,7 +817,7 @@ public class Metro {
 			i = 1;
 			time1 = whatTime( way[ 0 ], way[ 1 ] );
 		}
-		
+
 		// Print direction and the start station
 		String lineStart = whatMetroLine( way[ i ] );
 		System.out.println( "You start at\n" + whatStation( way[ i ] ).toString()
@@ -829,71 +829,71 @@ public class Metro {
 		System.out.println( "Direction : " + direction );
 		posData++;
 		i++;
-		
-		// 
+
+		//
 		lineStart = whatMetroLine( way[ i ] );
 		String lineNow = "Unknown";
 		Station stationNow;
-		
+
 		// print global travel
 		for( ; i < wayLength - 1 ; i++ )
 		{
 			//
 			lineNow = whatMetroLine( way[ i ] );
 			stationNow = whatStation( way[ i ] );
-			
+
 			//
 			if( !lineStart.equals( lineNow ) )
 			{
 				System.out.println( "\nAt the station\n" + stationNow.toString() +
 						".\nYou switch to the line: " + lineNow );
-				
+
 				//
 				data[ posData ] = "C " + stationNow.getName() + " line " + lineNow + "\n";
 				posData++;
-				
+
 				//
 				direction = knowDirection( way, i, strLineToInt( lineNow ), wayLength );
 				System.out.println( "Direction : " + direction );
 				data[ posData ] = "D " + direction + "\n";
 				posData++;
-				
+
 				//
 				lineStart = lineNow;
 			}
-			
+
 			// print all stations
 			// System.out.println(stationNow.toString()+" line "+lineNow );
 		}
 		System.out.println();
-		
+
 		// If selection a station for start travel and isn't in the good line
 		if( whatStation( way[ wayLength - 2 ] ).getName().equals( whatStation( way[ wayLength - 1 ] ).getName() ) )
 		{
 			i--;
 			time2 = whatTime( way[ wayLength - 2 ], way[ wayLength - 1 ] );
 		}
-		
+
 		// Print end of travel
 		String lineStop = whatMetroLine( way[ i ] );
 		System.out.println( "You stop at\n" + whatStation( way[ i ] ).toString()
 				+ " line " + lineStop + "\n" );
-		
+
 		time -= time1;
 		time -= time2;
 		String timeFormat = travelTime( time );
-		
+
 		System.out.println( "Time: " + timeFormat );
-		
+
 		//
 		data[ posData ] = "E " + whatStation( way[ i ] ).getName() + " line " + lineStop + "\n";
 		posData++;
 		data[ posData ] = "T " + timeFormat + "\n";
 		posData++;
-		
+
 		writeDataFile( "../UserTravel.txt", data );
 	}
-	
+
 	/**
 	 * Create a String with the time
 	 *
@@ -908,7 +908,7 @@ public class Metro {
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 	/**
 	 * Print all Stations
 	 */
@@ -922,7 +922,7 @@ public class Metro {
 			m.printStation();
 		}
 	}
-	
+
 	/**
 	 * Print Station at index
 	 */
@@ -935,7 +935,7 @@ public class Metro {
 		m.printStation();
 		System.out.println();
 	}
-	
+
 	/**
 	 * Print all Travel
 	 */
@@ -949,7 +949,7 @@ public class Metro {
 			m.printTravel();
 		}
 	}
-	
+
 	/**
 	 * Print travel at index
 	 */
@@ -963,7 +963,7 @@ public class Metro {
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 	/**
 	 * Write in data file
 	 *
@@ -974,15 +974,15 @@ public class Metro {
 	public void writeDataFile( String UserTravelFile, String[] data ) throws IOException
 	{
 		FileWriter fileWriter = new FileWriter( UserTravelFile );
-		
+
 		PrintWriter printWriter = new PrintWriter( fileWriter );
-		
+
 		for( String s : data )
 		{
 			if( s != null )
 				printWriter.print( s );
 		}
-		
+
 		printWriter.close();
 	}
 }

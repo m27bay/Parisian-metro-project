@@ -1,0 +1,86 @@
+S Basilique de Saint-Denis line 13
+D Châtillon-Montrouge line 13
+C Place de Clichy line 02
+D Porte Dauphine line 02
+E Charles de Gaulle, Étoile line 02
+T 0h15min14sec
+
+
+S Picpus line 06
+D Nation line 06
+C Nation line 02
+D Porte Dauphine line 02
+C Jaurès line 7b
+D Louis Blanc line 7b
+E Louis Blanc line 7b
+T 0h17min50sec
+
+
+S Villiers line 03
+D Galliéni line 03
+C Opéra line 07
+D La Courneuve, 8 Mai 1945 line 07
+E Le Peletier line 07
+T 0h9min7sec
+
+
+S Porte de la Chapelle line 12
+D Mairie d'Issy line 12
+E Vaugirard line 12
+T 0h18min14sec
+
+
+S Galliéni line 03
+D Pont de Levallois, Bécon line 03
+C Père Lachaise line 02
+D Porte Dauphine line 02
+E Belleville line 02
+T 0h8min13sec
+
+
+S Louis Blanc line 07
+D Villejuif, Louis Aragon line 07
+C Chaussée d'Antin, La Fayette line 09
+D Pont de Sèvres line 09
+E Miromesnil line 09
+T 0h10min50sec
+
+
+S République line 08
+D Créteil-Préfecture line 08
+E Maisons-Alfort les Juilliottes line 08
+T 0h10min54sec
+
+
+S Réaumur Sébastopol line 03
+D Galliéni line 03
+C Arts et Métiers line 11
+D Mairie des Lilas line 11
+E Jourdain line 11
+T 0h8min5sec
+
+
+S Les Gobelins line 07
+D La Courneuve, 8 Mai 1945 line 07
+C Opéra line 03
+D Galliéni line 03
+E Sentier line 03
+T 0h15min41sec
+
+
+S Esplanade de la Défense line 01
+D Château de Vincennes line 01
+C Charles de Gaulle, Étoile line 06
+D Nation line 06
+E Chevaleret line 06
+T 0h22min42sec
+
+
+S Crimée line 07
+D Villejuif, Louis Aragon line 07
+C Chaussée d'Antin, La Fayette line 09
+D Pont de Sèvres line 09
+E Exelmans line 09
+T 0h22min9sec
+
+

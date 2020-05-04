@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 S Les Gobelins line 07
 D Villejuif, Louis Aragon line 07
 C Place d'Italie line 06
@@ -6,3 +7,11 @@ C Nation line 02
 D Porte Dauphine line 02
 E Alexandre Dumas line 02
 T 0h17min57sec
+=======
+S Crimée line 07
+D Villejuif, Louis Aragon line 07
+C Chaussée d'Antin, La Fayette line 09
+D Pont de Sèvres line 09
+E Exelmans line 09
+T 0h22min9sec
+>>>>>>> 8b6644b9e04441af48674ae2041ce503175c5e89

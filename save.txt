@@ -1,86 +1,86 @@
-S Billancourt line 09
-D Mairie de Montreuil line 09
-C Havre Caumartin line 03
+S Basilique de Saint-Denis line 13
+D Châtillon-Montrouge line 13
+C Place de Clichy line 02
+D Porte Dauphine line 02
+E Charles de Gaulle, Étoile line 02
+T 0h15min14sec
+
+
+S Picpus line 06
+D Nation line 06
+C Nation line 02
+D Porte Dauphine line 02
+C Jaurès line 7b
+D Louis Blanc line 7b
+E Louis Blanc line 7b
+T 0h17min50sec
+
+
+S Villiers line 03
 D Galliéni line 03
-E Gambetta line 03
-T 0h25min58sec
-
-
-S Père Lachaise line 03
-D Pont de Levallois, Bécon line 03
-C Réaumur Sébastopol line 04
-D Porte d'Orléans line 04
-E Denfert Rochereau line 04
-T 0h16min56sec
-
-
-S Lourmel line 08
-D Créteil-Préfecture line 08
-C République line 11
-D Mairie des Lilas line 11
-E Goncourt line 11
-T 0h19min55sec
-
-
-S Ternes line 02
-D Nation line 02
-C Stalingrad line 07
+C Opéra line 07
 D La Courneuve, 8 Mai 1945 line 07
-E Corentin-Cariou line 07
-T 0h16min29sec
+E Le Peletier line 07
+T 0h9min7sec
 
 
-S Nation line 09
-D Pont de Sèvres line 09
-E République line 09
-T 0h4min24sec
-
-
-S Rue du Bac line 12
+S Porte de la Chapelle line 12
 D Mairie d'Issy line 12
-C Sèvres Babylone line 10
-D Gare d'Austerlitz line 10
-C Jussieu line 07
+E Vaugirard line 12
+T 0h18min14sec
+
+
+S Galliéni line 03
+D Pont de Levallois, Bécon line 03
+C Père Lachaise line 02
+D Porte Dauphine line 02
+E Belleville line 02
+T 0h8min13sec
+
+
+S Louis Blanc line 07
 D Villejuif, Louis Aragon line 07
-E Censier Daubenton line 07
-T 0h12min52sec
+C Chaussée d'Antin, La Fayette line 09
+D Pont de Sèvres line 09
+E Miromesnil line 09
+T 0h10min50sec
 
 
-S République line 05
-D Place d'Italie line 05
-C Place d'Italie line 07
-D Villejuif, Louis Aragon line 07
-E Villejuif, Louis Aragon line 07
-T 0h15min33sec
+S République line 08
+D Créteil-Préfecture line 08
+E Maisons-Alfort les Juilliottes line 08
+T 0h10min54sec
 
 
-S Arts et Métiers line 03
+S Réaumur Sébastopol line 03
 D Galliéni line 03
-C République line 08
-D Créteil-Préfecture line 08
-E Porte de Charenton line 08
-T 0h14min19sec
+C Arts et Métiers line 11
+D Mairie des Lilas line 11
+E Jourdain line 11
+T 0h8min5sec
 
 
-S Charles de Gaulle, Étoile line 01
+S Les Gobelins line 07
+D La Courneuve, 8 Mai 1945 line 07
+C Opéra line 03
+D Galliéni line 03
+E Sentier line 03
+T 0h15min41sec
+
+
+S Esplanade de la Défense line 01
 D Château de Vincennes line 01
-C Franklin D. Roosevelt line 09
-D Mairie de Montreuil line 09
-E Mairie de Montreuil line 09
-T 0h22min8sec
+C Charles de Gaulle, Étoile line 06
+D Nation line 06
+E Chevaleret line 06
+T 0h22min42sec
 
 
-S Porte de Clignancourt line 04
-D Porte d'Orléans line 04
-C Gare du Nord line 05
-D Place d'Italie line 05
-E Richard Lenoir line 05
-T 0h12min6sec
-
-
-S Place Balard line 08
-D Créteil-Préfecture line 08
-E Faidherbe-Chaligny line 08
-T 0h19min2sec
+S Crimée line 07
+D Villejuif, Louis Aragon line 07
+C Chaussée d'Antin, La Fayette line 09
+D Pont de Sèvres line 09
+E Exelmans line 09
+T 0h22min9sec
 
 

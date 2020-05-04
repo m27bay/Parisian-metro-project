@@ -1,4 +1,6 @@
-S Place Balard line 08
-D Créteil-Préfecture line 08
-E Faidherbe-Chaligny line 08
-T 0h19min2sec
+S Crimée line 07
+D Villejuif, Louis Aragon line 07
+C Chaussée d'Antin, La Fayette line 09
+D Pont de Sèvres line 09
+E Exelmans line 09
+T 0h22min9sec

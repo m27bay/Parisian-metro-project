@@ -1,4 +1,24 @@
+<<<<<<< HEAD
 S Montparnasse Bienvenue line 06
 D Charles de Gaulle, Étoile line 06
 E Pasteur line 06
 T 0h0min54sec
+=======
+<<<<<<< HEAD
+S Les Gobelins line 07
+D Villejuif, Louis Aragon line 07
+C Place d'Italie line 06
+D Nation line 06
+C Nation line 02
+D Porte Dauphine line 02
+E Alexandre Dumas line 02
+T 0h17min57sec
+=======
+S Crimée line 07
+D Villejuif, Louis Aragon line 07
+C Chaussée d'Antin, La Fayette line 09
+D Pont de Sèvres line 09
+E Exelmans line 09
+T 0h22min9sec
+>>>>>>> 8b6644b9e04441af48674ae2041ce503175c5e89
+>>>>>>> d7593522f97c076396cf4c16d24c0f054a3393e1

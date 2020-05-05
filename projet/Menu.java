@@ -158,7 +158,7 @@ public class Menu {
 				System.out.println();
 
 				metro.printTravelDetail( way, way.length, minTime );
-				// Fenetre fen = new Fenetre();
+				Fenetre fen = new Fenetre();
 			}
 
 

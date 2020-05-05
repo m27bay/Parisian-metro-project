@@ -1,86 +1,92 @@
-S Basilique de Saint-Denis line 13
-D Châtillon-Montrouge line 13
-C Place de Clichy line 02
-D Porte Dauphine line 02
-E Charles de Gaulle, Étoile line 02
-T 0h15min14sec
+S Bel Air line 06
+D Charles de Gaulle, Étoile line 06
+C Daumesnil line 08
+D Place Balard line 08
+C Strasbourg Saint-Denis line 04
+D Porte d'Orléans line 04
+E Réaumur Sébastopol line 04
+T 0h16min38sec
 
 
-S Picpus line 06
-D Nation line 06
-C Nation line 02
-D Porte Dauphine line 02
-C Jaurès line 7b
-D Louis Blanc line 7b
-E Louis Blanc line 7b
-T 0h17min50sec
-
-
-S Villiers line 03
-D Galliéni line 03
-C Opéra line 07
-D La Courneuve, 8 Mai 1945 line 07
-E Le Peletier line 07
-T 0h9min7sec
-
-
-S Porte de la Chapelle line 12
-D Mairie d'Issy line 12
-E Vaugirard line 12
-T 0h18min14sec
-
-
-S Galliéni line 03
-D Pont de Levallois, Bécon line 03
-C Père Lachaise line 02
-D Porte Dauphine line 02
-E Belleville line 02
-T 0h8min13sec
-
-
-S Louis Blanc line 07
-D Villejuif, Louis Aragon line 07
-C Chaussée d'Antin, La Fayette line 09
+S Rue des Boulets line 09
 D Pont de Sèvres line 09
-E Miromesnil line 09
-T 0h10min50sec
+E Strasbourg Saint-Denis line 09
+T 0h5min11sec
 
 
-S République line 08
-D Créteil-Préfecture line 08
-E Maisons-Alfort les Juilliottes line 08
-T 0h10min54sec
-
-
-S Réaumur Sébastopol line 03
-D Galliéni line 03
-C Arts et Métiers line 11
-D Mairie des Lilas line 11
-E Jourdain line 11
-T 0h8min5sec
-
-
-S Les Gobelins line 07
-D La Courneuve, 8 Mai 1945 line 07
-C Opéra line 03
-D Galliéni line 03
-E Sentier line 03
-T 0h15min41sec
-
-
-S Esplanade de la Défense line 01
+S Mouton-Duvernet line 04
+D Porte de Clignancourt line 04
+C Denfert Rochereau line 06
+D Nation line 06
+C Nation line 01
 D Château de Vincennes line 01
-C Charles de Gaulle, Étoile line 06
-D Nation line 06
-E Chevaleret line 06
-T 0h22min42sec
+E Château de Vincennes line 01
+T 0h22min11sec
 
 
-S Crimée line 07
+S Saint-Sulpice line 04
+D Porte d'Orléans line 04
+C Montparnasse Bienvenue line 13
+D Saint-Denis-Université line 13
+E Basilique de Saint-Denis line 13
+T 0h23min10sec
+
+
+S Créteil-l'Echat, Hôpital Henri Mondor line 08
+D Place Balard line 08
+C Bastille line 05
+D Bobigny, Pablo Picasso line 05
+C Gare de l'Est line 07
+D La Courneuve, 8 Mai 1945 line 07
+E Aubervilliers-Pantin, Quatre Chemins line 07
+T 0h28min23sec
+
+
+S Cour Saint-Émilion line 14
+D Madeleine line 14
+C Pyramides line 07
+D La Courneuve, 8 Mai 1945 line 07
+E Porte de la Villette line 07
+T 0h23min35sec
+
+
+S Tuileries line 01
+D Château de Vincennes line 01
+C Palais Royal, Musée du Louvre line 07
 D Villejuif, Louis Aragon line 07
-C Chaussée d'Antin, La Fayette line 09
-D Pont de Sèvres line 09
-E Exelmans line 09
-T 0h22min9sec
+C Jussieu line 10
+D Boulogne, Pont de Saint-Cloud, Rond Point Rhin et Danube line 10
+E Cardinal Lemoine line 10
+T 0h12min41sec
+
+
+S Malakoff-Plateau de Vanves line 13
+D Gabriel Péri, Asnières-Gennevilliers line 13
+C Montparnasse Bienvenue line 04
+D Porte de Clignancourt line 04
+E Strasbourg Saint-Denis line 04
+T 0h16min27sec
+
+
+S Ménilmontant line 02
+D Porte Dauphine line 02
+C Pigalle line 12
+D Mairie d'Issy line 12
+E Porte de Versailles line 12
+T 0h26min15sec
+
+
+S Reuilly Diderot line 08
+D Place Balard line 08
+E République line 08
+T 0h5min3sec
+
+
+S Daumesnil line 06
+D Charles de Gaulle, Étoile line 06
+C Denfert Rochereau line 04
+D Porte de Clignancourt line 04
+E Vavin line 04
+T 0h12min7sec
 
 

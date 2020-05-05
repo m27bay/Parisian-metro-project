@@ -1,6 +1,4 @@
-S Crimée line 07
-D Villejuif, Louis Aragon line 07
-C Chaussée d'Antin, La Fayette line 09
-D Pont de Sèvres line 09
-E Exelmans line 09
-T 0h22min9sec
+S Montparnasse Bienvenue line 06
+D Charles de Gaulle, Étoile line 06
+E Pasteur line 06
+T 0h0min54sec

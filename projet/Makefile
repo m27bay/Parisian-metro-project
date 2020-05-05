@@ -15,5 +15,9 @@ run2 : compile
 compile : clean
 	javac -cp $(package1) Main.java $(program)
 
-clean :
+cleanFile :
+	rm -f ../UserTravel.txt
+	rm -f ../save.txt
+
+clean : cleanFile
 	rm -f *.class

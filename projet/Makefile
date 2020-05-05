@@ -29,9 +29,9 @@ cleanArchive:
 
 archive: cleanArchive
 	mkdir $(dir)
-	cp -u  ../metroL.txt ../README.md $(rapport) $(program) $(other) $(dir)/
+	cp -u $(program) $(other) $(dir)/
 
-	tar -cvf $(tar).tar $(dir)/
+	tar -cvf $(tar).tar $(dir)/ ../metroL.txt ../README.md $(rapport)
 
 
 cleanFile :

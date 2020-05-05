@@ -7,6 +7,7 @@ other = Main.java Makefile
 
 dir = ../Parisian_metro_project
 tar = ../Le_Denmat_Cambresy_Lavalliere
+rapport = ../Compte_rendu_LE_DENMAT_CAMBRESY_LAVALLIERE.pdf
 
 program = $(tools) $(dijkstra) $(graphics)
 
@@ -28,7 +29,7 @@ cleanArchive:
 
 archive: cleanArchive
 	mkdir $(dir)
-	cp -u ../metroL.txt ../README.md $(program) $(other) $(dir)/
+	cp -u  ../metroL.txt ../README.md $(rapport) $(program) $(other) $(dir)/
 
 	tar -cvf $(tar).tar $(dir)/
 

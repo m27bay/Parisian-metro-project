@@ -5,10 +5,6 @@ dijkstra = Matrice.java TblDijkstra.java TblStations.java
 graphics = Fenetre.java Panneau.java
 other = Main.java Makefile
 
-dir = ../Parisian_metro_project
-tar = ../Le_Denmat_Cambresy_Lavalliere
-rapport = ../Compte_rendu_LE_DENMAT_CAMBRESY_LAVALLIERE.pdf
-
 program = $(tools) $(dijkstra) $(graphics)
 
 run : compile
@@ -19,20 +15,6 @@ run2 : compile
 
 compile : clean
 	javac -cp $(package) Main.java $(program)
-
-
-cleanArchive:
-	rm -f $(tar).tar
-
-	rm -f $(dir)/*
-	rm -df $(dir)
-
-archive: cleanArchive
-	mkdir $(dir)
-	cp -u $(program) $(other) $(dir)/
-
-	tar -cvf $(tar).tar $(dir)/ ../metroL.txt ../README.md $(rapport)
-
 
 cleanFile :
 	rm -f ../UserTravel.txt
